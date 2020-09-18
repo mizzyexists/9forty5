@@ -19,5 +19,3 @@ release_job:
     name: "project-$CI_COMMIT_REF_NAME"
     paths:
       - dist/
-  only:
-    - tags
