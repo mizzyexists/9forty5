@@ -19,3 +19,4 @@ release_job:
     name: "project-$CI_COMMIT_REF_NAME"
     paths:
       - dist/
+    expire_in: 1 week
