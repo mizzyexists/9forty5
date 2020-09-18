@@ -1,7 +1,5 @@
 <div align="center">
 <img src="https://i.ibb.co/TRV7JqQ/Plain-Logo-Black.png" width="300px" />
-
-<h1>9Forty5</h1>
 <br />
 <a href="../commits/master"><img src="https://img.shields.io/badge/Build-Passed-success?style=for-the-badge"></a>
 <a href="/CHANGELOG.md"><img src="https://img.shields.io/badge/Version-1.0.0-red?style=for-the-badge"></a>
