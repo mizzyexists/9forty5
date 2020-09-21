@@ -1,0 +1,14 @@
+<div class="profile-navigation">
+  <div *ngIf="loggedUser">
+    <a (click)="viewMyProfile()" class="pointer"><img class="profile-pic" src="{{ image_path }}"></a>
+    <p class='profiledisplay'></p>
+    <a (click)="viewMyProfile()" class="profiledisplay pointer">{{ loggedUser | titlecase }}</a>
+    <p class="profiledisplay">|</p>
+    <a (click)="logout()" class="profiledisplay pointer">Logout</a>
+  </div>
+  <div *ngIf="!loggedUser">
+    <a routerLink="login" class="profiledisplay">Login</a>
+    <p class="profiledisplay">|</p>
+    <a routerLink="register" class="profiledisplay">Register</a>
+  </div>
+</div>

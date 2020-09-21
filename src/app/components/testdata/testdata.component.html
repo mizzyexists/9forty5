@@ -1,43 +1,45 @@
-<div *ngIf="loading">
-Loading...
-</div>
-<div *ngIf="error">
-Error
-</div>
-<div *ngIf="posts" class="post-container">
-  <div class="post-card" *ngFor="let post of posts">
-    <h1>{{post.title}}</h1>
-    <p>{{post.content}}</p>
+<div class="container">
+  <div *ngIf="loading">
+  Loading...
   </div>
+  <div *ngIf="error">
+  Error
+  </div>
+  <div *ngIf="posts" class="post-container">
+    <div class="post-card" *ngFor="let post of posts">
+      <h1>{{post.title}}</h1>
+      <p>{{post.content}}</p>
+    </div>
+  </div>
+  <table *ngIf="users" class="post-container">
+      <tr>
+      <th>User ID</th>
+      <th>Username</th>
+      <th>Biography</th>
+      </tr>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.bio}}</td>
+      </tr>
+  </table>
+  <h2>CREATE USER</h2>
+  <form (ngSubmit)="createNewUser()" #newUserForm="ngForm">
+  <input type="text" name="uname" [(ngModel)]="unamefield" value="" placeholder="New Username">
+  <input type="text" name="userbio" [(ngModel)]="newbiofield" value="" placeholder="New User Bio">
+  <button type="submit" name="button">Create User</button>
+  </form>
+  <br><br>
+  <h2>EDIT USER</h2>
+  <form (ngSubmit)="changeUserBio()" #userBioForm="ngForm">
+  <input type="number" name="userid" [(ngModel)]="uidfield" value="" placeholder="User ID">
+  <input type="text" name="userbio" [(ngModel)]="biofield" value="" placeholder="New User Bio">
+  <button type="submit" name="button">Change Bio</button>
+  </form>
+  <br><br>
+  <h2>DELETE USER</h2>
+  <form (ngSubmit)="deleteUser()" #deleteUserForm="ngForm">
+  <input type="number" name="userid" [(ngModel)]="deluidfield" value="" placeholder="User ID">
+  <button type="submit" name="button">Delete User</button>
+  </form>
 </div>
-<table *ngIf="users" class="post-container">
-    <tr>
-    <th>User ID</th>
-    <th>Username</th>
-    <th>Biography</th>
-    </tr>
-    <tr *ngFor="let user of users">
-      <td>{{user.id}}</td>
-      <td>{{user.username}}</td>
-      <td>{{user.bio}}</td>
-    </tr>
-</table>
-<h2>CREATE USER</h2>
-<form (ngSubmit)="createNewUser()" #newUserForm="ngForm">
-<input type="text" name="uname" [(ngModel)]="unamefield" value="" placeholder="New Username">
-<input type="text" name="userbio" [(ngModel)]="newbiofield" value="" placeholder="New User Bio">
-<button type="submit" name="button">Create User</button>
-</form>
-<br><br>
-<h2>EDIT USER</h2>
-<form (ngSubmit)="changeUserBio()" #userBioForm="ngForm">
-<input type="number" name="userid" [(ngModel)]="uidfield" value="" placeholder="User ID">
-<input type="text" name="userbio" [(ngModel)]="biofield" value="" placeholder="New User Bio">
-<button type="submit" name="button">Change Bio</button>
-</form>
-<br><br>
-<h2>DELETE USER</h2>
-<form (ngSubmit)="deleteUser()" #deleteUserForm="ngForm">
-<input type="number" name="userid" [(ngModel)]="deluidfield" value="" placeholder="User ID">
-<button type="submit" name="button">Delete User</button>
-</form>

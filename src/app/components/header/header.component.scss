@@ -1,0 +1,61 @@
+ul li .hot-stocks{
+  color: rgb(246, 0, 0);
+  font-weight: bold;
+}
+
+.nav-container{
+  padding-left: 0px;
+  padding-right: 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+  height: 70px;
+  // margin-top: 32px;
+  background-color: #fff;
+  position: fixed;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 2px 2px 0 rgba(0, 0, 0, 0.09);
+  z-index: 100;
+  width: 100%;
+}
+
+.logo-container{
+  height: 70px;
+}
+
+.main-logo{
+  max-height: 100%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.main-navigation{
+  align-self: center;
+  padding-top: 12px;
+}
+
+.main-navigation ul{
+  list-style: none;
+  display: inline-block;
+  margin-bottom: 0px;
+  padding-right: 10px;
+  border-right: 1px solid rgba(51, 51, 51, 0.4);
+
+}
+
+.main-navigation li{
+  display: inline-block;
+  margin: 0px 10px;
+}
+
+.main-navigation a{
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  padding: 2px;
+  transition: all .3s ease;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.main-navigation li a:hover{
+  text-decoration: none;
+  color: rgb(1, 18, 69);
+  transition: all .3s ease;
+}

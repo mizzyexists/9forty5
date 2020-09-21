@@ -1,0 +1,30 @@
+.profile-navigation{
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.profile-pic{
+  width: 35px;
+  height: 35px;
+  border-radius: 30px;
+  background-color: #dfdfdf;
+  display: inline-block;
+  margin-right: 2px;
+}
+
+.profiledisplay{
+  display: inline-block;
+  color: #555;
+  padding: 2px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.profile-navigation a:hover{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.pointer:hover{
+  cursor: pointer;
+}

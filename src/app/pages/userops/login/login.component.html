@@ -1,0 +1,38 @@
+<div *ngIf="!loggedUser && forgotPassword==false" class="row">
+  <div class="col login-form text-center">
+    <img src="./assets/images/PlainLogoBlack.png" width="250px"/>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Username or E-mail:</label>
+        <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
+        <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Please enter username.</div>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
+        <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please enter password.</div>
+      </div>
+      <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+    </form>
+    <br>
+    <a (click)="forgotPass()">Forgot Password?</a>
+  </div>
+</div>
+<div *ngIf="!loggedUser && forgotPassword==true && recievedCode==false" class="row">
+  <div class="col login-form text-center">
+    <img src="./assets/images/PlainLogoBlack.png" width="250px"/>
+      <form [formGroup]="resetForm" (ngSubmit)="passReset()">
+        <h3>Reset Password</h3>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
+      </div>
+      <button class="btn btn-success">Send Reset Email</button>
+    </form>
+    <br>
+    <a (click)="backLogin()">Back to Login</a>
+  </div>
+</div>
+<div *ngIf="!loggedUser && forgotPassword==true && recievedCode==true" class="row">
+  <app-checkresetcode class="col login-form text-center"></app-checkresetcode>
+</div>
