@@ -1,0 +1,6 @@
+<div *ngIf="!jwtUsertype && jwtUsertype != 'Admin' && jwtUsertype != 'Super-Admin'">
+  You do not have permission to access this page.
+</div>
+<div *ngIf="jwtUsertype == 'Admin' || jwtUsertype == 'Super-Admin'">
+TEST
+</div>

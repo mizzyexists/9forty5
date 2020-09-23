@@ -1,0 +1,10 @@
+<div class="watchlist bg-dark card">
+  <div class="card-header text-white"><strong>The Big Boys</strong></div>
+  <ul class="list-group list-group-flush">
+    <li *ngFor="let stock of stockData | orderBy: ['name']" class="list-group-item bg-dark text-white"><h4 clas="stock-name">
+      {{ stock.name }}<span class="symbol">{{ stock.symbol }}</span></h4>
+      <p *ngIf="stock.chg >= 0" class="price positive">{{ stock.price }} <i class="fas fa-caret-up"></i><br><span class="change positive">{{ stock.chg_percent }}</span></p>
+      <p *ngIf="stock.chg < 0" class="price negative">{{ stock.price }} <i class="fas fa-caret-down"></i><br><span class="change negative">{{ stock.chg_percent }}</span></p>
+    </li>
+  </ul>
+</div>

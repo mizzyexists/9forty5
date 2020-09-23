@@ -1,6 +1,23 @@
-<!-- <app-stock-head></app-stock-head> -->
 <app-toasts></app-toasts>
 <app-header></app-header>
+<app-stock-head></app-stock-head>
 <div class="headerfix"></div>
-<router-outlet></router-outlet>
+<div *ngIf="isHome!=true" class="content-push"></div>
+<div class="container">
+  <div class="home-banner" *ngIf="isHome==true">
+    <app-home-banner></app-home-banner>
+  </div>
+  <div class="row">
+    <div *ngIf="isHome==true" class="col-lg-9 col-md-9 col">
+        <router-outlet></router-outlet>
+    </div>
+    <div *ngIf="isHome!=true" class="col-lg-9 col-md-9 col">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="col-lg-3 col-md-3 col">
+      <app-watchlist></app-watchlist>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
 <!-- <app-testdata></app-testdata> -->

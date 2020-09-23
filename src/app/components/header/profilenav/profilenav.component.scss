@@ -4,12 +4,13 @@
 }
 
 .profile-pic{
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border-radius: 30px;
   background-color: #dfdfdf;
   display: inline-block;
   margin-right: 2px;
+  margin-top: -2px;
 }
 
 .profiledisplay{
@@ -27,4 +28,13 @@
 
 .pointer:hover{
   cursor: pointer;
+}
+
+.dropdown-item, .dropdown-menu{
+  z-index: 100;
+}
+
+.dropdown-item.active, .dropdown-item:active{
+  color: #fff !important;
+  background-color: #343a40;
 }

@@ -37,6 +37,7 @@ export class ProfilenavComponent implements OnInit {
       this.jwtUsername = this.jwtData.data.username;
       this.jwtUsertype = this.jwtData.data.usertype;
       this.jwtEmail = this.jwtData.data.email;
+      this.jwtUsertype = this.jwtData.data.usertype;
       this.loggedUser = this.jwtUsername;
       this.userID = this.jwtData.data.uid;
       this.userSlug = this.jwtData.data.slug;
@@ -60,6 +61,15 @@ export class ProfilenavComponent implements OnInit {
       this.router.navigate(['/profile/' + this.userSlug]);
 
     });
+  }
+
+  goToAM(){
+    if(this.jwtUsertype == 'Admin' || this.jwtUsertype == 'Super-Admin'){
+      this.router.navigate(['/adminmenu']);
+    }
+    else {
+      alert("YOU CAN NOT DO THAT");
+    }
   }
 
 }

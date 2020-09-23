@@ -54,6 +54,7 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
      this.token = window.localStorage.getItem('jwt');
+     const routeParams = this.routes.snapshot.params;
      this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
        this.jwtData = authData[1];
        this.userID = this.jwtData.data.uid;
@@ -62,9 +63,8 @@ export class ProfileComponent implements OnInit {
        if(routeParams.uid==this.jwtUID || this.jwtUsertype == "Super-Admin" || this.jwtUsertype == "Admin"){
        this.authApi.fetchUserBySlug(routeParams.slug).subscribe((userData: UserData[])=>{
        this.userData = userData;
-    });
-  }});
-     const routeParams = this.routes.snapshot.params;
+        });
+      }});
      this.authApi.fetchUserBySlug(routeParams.slug).subscribe((data: any) => {
      this.profileID = data.uid;
      this.profileUser = data.username;

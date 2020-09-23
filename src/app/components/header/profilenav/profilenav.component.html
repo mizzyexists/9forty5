@@ -1,10 +1,17 @@
 <div class="profile-navigation">
-  <div *ngIf="loggedUser">
+  <div *ngIf="loggedUser" style="margin-top: -5px;">
+  <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block">
     <a (click)="viewMyProfile()" class="pointer"><img class="profile-pic" src="{{ image_path }}"></a>
     <p class='profiledisplay'></p>
-    <a (click)="viewMyProfile()" class="profiledisplay pointer">{{ loggedUser | titlecase }}</a>
+    <a id="profileDropdown" ngbDropdownToggle class="profiledisplay pointer">{{ loggedUser | titlecase }}</a>
+    <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="profileDropdown">
+      <a (click)="viewMyProfile()" class="dropdown-item pointer">View Profile</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a *ngIf="jwtUsertype==Super-'Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
+    </div>
     <p class="profiledisplay">|</p>
     <a (click)="logout()" class="profiledisplay pointer">Logout</a>
+  </div>
   </div>
   <div *ngIf="!loggedUser">
     <a routerLink="login" class="profiledisplay">Login</a>

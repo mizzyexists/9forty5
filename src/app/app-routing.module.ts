@@ -8,6 +8,7 @@ import { HotstocksComponent } from './pages/hotstocks/hotstocks.component';
 import { RegisterComponent } from './pages/userops/register/register.component';
 import { LoginComponent } from './pages/userops/login/login.component';
 import { ProfileComponent } from './pages/userops/profile/profile.component';
+import { AdminmenuComponent } from './pages/adminmenu/adminmenu.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile', redirectTo: '' },
   { path: 'profile/:slug', component: ProfileComponent},
-
+  { path: 'adminmenu', component: AdminmenuComponent},
 ];
 
 @NgModule({

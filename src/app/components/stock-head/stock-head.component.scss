@@ -2,11 +2,12 @@
   padding-left: 0px;
   padding-right: 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.20);
-  height: 32px;
-  background-color: #1b1b1b;
+  height: 62px;
   position: fixed;
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.09), 0 2px 2px 0 rgba(0, 0, 0, 0.09);
-  z-index: 100
+  z-index: 99;
+  padding-top: 2px;
+  top:50px;
 }
 
 .col{
@@ -22,22 +23,30 @@
   padding-right: 5px;
   font-weight: bold;
   margin-bottom: 0px;
-  display: inline-block;
+  display: block;
   margin: auto;
 }
 
 .col h3{
-  color: #fff;
   font-size: 14px;
   padding-left: 5px;
   padding-right: 5px;
   text-align: center;
   font-weight: lighter;
-  display: inline-block;
+  display: block;
   margin: auto;
 }
 
-.col p{
-  display: inline-block;
-  color: #d1d1d1;
+.changevalue{
+  display: block;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+.positive{
+  color: rgb(0, 212, 47);
+}
+
+.negative{
+  color: rgb(255, 119, 119);
 }

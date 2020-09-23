@@ -1,24 +1,27 @@
-<div *ngIf="!token" class="row">
-  <div class="col login-form text-center">
-    <img src="./assets/images/PlainLogoBlack.png" width="250px"/>
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" formControlName="username" placeholder="Username" name="username" class="form-control" id="username">
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="text" formControlName="email" placeholder="E-Mail" name="email" class="form-control" id="email">
-      </div>
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" formControlName="password" placeholder="Password" name="password" class="form-control" id="password">
-      </div>
-      <div class="form-group">
-        <label for="password">Confirm Password:</label>
-        <input type="password" formControlName="password2" placeholder="Confirm Password" name="password2" class="form-control" id="password2">
-      </div>
-      <button class="btn btn-success">Register</button>
-    </form>
+<div *ngIf="!token">
+  <div class="card bg-dark text-white reg-card">
+    <div class="col login-form text-center">
+      <img src="./assets/images/PlainLogoWhite.png" width="250px"/>
+      <h3>Register</h3>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" formControlName="username" placeholder="Username" name="username" class="form-control" id="username">
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" formControlName="email" placeholder="E-Mail" name="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" formControlName="password" placeholder="Password" name="password" class="form-control" id="password">
+        </div>
+        <div class="form-group">
+          <label for="password">Confirm Password:</label>
+          <input type="password" formControlName="password2" placeholder="Confirm Password" name="password2" class="form-control" id="password2">
+        </div>
+        <button class="btn btn-light">Register</button>
+      </form>
+    </div>
   </div>
 </div>

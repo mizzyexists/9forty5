@@ -1,6 +1,8 @@
-<div *ngIf="!loggedUser && forgotPassword==false" class="row">
+<div *ngIf="!loggedUser && forgotPassword==false">
+  <div class="card bg-dark text-white log-card">
   <div class="col login-form text-center">
-    <img src="./assets/images/PlainLogoBlack.png" width="250px"/>
+    <img src="./assets/images/PlainLogoWhite.png" width="250px"/>
+    <h3>Login</h3>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="username">Username or E-mail:</label>
@@ -12,13 +14,15 @@
         <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
         <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please enter password.</div>
       </div>
-      <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+      <button class="btn btn-light" [disabled]="loginForm.invalid">Login</button>
     </form>
     <br>
     <a (click)="forgotPass()">Forgot Password?</a>
   </div>
+  </div>
 </div>
 <div *ngIf="!loggedUser && forgotPassword==true && recievedCode==false" class="row">
+  <div class="card log-card">
   <div class="col login-form text-center">
     <img src="./assets/images/PlainLogoBlack.png" width="250px"/>
       <form [formGroup]="resetForm" (ngSubmit)="passReset()">
@@ -31,6 +35,7 @@
     </form>
     <br>
     <a (click)="backLogin()">Back to Login</a>
+  </div>
   </div>
 </div>
 <div *ngIf="!loggedUser && forgotPassword==true && recievedCode==true" class="row">
