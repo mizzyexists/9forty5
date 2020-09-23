@@ -49,7 +49,6 @@ export class ProfileComponent implements OnInit {
       private uploadService: UploadService,
       private titleService: Title
     ){
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
 
     ngOnInit() {

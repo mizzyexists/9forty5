@@ -7,7 +7,7 @@
     <div class="dropdown-menu" ngbDropdownMenu aria-labelledby="profileDropdown">
       <a (click)="viewMyProfile()" class="dropdown-item pointer">View Profile</a>
       <a class="dropdown-item" href="#">Your Watchlist</a>
-      <a *ngIf="jwtUsertype==Super-'Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
+      <a *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
     </div>
     <p class="profiledisplay">|</p>
     <a (click)="logout()" class="profiledisplay pointer">Logout</a>

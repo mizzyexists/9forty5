@@ -28,6 +28,7 @@ import { WatchlistComponent } from './components/watchlist/watchlist.component';
 import { HomeBannerComponent } from './pages/home/home-banner/home-banner.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdminmenuComponent } from './pages/adminmenu/adminmenu.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 const uri = 'https://api.mzydigital.com/v1/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -57,7 +58,8 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     OrderBy,
     HomeBannerComponent,
     FooterComponent,
-    AdminmenuComponent
+    AdminmenuComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

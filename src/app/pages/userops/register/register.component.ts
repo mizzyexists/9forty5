@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
       if(this.registerForm.value.password == this.registerForm.value.password2){
     this.authApi.registerUser(this.registerForm.value).subscribe((data)=>{
       if(data[0]==0){
-      this.toastService.show('User Created.', { classname: 'bg-success text-light'});
+      this.toastService.show('User Created.', { classname: 'bg-dark text-light'});
       this.registerForm.reset();
       setTimeout(() => window.location.href = './', 500);
     }

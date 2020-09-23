@@ -2,6 +2,7 @@
 <app-header></app-header>
 <app-stock-head></app-stock-head>
 <div class="headerfix"></div>
+<app-alert></app-alert>
 <div *ngIf="isHome!=true" class="content-push"></div>
 <div class="container">
   <div class="home-banner" *ngIf="isHome==true">
@@ -14,10 +15,11 @@
     <div *ngIf="isHome!=true" class="col-lg-9 col-md-9 col">
         <router-outlet></router-outlet>
     </div>
-    <div class="col-lg-3 col-md-3 col">
+    <div *ngIf="showWatchlist==true" class="col-lg-3 col-md-3 col">
       <app-watchlist></app-watchlist>
     </div>
   </div>
 </div>
+<div style="margin-top: 20px;"></div>
 <app-footer></app-footer>
 <!-- <app-testdata></app-testdata> -->

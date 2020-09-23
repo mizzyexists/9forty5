@@ -41,7 +41,6 @@ export class StockHeadComponent implements OnInit {
   ngOnInit(): void {
     this.stockApi.getIndexData().subscribe((indexData: IndexData[]) => {
       this.fetchedindexData = indexData;
-      console.log(this.fetchedindexData);
       this.djia_price = this.fetchedindexData[0].price;
       this.dowChangeValue = this.fetchedindexData[0].chg;
       this.dowChangePerc = this.fetchedindexData[0].chg_percent;

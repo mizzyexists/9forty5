@@ -10,16 +10,23 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent {
   title = 'stockng';
   isHome: boolean;
-  homeCheck: any;
+  pageCheck: any;
+  showWatchlist: boolean;
   constructor(
     private router: Router
   ){
     router.events.subscribe((_: NavigationEnd) => {
-      this.homeCheck = this.router.url;
-      if(this.homeCheck == '/'){
+      this.pageCheck = this.router.url;
+      if(this.pageCheck == '/'){
         this.isHome=true;
       }else{
         this.isHome=false;
+      }
+      if(this.pageCheck.includes('/adminmenu') || this.pageCheck.includes('/profile/')){
+        this.showWatchlist = false;
+      }
+      else{
+        this.showWatchlist = true;
       }
     });
   }

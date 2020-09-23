@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthData } from 'src/app/models/authdata';
 import { StockapiService } from 'src/app/services/stockapi.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-adminmenu',
@@ -17,10 +18,12 @@ export class AdminmenuComponent implements OnInit {
   stockRes: any;
   constructor(
     private authApi: AuthService,
-    private stockApi: StockapiService
+    private stockApi: StockapiService,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle( "9Forty5 - Admin Menu" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];

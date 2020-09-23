@@ -2,7 +2,8 @@
   <h5 class="card-header">User Profile: {{profileUser}}</h5>
   <div class="card-body">
       <img *ngIf="profileAvatar" src="{{profileAvatar}}" width="100px" height="100px">
-      <input *ngIf="userID==profileID" type="file" (change)="onFileSelect($event)" name="avatar" class="form-control bg-dark border-dark text-white" id="avatar">
+      <input *ngIf="userID==profileID" type="file" (change)="onFileSelect($event)" name="avatar" class="form-control bg-dark border-dark text-white d-inline-block" id="avatar">
+      <br>
       <button *ngIf="userID==profileID" (click)="uploadPic()" class="btn btn-primary">Upload Avatar</button>
       <button *ngIf="userID==profileID" (click)="editMode()" class="btn btn-light">Edit Profile</button>
       <p><strong>Full Name:</strong> {{profileName}}</p>
