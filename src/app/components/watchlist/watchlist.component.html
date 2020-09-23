@@ -5,6 +5,7 @@
       {{ stock.name }}<span class="symbol">{{ stock.symbol }}</span></h4>
       <p *ngIf="stock.chg >= 0" class="price positive">{{ stock.price }} <i class="fas fa-caret-up"></i><br><span class="change positive">{{ stock.chg_percent }}</span></p>
       <p *ngIf="stock.chg < 0" class="price negative">{{ stock.price }} <i class="fas fa-caret-down"></i><br><span class="change negative">{{ stock.chg_percent }}</span></p>
+      <small class="lastupdate">Last Update: {{ stock.last_update }} GMT</small>
     </li>
   </ul>
 </div>

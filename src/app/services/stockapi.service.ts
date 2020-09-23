@@ -25,6 +25,17 @@ export class StockapiService {
   return this.httpClient.get<IndexData[]>(`${this.PHP_API_SERVER}/stocks/getmainindicies.php`);
   }
 
+  refreshIndexData(): Observable<IndexData[]>{
+  return this.httpClient.get<IndexData[]>(`${this.PHP_API_SERVER}/stocks/mainindexrefresh.php`);
+  }
+
+  refreshWatchlistStocks(): Observable<StockData[]>{
+  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/stockwatchlistrefresh.php`);
+  }
+
+  refreshAllStocks(): Observable<StockData[]>{
+  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/stockgeneralrefresh.php`);
+  }
 
 
 }
