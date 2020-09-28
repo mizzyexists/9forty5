@@ -41,6 +41,7 @@ export class AuthService {
   editUser(userData: UserData){
     return this.httpClient.put<UserData>(`${this.PHP_API_SERVER}/auth/edituser.php`, userData);
   }
-
-
+  countUsers(): Observable<UserData[]>{
+  return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/auth/countusers.php`);
+  }
 }

@@ -17,9 +17,7 @@ import { StockHeadComponent } from './components/stock-head/stock-head.component
 import { ProfilenavComponent } from './components/header/profilenav/profilenav.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
-import { IdeasComponent } from './pages/ideas/ideas.component';
 import { LearnComponent } from './pages/learn/learn.component';
-import { HotstocksComponent } from './pages/hotstocks/hotstocks.component';
 import { RegisterComponent } from './pages/userops/register/register.component';
 import { ToastsContainer } from './models/toast.component';
 import { LoginComponent } from './pages/userops/login/login.component';
@@ -29,6 +27,7 @@ import { HomeBannerComponent } from './pages/home/home-banner/home-banner.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { AdminmenuComponent } from './pages/adminmenu/adminmenu.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { GainzoneComponent } from './pages/gainzone/gainzone.component';
 
 const uri = 'https://api.mzydigital.com/v1/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -47,9 +46,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     ProfilenavComponent,
     HomeComponent,
     AboutComponent,
-    IdeasComponent,
     LearnComponent,
-    HotstocksComponent,
     RegisterComponent,
     ToastsContainer,
     LoginComponent,
@@ -59,7 +56,8 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     HomeBannerComponent,
     FooterComponent,
     AdminmenuComponent,
-    AlertComponent
+    AlertComponent,
+    GainzoneComponent
   ],
   imports: [
     BrowserModule,
@@ -68,10 +66,10 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    // NgbDropdown
   ],
   providers: [
     OrderBy,
+    NgbDropdown,
     {
     provide: APOLLO_OPTIONS,
     useFactory: createApollo,

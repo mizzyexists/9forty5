@@ -11,7 +11,7 @@ export class WatchlistComponent implements OnInit {
   stockData: any;
 
   constructor(
-    private stockApi: StockapiService
+    private stockApi: StockapiService,
   ) { }
 
   ngOnInit(): void {

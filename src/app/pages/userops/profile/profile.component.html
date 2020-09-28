@@ -2,7 +2,7 @@
   <h5 class="card-header">User Profile: {{profileUser}}</h5>
   <div class="card-body">
       <img *ngIf="profileAvatar" src="{{profileAvatar}}" width="100px" height="100px">
-      <input *ngIf="userID==profileID" type="file" (change)="onFileSelect($event)" name="avatar" class="form-control bg-dark border-dark text-white d-inline-block" id="avatar">
+      <input *ngIf="userID==profileID" type="file" (change)="onFileSelect($event)" name="avatar" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);" class="form-control text-white d-inline-block" id="avatar">
       <br>
       <button *ngIf="userID==profileID" (click)="uploadPic()" class="btn btn-primary">Upload Avatar</button>
       <button *ngIf="userID==profileID" (click)="editMode()" class="btn btn-light">Edit Profile</button>
@@ -13,26 +13,24 @@
       <p><strong>Last Seen:</strong> {{profileLogin}}</p>
   </div>
 </div>
-<div class="container" *ngIf="profileUser && editUser==true && userID==profileID">
-  <div class="row">
-    <div class="col">
-      <div class="user-card bg-dark text-white card">
+      <div *ngIf="profileUser && editUser==true && userID==profileID" class="user-card bg-dark text-white card">
       <h5 class="card-header">User Profile: {{profileUser}}</h5>
       <div class="card-body">
           <img *ngIf="profileAvatar" src="{{profileAvatar}}" width="100px" height="100px">
-          <input type="file" (change)="onFileSelect($event)" name="avatar" class="form-control  bg-dark border-dark text-white" id="avatar">
+          <input type="file" (change)="onFileSelect($event)" name="avatar" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);" class="form-control text-white d-inline-block" id="avatar">
+          <br>
           <button (click)="uploadPic()" class="btn btn-primary">Upload Avatar</button><span *ngIf="uploadFilename" class="filename">Selected: {{uploadFilename}}</span>
           <button *ngIf="userID==profileID" (click)="noeditMode()" class="btn btn-light">Cancel</button>
-    <form [formGroup]="usereditForm" (ngSubmit)="onUpdate()">
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input disabled type="text" formControlName="username" name="username" class="form-control" id="username">
-    </div>
-    <div class="form-group">
+      <form [formGroup]="usereditForm" (ngSubmit)="onUpdate()">
+      <div class="form-group">
+      <label for="username">Username: {{ profileUser }}</label>
+      <input disabled type="text" formControlName="username" name="username" class="form-control d-none" id="username">
+      </div>
+      <div class="form-group">
       <label for="email">E-Mail:</label>
       <input type="text" formControlName="email" name="email" class="form-control" id="email">
-    </div>
-    <div *ngIf="jwtUsertype=='Super-Admin'" class="form-group">
+      </div>
+      <div *ngIf="jwtUsertype=='Super-Admin'" class="form-group">
       <label for="usertype">Usertype:</label>
       <select formControlName="usertype" name="usertype" id="usertype" class="form-control">
         <option value = "User">User</option>
@@ -40,24 +38,21 @@
         <option value = "Admin">Administrator</option>
         <option value = "Super-Admin">Super-Admin</option>
       </select>
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
       <label for="fname">First Name:</label>
       <input type="text" formControlName="fname" name="fname" class="form-control" id="fname">
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
       <label for="lname">Last Name:</label>
       <input type="text" formControlName="lname" name="lname" class="form-control" id="lname">
-    </div>
-    <div class="form-group">
+      </div>
+      <div class="form-group">
       <label for="bio_text">Biography:</label><br>
       <textarea formControlName="bio_text" name="bio_text" id="bio_text"></textarea>
-    </div>
-    <button class="btn btn-secondary">Save Profile</button>
-    </form>
       </div>
-    </div>
-    </div>
+      <button class="btn btn-secondary">Save Profile</button>
+    </form>
   </div>
 </div>
 <div *ngIf="!profileUser">

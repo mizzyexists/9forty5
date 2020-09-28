@@ -1,8 +1,3 @@
-ul li .hot-stocks{
-  color: rgb(246, 0, 0);
-  font-weight: bold;
-}
-
 .nav-container{
   padding-left: 0px;
   padding-right: 0px;
@@ -14,6 +9,7 @@ ul li .hot-stocks{
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.09), 0 2px 2px 0 rgba(0, 0, 0, 0.09);
   z-index: 100;
   width: 100%;
+  padding: 0px 20px;
 }
 
 .logo-container{
@@ -56,6 +52,21 @@ ul li .hot-stocks{
 
 .main-navigation li a:hover{
   text-decoration: none;
-  color: rgb(1, 18, 69);
+  color: rgba(0, 0, 0, 0.92);
   transition: all .3s ease;
+}
+
+.gainzoneimg{
+  width: 100px;
+  transition: all .4s ease;
+  padding: 2px 0px;
+  margin-top: -4px;
+}
+
+.gainzoneimg:hover{
+  transform: rotate(-5deg);
+  -webkit-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  transition: all .4s ease;
 }

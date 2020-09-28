@@ -34,16 +34,19 @@ export class ProfilenavComponent implements OnInit {
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
-      this.jwtUsername = this.jwtData.data.username;
-      this.jwtUsertype = this.jwtData.data.usertype;
-      this.jwtEmail = this.jwtData.data.email;
-      this.jwtUsertype = this.jwtData.data.usertype;
-      this.loggedUser = this.jwtUsername;
-      this.userID = this.jwtData.data.uid;
-      this.userSlug = this.jwtData.data.slug;
-      this.authApi.fetchUserBySlug(this.userSlug).subscribe((data: any) => {
-      this.image_path = data.image_path;
-      });
+      if(this.jwtData){
+        this.jwtUsername = this.jwtData.data.username;
+        this.jwtUsertype = this.jwtData.data.usertype;
+        this.jwtEmail = this.jwtData.data.email;
+        this.jwtUsertype = this.jwtData.data.usertype;
+        this.loggedUser = this.jwtUsername;
+        this.userID = this.jwtData.data.uid;
+        this.userSlug = this.jwtData.data.slug;
+        this.authApi.fetchUserBySlug(this.userSlug).subscribe((data: any) => {
+        this.image_path = data.image_path;
+        });
+      }else{
+      }
     });
   }
 

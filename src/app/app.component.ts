@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart, NavigationCancel } from '@angular/router';
 
 
 @Component({
@@ -12,6 +12,9 @@ export class AppComponent {
   isHome: boolean;
   pageCheck: any;
   showWatchlist: boolean;
+  loading: boolean = false;
+  hasSidebar: boolean;
+  loadingTime: any;
   constructor(
     private router: Router
   ){
@@ -28,6 +31,28 @@ export class AppComponent {
       else{
         this.showWatchlist = true;
       }
+      if(this.pageCheck == '/' || this.pageCheck.includes('ideas')){
+        this.hasSidebar = true;
+      }else{
+        this.hasSidebar = false;
+      }
     });
   }
+
+  ngAfterViewInit() {
+       this.router.events
+           .subscribe((event) => {
+               if(event instanceof NavigationStart) {
+                  this.loadingTime = Math.random() * (100 + 700) - 100;
+                  this.loading = true;
+               }
+               else if (
+                   event instanceof NavigationEnd ||
+                   event instanceof NavigationCancel
+                   ) {
+                   setTimeout(() => this.loading = false, this.loadingTime);
+               }
+           });
+   }
+
 }

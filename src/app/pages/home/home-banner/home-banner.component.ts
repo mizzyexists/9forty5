@@ -7,12 +7,13 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class HomeBannerComponent implements OnInit {
-  marketStatus: any;
+  marketStatus: any = '';
   currentTime: any;
   currentTimeHour: any;
   currentTimeMinute:any;
-  actualTime: any;
+  actualTime: number;
   currentDay: string;
+  isHoliday: boolean = false;
   constructor(private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -21,7 +22,7 @@ export class HomeBannerComponent implements OnInit {
     this.currentTimeMinute = this.datePipe.transform(Date(), 'mm');
     this.currentDay = this.datePipe.transform(Date(), 'EEEE');
     this.actualTime = this.currentTimeHour + this.currentTimeMinute;
-    if(this.currentDay != "Saturday" && this.currentDay != "Sunday"){
+    if(this.currentDay != "Saturday" && this.currentDay != "Sunday" && this.isHoliday != true){
       if(this.actualTime > 929 && this.actualTime < 1599 ){
         this.marketStatus = "OPEN";
       } else {

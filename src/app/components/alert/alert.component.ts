@@ -6,9 +6,9 @@ interface Alert {
 }
 
 const ALERTS: Alert[] = [{
-    type: 'info',
+    type: 'dark',
     title: 'Please Note',
-    message: 'All price info is updated hourly.',
+    message: 'All stock quote info is updated every 15 minutes.',
   }
 ];
 

@@ -37,5 +37,9 @@ export class StockapiService {
   return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/stockgeneralrefresh.php`);
   }
 
+  countGenStocks(): Observable<StockData[]>{
+  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/countgenstocks.php`);
+  }
+
 
 }

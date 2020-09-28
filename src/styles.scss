@@ -5,3 +5,19 @@ body {
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+.bg-dark {
+  background-color: rgba(0,0,0,0.92) !important;
+}
+
+.card {
+  border-radius: 0px !important;
+}
+
+.btn {
+  border-radius: 0px !important;
+}
+
+.alert {
+  border-radius: 0px !important;
+}
