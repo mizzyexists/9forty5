@@ -57,7 +57,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     FooterComponent,
     AdminmenuComponent,
     AlertComponent,
-    GainzoneComponent
+    GainzoneComponent,
   ],
   imports: [
     BrowserModule,

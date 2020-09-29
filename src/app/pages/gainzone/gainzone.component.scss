@@ -1,12 +1,19 @@
 .gainzone-container{
-  max-width: 500px;
   margin: auto;
 }
 
 .gainzone-logo{
-  max-width: 100%;
+  max-width: 400px;
   transform: rotate(-2deg);
   -webkit-transform: rotate(-2deg);
   -moz-transform: rotate(-2deg);
   -ms-transform: rotate(-2deg);
+}
+
+.jumbotron{
+  padding: 20px;
+}
+
+.bg-trans{
+  background-color: rgba(0, 0, 0, 0);
 }

@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'profile/:slug', component: ProfileComponent},
   { path: 'adminmenu', component: AdminmenuComponent},
   { path: 'gainzone', component: GainzoneComponent},
+
 ];
 
 @NgModule({

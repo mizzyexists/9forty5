@@ -4,6 +4,7 @@ import { AuthData } from 'src/app/models/authdata';
 import { StockapiService } from 'src/app/services/stockapi.service';
 import { Title } from '@angular/platform-browser';
 import { AppapiService } from '../../services/appapi.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-adminmenu',
@@ -22,11 +23,18 @@ export class AdminmenuComponent implements OnInit {
   genstockUpdateTime: any;
   userCount: any;
   stockCount: any;
+  testNoti: any;
+  notiRes: any;
+  testNotiUser: any;
+  testNotiTitle: any = "";
+  testNotiBody: any = "";
+  testNotiLink: any;
   constructor(
     private authApi: AuthService,
     private stockApi: StockapiService,
     private titleService: Title,
-    private appapi: AppapiService
+    private appapi: AppapiService,
+    private notiService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -75,4 +83,16 @@ export class AdminmenuComponent implements OnInit {
     this.stockRes = '';
     this.indexRes = '';
   }
+
+  clearNotiRes(){
+    this.notiRes = '';
+  }
+
+  createTestNoti(){
+    this.testNoti = [this.testNotiUser, this.testNotiTitle, this.testNotiBody, this.testNotiLink];
+    this.notiService.createNoti(this.testNoti).subscribe((notiRes: any) =>{
+      this.notiRes = notiRes;
+    }, (err: any) => this.notiRes = err);
+          console.log(this.testNoti);
+    }
 }

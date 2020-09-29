@@ -3,6 +3,7 @@ import { AuthData } from 'src/app/models/authdata';
 import { ToastService } from '../../../services/toast.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../../services/notification.service';
 
 
 @Component({
@@ -24,10 +25,14 @@ export class ProfilenavComponent implements OnInit {
   userID: any;
   userSlug: any;
   jwtEmail: any;
+  notiCount: any = 0;
+  notiError: any;
+  notifications: any;
   constructor(
     private toastService: ToastService,
     private authApi: AuthService,
     private router: Router,
+    private notiService: NotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +49,9 @@ export class ProfilenavComponent implements OnInit {
         this.userSlug = this.jwtData.data.slug;
         this.authApi.fetchUserBySlug(this.userSlug).subscribe((data: any) => {
         this.image_path = data.image_path;
+        this.notiService.countNoti(this.jwtUsername).subscribe((notiCount: any) => {
+          this.notiCount = notiCount;
+        }, (err:any) => this.notiError = err);
         });
       }else{
       }
@@ -74,5 +82,21 @@ export class ProfilenavComponent implements OnInit {
       alert("YOU CAN NOT DO THAT");
     }
   }
+  viewNoti(){
+    this.notiService.clearNoti(this.userID).subscribe((data:any) =>{
+    })
+    this.notiService.getUserNoti(this.userID).subscribe((notifs) => {
+      this.notifications = notifs;
+      this.notiService.clearStatus(this.userID).subscribe(() => {
+      });
+    });
+      this.notiCount = 0;
+  }
 
+  clearNotiList(){
+    this.notiService.clearNotiByUser(this.userID).subscribe((data:any) =>{
+      this.notifications = "";
+      this.toastService.show('Notifications cleared', { classname: 'bg-dark text-light'});
+    })
+  }
 }

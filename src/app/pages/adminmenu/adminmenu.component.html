@@ -55,9 +55,19 @@
 <div class="row" *ngIf="jwtUsertype == 'Admin' || jwtUsertype == 'Super-Admin'">
   <div class="col-lg-6 mt-2">
     <div class="card bg-dark">
-      <div class="card-header text-white"><h3>User Operations</h3></div>
+      <div class="card-header text-white"><h3>Notification Operations</h3></div>
       <div class="card-body">
-      <p class="text-white">Coming Soon</p>
+        <input type="text" placeholder="Noti Test Username or UID" name="testNotiUser" [(ngModel)]="this.testNotiUser">
+        <br><br>
+        <input type="text" placeholder="Noti Test Title" name="testNotiMsg" [(ngModel)]="this.testNotiTitle">
+        <br><br>
+        <input type="text" placeholder="Noti Test Message" name="testNotiBody" [(ngModel)]="this.testNotiBody">
+        <br><br>
+        <input type="text" placeholder="Noti Test Link" name="testNotiLink" [(ngModel)]="this.testNotiLink">
+        <br><br>
+        <button class="btn btn-primary" (click)="createTestNoti()">Generate Notification</button><span class="text-white p-2"> Response: {{notiRes}}</span>
+        <br><br>
+        <button class="btn btn-light" (click)="clearNotiRes()">Clear Response</button>
       </div>
     </div>
   </div>
