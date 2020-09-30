@@ -14,7 +14,7 @@ export class LearnComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle( "9Forty5 - Learn" );
+    this.titleService.setTitle( "9Forty5 - Learning Hub" );
   }
 
 }

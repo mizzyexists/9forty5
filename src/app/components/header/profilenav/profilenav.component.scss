@@ -1,6 +1,7 @@
 .profile-navigation{
   display: inline-block;
   margin-left: 20px;
+  margin-right: -10px;
 }
 
 .profile-pic{
@@ -74,6 +75,10 @@
     display:none;
 }
 
+.profiledrop{
+  margin-top: 16px;
+}
+
 .notidrop{
   max-height: 400px;
   overflow-y: scroll;
@@ -136,4 +141,10 @@
   position: absolute;
   left: 6px;
   margin-top: 8px;
+}
+
+@media only screen and (max-width: 850px) {
+  .profile-navigation{
+    margin-right: 8px;
+  }
 }

@@ -58,9 +58,16 @@ export class RegisterComponent implements OnInit {
       if(this.registerForm.value.password == this.registerForm.value.password2){
     this.authApi.registerUser(this.registerForm.value).subscribe((data)=>{
       if(data[0]==0){
-      this.toastService.show('User Created.', { classname: 'bg-dark text-light'});
-      this.registerForm.reset();
-      setTimeout(() => window.location.href = './', 500);
+      const loginData = {username: this.registerForm.value.username, password: this.registerForm.value.password};
+      this.authApi.login(loginData).subscribe((data: any) => {
+        if(data.jwt || data.email) {
+          window.localStorage.setItem('jwt', data.jwt);
+          this.registerForm.reset();
+          setTimeout(() => window.location.href = './', 500);
+        }else{
+          console.log("An Error Occured");
+        }
+      })
     }
     else{
       this.toastService.show('User Already Exists.', { classname: 'bg-danger text-light'});

@@ -29,7 +29,6 @@
 
 .main-navigation ul{
   list-style: none;
-  display: inline-block;
   margin-bottom: 0px;
   padding-right: 10px;
   border-right: 1px solid rgba(51, 51, 51, 0.4);
@@ -63,10 +62,127 @@
   margin-top: -4px;
 }
 
+.gainzonemobileimg{
+  width: 75px;
+  padding: 2px 0px;
+  margin-top: -4px;
+}
+
 .gainzoneimg:hover{
   transform: rotate(-5deg);
   -webkit-transform: rotate(-5deg);
   -moz-transform: rotate(-5deg);
   -ms-transform: rotate(-5deg);
   transition: all .4s ease;
+}
+
+@media only screen and (max-width: 850px) {
+  .main-navigation .mobiletoggle{
+    display: inline-block;
+  }
+  .main-navigation .desktop-nav{
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 851px) {
+  .main-navigation .mobiletoggle{
+    display: none;
+  }
+  .main-navigation .desktop-nav{
+    display: inline-block;
+  }
+}
+
+.mobiletoggle{
+  font-size: 22px;
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  color: #555;
+  cursor: pointer;
+}
+
+.mobiletoggle:hover{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.95);
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  text-transform: uppercase;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: -25px;
+    right: 35px;
+    font-size: 80px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+
+#mobileNav a:hover{
+  text-decoration: none;
+}
+
+
+div.navigation-mobile img{
+  max-width:200px;
+  left: 10px;
+  top: 0;
+  transition: all 200ms linear;
+}
+
+.navigation-mobile
+{
+    background: rgba(0,0,0,0);
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+
+div.navigation-mobile
+{
+  margin: 0 auto;
+	text-align: right;
+  max-width: 100%;
 }
