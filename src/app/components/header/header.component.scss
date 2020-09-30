@@ -62,11 +62,11 @@
   margin-top: -4px;
 }
 
-.gainzonemobileimg{
-  width: 75px;
-  padding: 2px 0px;
-  margin-top: -4px;
-}
+// .gainzonemobileimg{
+//   width: 75px;
+//   padding: 2px 0px;
+//   margin-top: -4px;
+// }
 
 .gainzoneimg:hover{
   transform: rotate(-5deg);
@@ -169,6 +169,15 @@ div.navigation-mobile img{
   left: 10px;
   top: 0;
   transition: all 200ms linear;
+  filter: brightness(0.4);
+  -webkit-filter: brightness(0.4);
+  transition: all .3s ease;
+}
+
+div.navigation-mobile img:hover{
+  filter: brightness(1);
+  -webkit-filter: brightness(1);
+  transition: all .3s ease;
 }
 
 .navigation-mobile
