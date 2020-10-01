@@ -36,31 +36,31 @@ export class AdminmenuComponent implements OnInit {
     private titleService: Title,
     private appapi: AppapiService,
     private notiService: NotificationService
-  ) { }
-
-  ngOnInit(): void {
-    this.titleService.setTitle( "9Forty5 - Admin Menu" );
-    this.token = window.localStorage.getItem('jwt');
-    this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
-      this.jwtData = authData[1];
-      if(this.jwtData){
-        this.jwtUsertype = this.jwtData.data.usertype;
-        this.appapi.getAppData().subscribe((data) =>{
-          this.indexUpdateTime = data[0].value;
-          this.genstockUpdateTime = data[1].value;
-          this.watchlistUpdateTime = data[2].value;
-          this.maintMode = data[4].value;
-        });
-        this.authApi.countUsers().subscribe((usercount) => {
-          this.userCount = usercount;
-        })
-        this.stockApi.countGenStocks().subscribe((stockcount) => {
-          this.stockCount = stockcount;
-        })
-      }else{
-      }
-    });
+  ) {
+      this.titleService.setTitle( "9Forty5 - Admin Menu" );
+      this.token = window.localStorage.getItem('jwt');
+      this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
+        this.jwtData = authData[1];
+        if(this.jwtData){
+          this.jwtUsertype = this.jwtData.data.usertype;
+          this.appapi.getAppData().subscribe((data) =>{
+            this.indexUpdateTime = data[0].value;
+            this.genstockUpdateTime = data[1].value;
+            this.watchlistUpdateTime = data[2].value;
+            this.maintMode = data[4].value;
+          });
+          this.authApi.countUsers().subscribe((usercount) => {
+            this.userCount = usercount;
+          })
+          this.stockApi.countGenStocks().subscribe((stockcount) => {
+            this.stockCount = stockcount;
+          })
+        }else{
+        }
+      });
   }
+
+  ngOnInit(): void {}
 
   refreshIndex(){
     this.stockApi.refreshIndexData().subscribe((res: any) => {

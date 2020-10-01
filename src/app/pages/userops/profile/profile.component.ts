@@ -48,58 +48,56 @@ export class ProfileComponent implements OnInit {
       private uploadService: UploadService,
       private titleService: Title
     ){
-    }
+       this.token = window.localStorage.getItem('jwt');
+       const routeParams = this.routes.snapshot.params;
+       this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
+         this.jwtData = authData[1];
+         if(this.jwtData){
+           this.userID = this.jwtData.data.uid;
+           this.userSlug = this.jwtData.data.slug;
+           this.jwtUsertype = this.jwtData.data.usertype;
+           if(routeParams.uid==this.jwtUID || this.jwtUsertype == "Super-Admin" || this.jwtUsertype == "Admin"){
+           this.authApi.fetchUserBySlug(routeParams.slug).subscribe((userData: UserData[])=>{
+           this.userData = userData;
+            });
+          }
+        }else{
 
-    ngOnInit() {
-     this.token = window.localStorage.getItem('jwt');
-     const routeParams = this.routes.snapshot.params;
-     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
-       this.jwtData = authData[1];
-       if(this.jwtData){
-         this.userID = this.jwtData.data.uid;
-         this.userSlug = this.jwtData.data.slug;
-         this.jwtUsertype = this.jwtData.data.usertype;
-         if(routeParams.uid==this.jwtUID || this.jwtUsertype == "Super-Admin" || this.jwtUsertype == "Admin"){
-         this.authApi.fetchUserBySlug(routeParams.slug).subscribe((userData: UserData[])=>{
-         this.userData = userData;
-          });
         }
-      }else{
-
-      }
+         });
+       this.authApi.fetchUserBySlug(routeParams.slug).subscribe((data: any) => {
+       this.profileID = data.uid;
+       this.profileUser = data.username;
+       this.profileAvatar = data.image_path;
+       this.profileType = data.usertype;
+       this.profileName = data.fname + " " + data.lname;
+       this.profileBio = data.bio_text;
+       this.profileLogin = data.last_login;
+       this.profileEmail = data.email;
+       this.titleService.setTitle( "9Forty5 - "+ this.profileUser + "'s Profile" );
        });
-     this.authApi.fetchUserBySlug(routeParams.slug).subscribe((data: any) => {
-     this.profileID = data.uid;
-     this.profileUser = data.username;
-     this.profileAvatar = data.image_path;
-     this.profileType = data.usertype;
-     this.profileName = data.fname + " " + data.lname;
-     this.profileBio = data.bio_text;
-     this.profileLogin = data.last_login;
-     this.profileEmail = data.email;
-     this.titleService.setTitle( "9Forty5 - "+ this.profileUser + "'s Profile" );
-     });
-     this.imageuploadform = this.formBuilder.group({
-        image_path: [''],
-        avatar: ['']
-      });
-      this.usereditForm = this.formBuilder.group({
-          uid: [],
-          username: ['', Validators.required],
-          email: ['', Validators.required],
-          usertype: ['', Validators.required],
-          fname: ['', Validators.required],
-          lname: ['', Validators.required],
-          bio_text: ['', Validators.required],
+       this.imageuploadform = this.formBuilder.group({
           image_path: [''],
           avatar: ['']
         });
-      this.authApi.fetchUserBySlug(routeParams.slug).subscribe((data: any) => {
-      this.usereditForm.patchValue(data);
-      this.currentPageUsertype = data.usertype;
-      });
+        this.usereditForm = this.formBuilder.group({
+            uid: [],
+            username: ['', Validators.required],
+            email: ['', Validators.required],
+            usertype: ['', Validators.required],
+            fname: ['', Validators.required],
+            lname: ['', Validators.required],
+            bio_text: ['', Validators.required],
+            image_path: [''],
+            avatar: ['']
+          });
+        this.authApi.fetchUserBySlug(routeParams.slug).subscribe((data: any) => {
+        this.usereditForm.patchValue(data);
+        this.currentPageUsertype = data.usertype;
+        });
+    }
 
-   }
+    ngOnInit() {}
 
    onFileSelect(event: { target: { files: any[]; }; }) {
   if (event.target.files.length > 0) {

@@ -24,24 +24,24 @@ export class AuthService {
     ){}
 
   registerUser(userData: UserData): Observable<UserData>{
-  return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/register.php`, userData);
+  return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/register`, userData);
   }
   login(loginData: any): Observable<UserData>{
-  return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/login.php`, loginData);
+  return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/login`, loginData);
   }
   authorize(authData: any): Observable<AuthData>{
-  return this.httpClient.post<AuthData>(`${this.PHP_API_SERVER}/auth/protected.php`, authData);
+  return this.httpClient.post<AuthData>(`${this.PHP_API_SERVER}/auth/protected`, authData);
   }
   fetchUserBySlug(slug: string): Observable<UserData[]>{
-  return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/auth/readbyslug.php/?slug=${slug}`);
+  return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/auth/readbyslug?slug=${slug}`);
   }
   addAvatar(uid: number, image_path: string){
-    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/addavatar.php`, [uid, image_path]);
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/addavatar`, [uid, image_path]);
   }
   editUser(userData: UserData){
-    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/edituser.php`, userData);
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/edituser`, userData);
   }
   countUsers(): Observable<UserData[]>{
-  return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/auth/countusers.php`);
+  return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/auth/countusers`);
   }
 }

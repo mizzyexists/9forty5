@@ -12,7 +12,7 @@ export class UploadService {
   constructor(private httpClient: HttpClient) { }
 
   uploadFile(data: FormData) {
-    let uploadURL = `${this.PHP_API_SERVER}/fileupload/profileupload.php`;
+    let uploadURL = `${this.PHP_API_SERVER}/fileupload/profileupload`;
     return this.httpClient.post<any>(uploadURL, data);
   }
 

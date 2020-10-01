@@ -34,9 +34,7 @@ export class ProfilenavComponent implements OnInit {
     private authApi: AuthService,
     private router: Router,
     private notiService: NotificationService,
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
@@ -56,6 +54,9 @@ export class ProfilenavComponent implements OnInit {
       }
     });
     this.adminAccess = window.localStorage.getItem('adminAccess');
+  }
+
+  ngOnInit(): void {
   }
 
   logout() {

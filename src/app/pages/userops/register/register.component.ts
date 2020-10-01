@@ -28,9 +28,6 @@ export class RegisterComponent implements OnInit {
     if(authData && authData[0]==true){
     window.location.href = './';
     }})
-  }
-
-  ngOnInit(): void {
     this.titleService.setTitle( "9Forty5 - Register" );
     this.registerForm = this.formBuilder.group({
       uid: [],
@@ -39,6 +36,9 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       password2: ['', Validators.required],
     });
+  }
+
+  ngOnInit(): void {
   }
 
   onSubmit(){

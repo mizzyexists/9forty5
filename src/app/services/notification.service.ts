@@ -16,27 +16,27 @@ export class NotificationService {
 
 
   createNoti(notiData:any){
-    return this.httpClient.post<NotiData>(`${this.PHP_API_SERVER}/notify/createnotification.php`, notiData);
+    return this.httpClient.post<NotiData>(`${this.PHP_API_SERVER}/notify/createnotification`, notiData);
   }
 
   countNoti(user:any){
-  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/countnotifications.php`, user);
+  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/countnotifications`, user);
   }
 
   clearNoti(user: any){
-  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/clearnotifications.php`, user);
+  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/clearnotifications`, user);
   }
 
   clearNotiByUser(user:any){
-  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/clearnotibyuser.php`, user);
+  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/clearnotibyuser`, user);
   }
 
   clearStatus(user: any){
-  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/clearnotistatus.php`, user);
+  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/clearnotistatus`, user);
   }
 
   getUserNoti(uid: any){
-  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/getusernotifications.php`, uid);
+  return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/getusernotifications`, uid);
   }
 
 }

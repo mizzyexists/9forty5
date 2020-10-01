@@ -33,29 +33,29 @@ export class LoginComponent implements OnInit {
     private authApi: AuthService,
     private router: Router,
     private titleService: Title
-  ){}
-  ngOnInit() {
-    this.titleService.setTitle( "9Forty5 - Login" );
-    this.token = window.localStorage.getItem('jwt');
-    this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
-    this.authCheck = authData
-    if(authData && authData[0]==true){
-    this.jwtData = authData[1];
-    this.jwtUsername = this.jwtData.data.username;
-    this.jwtUsertype = this.jwtData.data.usertype;
-    window.location.href = './';
-  };
-  });
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.required]
+  ){
+      this.titleService.setTitle( "9Forty5 - Login" );
+      this.token = window.localStorage.getItem('jwt');
+      this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
+      this.authCheck = authData
+      if(authData && authData[0]==true){
+      this.jwtData = authData[1];
+      this.jwtUsername = this.jwtData.data.username;
+      this.jwtUsertype = this.jwtData.data.usertype;
+      window.location.href = './';
+    };
     });
-    this.resetForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required]
-    });
-
+      this.loginForm = this.formBuilder.group({
+        username: ['', Validators.compose([Validators.required])],
+        password: ['', Validators.required]
+      });
+      this.resetForm = this.formBuilder.group({
+        username: ['', Validators.required],
+        email: ['', Validators.required]
+      });
   }
+
+  ngOnInit() {}
 
   onSubmit(){
     if(this.loginForm.invalid){

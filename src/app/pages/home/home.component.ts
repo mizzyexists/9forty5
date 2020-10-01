@@ -10,10 +10,10 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private titleService: Title
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.titleService.setTitle( "9Forty5 - Stock Analysis, Discussion, Blog" );
   }
+
+  ngOnInit(): void {}
 
 }

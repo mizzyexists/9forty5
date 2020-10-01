@@ -18,27 +18,27 @@ export class StockapiService {
   ) {}
 
   getWatchlistStocks(): Observable<StockData[]>{
-  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/getwatchliststocks.php`);
+  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/getwatchliststocks`);
   }
 
   getIndexData(): Observable<IndexData[]>{
-  return this.httpClient.get<IndexData[]>(`${this.PHP_API_SERVER}/stocks/getmainindicies.php`);
+  return this.httpClient.get<IndexData[]>(`${this.PHP_API_SERVER}/stocks/getmainindicies`);
   }
 
   refreshIndexData(): Observable<IndexData[]>{
-  return this.httpClient.get<IndexData[]>(`${this.PHP_API_SERVER}/stocks/mainindexrefresh.php`);
+  return this.httpClient.get<IndexData[]>(`${this.PHP_API_SERVER}/stocks/mainindexrefresh`);
   }
 
   refreshWatchlistStocks(): Observable<StockData[]>{
-  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/stockwatchlistrefresh.php`);
+  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/stockwatchlistrefresh`);
   }
 
   refreshAllStocks(): Observable<StockData[]>{
-  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/stockgeneralrefresh.php`);
+  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/stockgeneralrefresh`);
   }
 
   countGenStocks(): Observable<StockData[]>{
-  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/countgenstocks.php`);
+  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/countgenstocks`);
   }
 
 

@@ -14,24 +14,24 @@ export class HomeBannerComponent implements OnInit {
   actualTime: number;
   currentDay: string;
   isHoliday: boolean = false;
-  constructor(private datePipe: DatePipe) { }
-
-  ngOnInit(): void {
-    this.currentTime = this.datePipe.transform(Date(), 'h:mm a');
-    this.currentTimeHour = this.datePipe.transform(Date(), 'H');
-    this.currentTimeMinute = this.datePipe.transform(Date(), 'mm');
-    this.currentDay = this.datePipe.transform(Date(), 'EEEE');
-    this.actualTime = this.currentTimeHour + this.currentTimeMinute;
-    if(this.currentDay != "Saturday" && this.currentDay != "Sunday" && this.isHoliday != true){
-      if(this.actualTime > 929 && this.actualTime < 1599 ){
-        this.marketStatus = "OPEN";
+  constructor(private datePipe: DatePipe) {
+      this.currentTime = this.datePipe.transform(Date(), 'h:mm a');
+      this.currentTimeHour = this.datePipe.transform(Date(), 'H');
+      this.currentTimeMinute = this.datePipe.transform(Date(), 'mm');
+      this.currentDay = this.datePipe.transform(Date(), 'EEEE');
+      this.actualTime = this.currentTimeHour + this.currentTimeMinute;
+      if(this.currentDay != "Saturday" && this.currentDay != "Sunday" && this.isHoliday != true){
+        if(this.actualTime > 929 && this.actualTime < 1599 ){
+          this.marketStatus = "OPEN";
+        } else {
+          this.marketStatus = "CLOSED";
+        }
       } else {
         this.marketStatus = "CLOSED";
       }
-    } else {
-      this.marketStatus = "CLOSED";
-    }
   }
+
+  ngOnInit(): void {}
 
 
 }

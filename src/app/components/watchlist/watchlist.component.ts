@@ -12,11 +12,12 @@ export class WatchlistComponent implements OnInit {
 
   constructor(
     private stockApi: StockapiService,
-  ) { }
-
-  ngOnInit(): void {
+  ) { 
     this.stockApi.getWatchlistStocks().subscribe((stockData: StockData[]) => {
       this.stockData = stockData;
     });
+  }
+
+  ngOnInit(): void {
   }
 }
