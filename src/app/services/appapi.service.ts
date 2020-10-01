@@ -19,7 +19,7 @@ export class AppapiService {
     }
 
     checkAdminCode(code: any): Observable<AppData[]>{
-    return this.httpClient.put<AppData[]>(`${this.PHP_API_SERVER}/appdata/checkadmincode.php`, code);
+    return this.httpClient.post<AppData[]>(`${this.PHP_API_SERVER}/appdata/checkadmincode.php`, code);
     }
 
     checkMaintenance(): Observable<AppData[]>{

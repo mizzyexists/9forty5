@@ -48,12 +48,10 @@ export class ProfilenavComponent implements OnInit {
         this.loggedUser = this.jwtUsername;
         this.userID = this.jwtData.data.uid;
         this.userSlug = this.jwtData.data.slug;
-        this.authApi.fetchUserBySlug(this.userSlug).subscribe((data: any) => {
-        this.image_path = data.image_path;
+        this.image_path = this.jwtData.data.image_path;
         this.notiService.countNoti(this.jwtUsername).subscribe((notiCount: any) => {
           this.notiCount = notiCount;
         }, (err:any) => this.notiError = err);
-        });
       }else{
       }
     });

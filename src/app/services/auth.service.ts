@@ -36,10 +36,10 @@ export class AuthService {
   return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/auth/readbyslug.php/?slug=${slug}`);
   }
   addAvatar(uid: number, image_path: string){
-    return this.httpClient.put<UserData>(`${this.PHP_API_SERVER}/auth/addavatar.php`, [uid, image_path]);
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/addavatar.php`, [uid, image_path]);
   }
   editUser(userData: UserData){
-    return this.httpClient.put<UserData>(`${this.PHP_API_SERVER}/auth/edituser.php`, userData);
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/edituser.php`, userData);
   }
   countUsers(): Observable<UserData[]>{
   return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/auth/countusers.php`);

@@ -21,7 +21,7 @@
     <p *ngIf="spChange=='Positive'" class="positive changevalue">{{ spChangeValue }} ({{ spChangePerc }})</p>
     <p *ngIf="spChange=='Negative'" class="negative changevalue">{{ spChangeValue }} ({{ spChangePerc }})</p>
     </div>
-    <div class="col">
+    <div class="col gold">
     <h4>Gold</h4>
     <h3 *ngIf="goldChange=='Positive'" class="positive">{{ gold_price | number : '1.2-2' }} <i class="fas fa-caret-up"></i></h3>
     <h3 *ngIf="goldChange=='Negative'" class="negative">{{ gold_price | number : '1.2-2' }} <i class="fas fa-caret-down"></i></h3>

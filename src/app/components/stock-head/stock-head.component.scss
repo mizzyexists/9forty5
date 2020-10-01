@@ -50,3 +50,15 @@
 .negative{
   color: rgb(255, 119, 119);
 }
+
+@media only screen and (max-width: 850px) {
+  .gold{
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 851px) {
+  .gold{
+    
+  }
+}
