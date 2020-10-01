@@ -46,7 +46,8 @@
 <app-footer></app-footer>
 </div>
 <div *ngIf="maintenanceMode=='true' && !adminAccess">
-  <h3 class="text-center mt-5">9Forty5 is currently down for maintenance.</h3>
-  <input class="mt-4 text-center d-block mx-auto bg-dark text-white" type="text" name="adminCode" [(ngModel)]="adminCode" />
-  <button class="btn btn-dark text-white d-block mt-2 mx-auto" (click)="submitCode()">Admin Access</button>
+  <img class="d-block mx-auto mt-5" src="./assets/images/PlainLogoBlack.png" width="250px"/>
+  <h3 class="text-center mt-2">9Forty5 is currently down for maintenance.</h3>
+  <input class="mt-4 text-center d-block mx-auto bg-dark text-white" type="text" placeholder="Code" name="adminCode" [(ngModel)]="adminCode" />
+  <button class="btn btn-dark text-white d-block mt-2 mx-auto" (click)="submitCode()">Maintenance Access</button>
 </div>
