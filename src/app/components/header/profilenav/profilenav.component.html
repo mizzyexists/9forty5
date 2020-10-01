@@ -8,6 +8,7 @@
       <a (click)="viewMyProfile()" class="dropdown-item pointer">View Profile</a>
       <a class="dropdown-item" href="#">Your Watchlist</a>
       <a *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
+      <a *ngIf="adminAccess" (click)="endAdminAccess()" class="pointer dropdown-item">End Admin Bypass</a>
       <a (click)="logout()" class="dropdown-item pointer">Logout</a>
     </div>
   </div>

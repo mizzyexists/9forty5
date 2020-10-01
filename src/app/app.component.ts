@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart, NavigationCancel } from '@angular/router';
-
+import { AppapiService } from './services/appapi.service';
+import { ToastService } from './services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +16,13 @@ export class AppComponent {
   loading: boolean = false;
   hasSidebar: boolean;
   loadingTime: any;
+  maintenanceMode:any;
+  adminAccess: any;
+  adminCode: any;
   constructor(
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
+    private appapi: AppapiService,
   ){
     router.events.subscribe((_: NavigationEnd) => {
       this.pageCheck = this.router.url;
@@ -37,6 +43,21 @@ export class AppComponent {
         this.hasSidebar = false;
       }
     });
+    this.adminAccess = window.localStorage.getItem('adminAccess');
+    this.appapi.checkMaintenance().subscribe((response: any) => {
+      console.log(response);
+      if(response=="true"){
+      this.maintenanceMode ='true';
+      }else{
+        this.maintenanceMode = 'false';
+        if(this.adminAccess){
+        window.localStorage.removeItem('adminAccess');
+        this.adminAccess = "";
+        }
+        else{
+        }
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -55,4 +76,16 @@ export class AppComponent {
            });
    }
 
+   submitCode(){
+     this.appapi.checkAdminCode(this.adminCode).subscribe((data:any) => {
+       if(data=="true"){
+        window.localStorage.setItem('adminAccess', 'true');
+        window.location.href = './';
+       }
+       else{
+         this.adminCode = "";
+         this.toastService.show('Invalid Access Code', { classname: 'bg-danger text-light'});
+       }
+     })
+   }
 }

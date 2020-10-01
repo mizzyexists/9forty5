@@ -27,6 +27,7 @@ export class ProfilenavComponent implements OnInit {
   jwtEmail: any;
   notiCount: any = 0;
   notiError: any;
+  adminAccess: any;
   notifications: any;
   constructor(
     private toastService: ToastService,
@@ -56,6 +57,7 @@ export class ProfilenavComponent implements OnInit {
       }else{
       }
     });
+    this.adminAccess = window.localStorage.getItem('adminAccess');
   }
 
   logout() {
@@ -98,5 +100,9 @@ export class ProfilenavComponent implements OnInit {
       this.notifications = "";
       this.toastService.show('Notifications cleared', { classname: 'bg-dark text-light'});
     })
+  }
+  endAdminAccess(){
+    window.localStorage.removeItem('adminAccess');
+    window.location.href = './';
   }
 }

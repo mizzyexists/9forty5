@@ -47,6 +47,10 @@
             <td>Stocks in DB</td>
             <td>{{ stockCount }}</td>
           </tr>
+          <tr>
+            <td>Maintanence Mode</td>
+            <td>{{ maintMode | uppercase }} <a class="btn btn-warning mx-2" (click)="toggleMaint()">TOGGLE</a></td>
+          </tr>
         </table>
       </div>
     </div>

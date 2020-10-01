@@ -29,6 +29,7 @@ export class AdminmenuComponent implements OnInit {
   testNotiTitle: any = "";
   testNotiBody: any = "";
   testNotiLink: any;
+  maintMode: any;
   constructor(
     private authApi: AuthService,
     private stockApi: StockapiService,
@@ -48,6 +49,7 @@ export class AdminmenuComponent implements OnInit {
           this.indexUpdateTime = data[0].value;
           this.genstockUpdateTime = data[1].value;
           this.watchlistUpdateTime = data[2].value;
+          this.maintMode = data[4].value;
         });
         this.authApi.countUsers().subscribe((usercount) => {
           this.userCount = usercount;
@@ -95,4 +97,12 @@ export class AdminmenuComponent implements OnInit {
     }, (err: any) => this.notiRes = err);
           console.log(this.testNoti);
     }
+  toggleMaint(){
+    this.appapi.toggleMaintenance().subscribe((data: any) => {
+      if(data=="false"){
+        window.localStorage.removeItem('adminAccess');
+      }
+      window.location.href = '/';
+    })
+  }
 }

@@ -1,4 +1,8 @@
 <app-toasts></app-toasts>
+<div *ngIf="!maintenanceMode">
+  <h3 class="text-center mt-5">9Forty5 is waiting for data...</h3>
+</div>
+<div *ngIf="maintenanceMode=='false' || adminAccess">
 <app-header></app-header>
 <app-stock-head></app-stock-head>
 <div class="headerfix"></div>
@@ -40,4 +44,9 @@
 </div>
 <div style="margin-top: 20px;"></div>
 <app-footer></app-footer>
-<!-- <app-testdata></app-testdata> -->
+</div>
+<div *ngIf="maintenanceMode=='true' && !adminAccess">
+  <h3 class="text-center mt-5">9Forty5 is currently down for maintenance.</h3>
+  <input class="mt-4 text-center d-block mx-auto bg-dark text-white" type="text" name="adminCode" [(ngModel)]="adminCode" />
+  <button class="btn btn-dark text-white d-block mt-2 mx-auto" (click)="submitCode()">Admin Access</button>
+</div>

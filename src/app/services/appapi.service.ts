@@ -15,6 +15,19 @@ export class AppapiService {
     ){}
 
     getAppData(): Observable<AppData[]>{
-    return this.httpClient.get<AppData[]>(`${this.PHP_API_SERVER}/appdata/viewappdata.php `);
+    return this.httpClient.get<AppData[]>(`${this.PHP_API_SERVER}/appdata/viewappdata.php`);
     }
+
+    checkAdminCode(code: any): Observable<AppData[]>{
+    return this.httpClient.put<AppData[]>(`${this.PHP_API_SERVER}/appdata/checkadmincode.php`, code);
+    }
+
+    checkMaintenance(): Observable<AppData[]>{
+    return this.httpClient.get<AppData[]>(`${this.PHP_API_SERVER}/appdata/maintenancecheck.php`);
+    }
+
+    toggleMaintenance(): Observable<AppData[]>{
+    return this.httpClient.get<AppData[]>(`${this.PHP_API_SERVER}/appdata/togglemaintenance.php`);
+    }
+
 }
