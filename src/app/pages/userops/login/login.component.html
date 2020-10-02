@@ -14,7 +14,7 @@
         <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
         <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please enter password.</div>
       </div>
-      <button class="btn btn-light" [disabled]="loginForm.invalid">Login</button>
+      <button class="btn btn-light">Login</button>
     </form>
     <br>
     <a (click)="forgotPass()">Forgot Password?</a>

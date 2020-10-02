@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     if(this.loginForm.invalid){
-      return;
+      return this.toastService.show('Invalid Login', { classname: 'bg-danger text-light'});;
     }
     const loginData = {
       username: this.loginForm.controls.username.value,
