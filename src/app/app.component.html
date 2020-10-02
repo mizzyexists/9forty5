@@ -12,42 +12,18 @@
   <app-stock-head></app-stock-head>
   <div class="headerfix"></div>
   <app-alert></app-alert>
-  <div *ngIf="isHome!=true" class="content-push"></div>
-  <div *ngIf="hasSidebar==true" class="container-fluid">
-    <div class="home-banner" *ngIf="isHome==true">
-      <app-home-banner></app-home-banner>
-    </div>
-    <div class="row">
-      <div *ngIf="isHome==true" class="col-lg-9 col-md-9 col">
-        <div *ngIf="loading==true" class="d-flex justify-content-center mt-5 mb-5">
-          <div class="spinner-border" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
-        </div>
-          <router-outlet *ngIf="loading==false"></router-outlet>
-      </div>
-      <div *ngIf="isHome!=true" class="col-lg-9 col-md-9 col">
-          <div *ngIf="loading==true" class="d-flex justify-content-center mt-5 mb-5">
-            <div class="spinner-border" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div>
-          <router-outlet *ngIf="loading==false"></router-outlet>
-      </div>
-      <div *ngIf="showWatchlist==true" class="col-lg-3 col-md-3 col">
-        <app-watchlist></app-watchlist>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="hasSidebar!=true" class="container-fluid">
+  <div class="container-fluid">
     <div *ngIf="loading==true" class="d-flex justify-content-center mt-5 mb-5">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <router-outlet *ngIf="loading==false"></router-outlet>
   </div>
-  <div style="margin-top: 20px;"></div>
+  <div style="margin-top: 10px;"></div>
+  <div *ngIf="loading==false" class="container-fluid">
+    <router-outlet></router-outlet>
+  </div>
+  <div style="margin-bottom: 10px;"></div>
   <app-footer></app-footer>
   </div>
 <div *ngIf="maintenanceMode=='true' && !adminAccess">

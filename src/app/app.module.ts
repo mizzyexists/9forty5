@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderBy } from './pipes/orderby';
+import { WatchlistResolver } from './resolvers/watchlist.resolver';
 
 //Apollo Imports
 import { APOLLO_OPTIONS } from 'apollo-angular';
@@ -70,6 +71,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   providers: [
     OrderBy,
     NgbDropdown,
+    WatchlistResolver,
     {
     provide: APOLLO_OPTIONS,
     useFactory: createApollo,

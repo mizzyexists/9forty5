@@ -8,22 +8,24 @@ import { LoginComponent } from './pages/userops/login/login.component';
 import { ProfileComponent } from './pages/userops/profile/profile.component';
 import { AdminmenuComponent } from './pages/adminmenu/adminmenu.component';
 import { GainzoneComponent } from './pages/gainzone/gainzone.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'about', component: AboutComponent },
   { path: 'learn', component: LearnComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', redirectTo: '' },
   { path: 'profile/:slug', component: ProfileComponent},
-  { path: 'adminmenu', component: AdminmenuComponent},
+  { path: 'adminmenu', component: AdminmenuComponent, canActivate: [AuthGuard]},
   { path: 'gainzone', component: GainzoneComponent},
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: []
 })
 export class AppRoutingModule { }

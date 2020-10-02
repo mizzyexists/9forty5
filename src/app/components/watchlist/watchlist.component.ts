@@ -12,8 +12,8 @@ export class WatchlistComponent implements OnInit {
 
   constructor(
     private stockApi: StockapiService,
-  ) { 
-    this.stockApi.getWatchlistStocks().subscribe((stockData: StockData[]) => {
+  ) {
+    this.stockApi.getWatchlistStocks().subscribe((stockData: StockData) => {
       this.stockData = stockData;
     });
   }

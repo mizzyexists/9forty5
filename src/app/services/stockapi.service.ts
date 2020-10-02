@@ -17,8 +17,8 @@ export class StockapiService {
     private httpClient: HttpClient,
   ) {}
 
-  getWatchlistStocks(): Observable<StockData[]>{
-  return this.httpClient.get<StockData[]>(`${this.PHP_API_SERVER}/stocks/getwatchliststocks`);
+  getWatchlistStocks(): Observable<StockData>{
+  return this.httpClient.get<StockData>(`${this.PHP_API_SERVER}/stocks/getwatchliststocks`);
   }
 
   getIndexData(): Observable<IndexData[]>{

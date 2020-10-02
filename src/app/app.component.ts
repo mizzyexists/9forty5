@@ -10,11 +10,7 @@ import { ToastService } from './services/toast.service';
 })
 export class AppComponent {
   title = 'stockng';
-  isHome: boolean;
-  pageCheck: any;
-  showWatchlist: boolean;
   loading: boolean = false;
-  hasSidebar: boolean;
   loadingTime: any;
   maintenanceMode:any;
   adminAccess: any;
@@ -24,28 +20,8 @@ export class AppComponent {
     private toastService: ToastService,
     private appapi: AppapiService,
   ){
-    router.events.subscribe((_: NavigationEnd) => {
-      this.pageCheck = this.router.url;
-      if(this.pageCheck == '/'){
-        this.isHome=true;
-      }else{
-        this.isHome=false;
-      }
-      if(this.pageCheck.includes('/adminmenu') || this.pageCheck.includes('/profile/')){
-        this.showWatchlist = false;
-      }
-      else{
-        this.showWatchlist = true;
-      }
-      if(this.pageCheck == '/' || this.pageCheck.includes('ideas')){
-        this.hasSidebar = true;
-      }else{
-        this.hasSidebar = false;
-      }
-    });
     this.adminAccess = window.localStorage.getItem('adminAccess');
     this.appapi.checkMaintenance().subscribe((response: any) => {
-      console.log(response);
       if(response=="true"){
       this.maintenanceMode ='true';
       }else{

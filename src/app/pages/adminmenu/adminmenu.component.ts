@@ -95,7 +95,6 @@ export class AdminmenuComponent implements OnInit {
     this.notiService.createNoti(this.testNoti).subscribe((notiRes: any) =>{
       this.notiRes = notiRes;
     }, (err: any) => this.notiRes = err);
-          console.log(this.testNoti);
     }
   toggleMaint(){
     this.appapi.toggleMaintenance().subscribe((data: any) => {
