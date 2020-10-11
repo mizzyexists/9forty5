@@ -77,6 +77,7 @@
 
 .profiledrop{
   margin-top: 16px;
+  left: 50px !important;
 }
 
 .notidrop{
@@ -87,7 +88,13 @@
   max-width: 350px;
 }
 
-.notibell{
+.settingsdrop{
+  max-height: 400px;
+  overflow-y: scroll;
+  margin-top: 12px;
+}
+
+.notibell, .settingcog{
   color: #555;
   padding: 2px;
   display: inline-block;
@@ -100,7 +107,11 @@
   margin-top: -6px;
 }
 
-.notibell:hover{
+.settingcog{
+  margin-left: -8px;
+}
+
+.notibell:hover, .settingcog:hover{
   text-decoration: none;
   color: rgb(0, 0, 0);
 }

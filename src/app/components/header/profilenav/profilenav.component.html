@@ -3,13 +3,11 @@
   <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block">
     <a ngbDropdownToggle class="userpic pointer"><img class="profile-pic" src="{{ image_path }}"></a>
     <p class='profiledisplay'></p>
-    <a id="profileDropdown" (click)="viewMyProfile()" class="profiledisplay pointer">{{ loggedUser | titlecase }}</a>
+    <a id="profileDropdown" ngbDropdownToggle class="profiledisplay pointer">{{ loggedUser | titlecase }}</a>
     <div class="dropdown-menu profiledrop" ngbDropdownMenu aria-labelledby="profileDropdown">
       <a (click)="viewMyProfile()" class="dropdown-item pointer">View Profile</a>
+      <a *ngIf="playcaller=='true'" routerLink="playcaller/{{userSlug}}" class="dropdown-item pointer">PlayCaller Page</a>
       <a class="dropdown-item" href="#">Your Watchlist</a>
-      <a *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
-      <a *ngIf="adminAccess" (click)="endAdminAccess()" class="pointer dropdown-item">End Admin Bypass</a>
-      <a (click)="logout()" class="dropdown-item pointer">Logout</a>
     </div>
   </div>
   <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block">
@@ -27,6 +25,17 @@
     </a>
     </div>
     <p *ngIf="!notifications" style="text-align: center;padding-top: 15px;" class="dropdown-item disabled">No Notifications</p>
+  </div>
+  </div>
+  <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block">
+    <a ngbDropdownToggle="settingsDropdown" class="settingcog pointer"><i class="fas fa-cog"></i></a>
+    <p class="profiledisplay trans">|</p>
+  <div class="settingsdrop dropdown-menu" ngbDropdownMenu aria-labelledby="settingsDropdown">
+    <a routerLink="/editprofile/{{userSlug}}" class="dropdown-item pointer">Edit Profile</a>
+    <a class="dropdown-item pointer">Account Settings</a>
+    <a *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
+    <a *ngIf="adminAccess" (click)="endAdminAccess()" class="pointer dropdown-item">Clear Maintenance Code</a>
+    <a (click)="logout()" class="dropdown-item pointer">Logout</a>
   </div>
   </div>
   </div>

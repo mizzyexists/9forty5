@@ -5,6 +5,7 @@ import { StockapiService } from 'src/app/services/stockapi.service';
 import { Title } from '@angular/platform-browser';
 import { AppapiService } from '../../services/appapi.service';
 import { NotificationService } from '../../services/notification.service';
+import { GainzoneService } from '../../services/gainzone.service';
 
 @Component({
   selector: 'app-adminmenu',
@@ -30,12 +31,17 @@ export class AdminmenuComponent implements OnInit {
   testNotiBody: any = "";
   testNotiLink: any;
   maintMode: any;
+  newPCUser: any;
+  newPCRes: any;
+  exPCUser: any;
+  exPCRes: any;
   constructor(
     private authApi: AuthService,
     private stockApi: StockapiService,
     private titleService: Title,
     private appapi: AppapiService,
-    private notiService: NotificationService
+    private notiService: NotificationService,
+    private gainApi: GainzoneService
   ) {
       this.titleService.setTitle( "9Forty5 - Admin Menu" );
       this.token = window.localStorage.getItem('jwt');
@@ -92,7 +98,7 @@ export class AdminmenuComponent implements OnInit {
 
   createTestNoti(){
     this.testNoti = [this.testNotiUser, this.testNotiTitle, this.testNotiBody, this.testNotiLink];
-    this.notiService.createNoti(this.testNoti).subscribe((notiRes: any) =>{
+    this.notiService.createTestNoti(this.testNoti).subscribe((notiRes: any) =>{
       this.notiRes = notiRes;
     }, (err: any) => this.notiRes = err);
     }
@@ -104,4 +110,26 @@ export class AdminmenuComponent implements OnInit {
       window.location.href = '/';
     })
   }
+
+  createPC(){
+    this.gainApi.createPlaycaller(this.newPCUser).subscribe((pcRes: any) =>{
+      this.newPCRes = pcRes;
+    }, (err: any) => this.newPCRes = err);
+  }
+
+  clearPCRes(){
+    this.newPCRes = '';
+  }
+
+  removePC(){
+    this.gainApi.removePlaycaller(this.exPCUser).subscribe((pcRes: any) =>{
+      this.exPCRes = pcRes;
+    }, (err: any) => this.exPCRes = err);
+  }
+
+  clearExPCRes(){
+    this.exPCRes = '';
+  }
+
+
 }

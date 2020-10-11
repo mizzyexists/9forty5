@@ -1,13 +1,17 @@
 .gainzone-container{
   margin: auto;
+  text-align: center;
 }
 
 .gainzone-logo{
-  max-width: 400px;
+  max-width: 350px;
+  margin: auto;
+  text-align: center;
   transform: rotate(-2deg);
   -webkit-transform: rotate(-2deg);
   -moz-transform: rotate(-2deg);
   -ms-transform: rotate(-2deg);
+  display: block;
 }
 
 .jumbotron{

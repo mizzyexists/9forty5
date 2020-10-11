@@ -44,4 +44,8 @@ export class AuthService {
   countUsers(): Observable<UserData[]>{
   return this.httpClient.get<UserData[]>(`${this.PHP_API_SERVER}/auth/countusers`);
   }
+  deleteAccount(user: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/deleteaccount`, user);
+  }
+
 }

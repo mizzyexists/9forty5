@@ -1,0 +1,77 @@
+<div *ngIf="isLoading==false">
+<div *ngIf="profileID">
+<div *ngIf="jwtUsertype!='Admin' || profileType!='Super-Admin'">
+  <div *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="row mx-2">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 card bg-dark text-white">
+      <div class="card-header text-center">
+        <h4>Upload Profile Picture</h4>
+        <img class="avatar" src="{{profileAvatar}}" width="125px" height="125px">
+        <input type="file" (change)="onFileSelect($event)" name="avatar" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);" class="form-control text-white d-block" id="avatar" [(ngModel)]="localfilename">
+        <label for="avatar" class="btn btn-light">Select File</label>
+        <p *ngIf="localfilename">{{localfilename}}</p>
+        <br *ngIf="!localfilename">
+        <button (click)="uploadPic()" class="btn btn-primary">Upload</button>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 card bg-dark text-white">
+      <div class="card-header text-center">
+        <h4>Edit Profile Information</h4>
+        <form *ngIf="userData" [formGroup]="usereditForm" (ngSubmit)="onUpdate()">
+          <div class="form-group">
+            <label for="username">Username: {{ profileUser }}</label>
+          </div>
+          <div class="form-group left-form">
+            <label for="email">E-Mail:</label>
+            <input type="text" formControlName="email" name="email" class="form-control" id="email">
+          </div>
+          <div class="form-group right-form">
+            <label for="usertype">Usertype:</label>
+            <input type="text" formControlName="usertype" name="usertype" class="form-control" id="usertype">
+          </div>
+          <div class="form-group left-form">
+            <label for="fname">First Name:</label>
+            <input type="text" formControlName="fname" name="fname" class="form-control" id="fname">
+          </div>
+          <div class="form-group right-form">
+            <label for="lname">Last Name:</label>
+            <input type="text" formControlName="lname" name="lname" class="form-control" id="lname">
+          </div>
+          <div class="form-group">
+            <label for="bio_text">Biography:</label><br>
+            <textarea class="w-100" formControlName="bio_text" name="bio_text" id="bio_text"></textarea>
+          </div>
+          <button class="btn btn-secondary">Save Profile</button>
+      </form>
+      <button *ngIf="userID==profileID || jwtUsertype=='Super-Admin'" (click)="deleteAccount()" class="deletebutton btn btn-danger">Delete Account</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="userID!=profileID && jwtUsertype!='Super-Admin' && jwtUsertype!='Admin'" class="row">
+    <div class="col card bg-dark text-white">
+      <div class="card-header text-center">
+        You are not allowed to edit other users.
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="jwtUsertype=='Admin' && profileType=='Super-Admin'" class="row">
+  <div class="col card bg-dark text-white">
+    <div class="card-header text-center">
+      You are not allowed to edit Super Admins.
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf='!profileID'>
+  <div class="col card bg-dark text-white">
+    <div class="card-header text-center">
+      User does not exist.
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf="isLoading==true" class="d-flex justify-content-center mt-5 mb-5">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

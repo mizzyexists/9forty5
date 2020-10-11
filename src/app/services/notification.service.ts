@@ -15,8 +15,8 @@ export class NotificationService {
   ) { }
 
 
-  createNoti(notiData:any){
-    return this.httpClient.post<NotiData>(`${this.PHP_API_SERVER}/notify/createnotification`, notiData);
+  createTestNoti(notiData:any){
+    return this.httpClient.post<NotiData>(`${this.PHP_API_SERVER}/notify/testnotification`, notiData);
   }
 
   countNoti(user:any){

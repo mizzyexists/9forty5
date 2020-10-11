@@ -29,6 +29,7 @@ export class ProfilenavComponent implements OnInit {
   notiError: any;
   adminAccess: any;
   notifications: any;
+  playcaller: any;
   constructor(
     private toastService: ToastService,
     private authApi: AuthService,
@@ -47,6 +48,7 @@ export class ProfilenavComponent implements OnInit {
         this.userID = this.jwtData.data.uid;
         this.userSlug = this.jwtData.data.slug;
         this.image_path = this.jwtData.data.image_path;
+        this.playcaller = this.jwtData.data.is_playcaller;
         this.notiService.countNoti(this.jwtUsername).subscribe((notiCount: any) => {
           this.notiCount = notiCount;
         }, (err:any) => this.notiError = err);
@@ -57,6 +59,9 @@ export class ProfilenavComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.notiService.getUserNoti(this.userID).subscribe((notifs) => {
+      this.notifications = notifs;
+    });
   }
 
   logout() {
