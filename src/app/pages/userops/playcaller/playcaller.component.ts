@@ -55,19 +55,19 @@ export class PlaycallerComponent implements OnInit {
   }});
   this.authApi.fetchUserBySlug(routeParams.slug).subscribe((data: any) => {
   this.userData = data;
-  this.profileID = data.uid;
-  this.profileAvatar = data.image_path;
-  this.profileUser = data.username;
-  this.profileSlug = data.slug;
-  this.profileType = data.usertype;
+  this.profileID = this.userData.uid;
+  this.profileAvatar = this.userData.image_path;
+  this.profileUser = this.userData.username;
+  this.profileSlug = this.userData.slug;
+  this.profileType = this.userData.usertype;
   this.titleService.setTitle( "9Forty5 - PlayCaller "+ this.profileUser);
   this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: PCData[]) => {
     this.playData = pcdata;
-    this.pcUID = pcdata.user_id;
-    this.pcUsername = pcdata.username;
-    this.pcBio = pcdata.play_bio;
-    this.pcGroupID = pcdata.group_id;
-    this.pcGroupName = pcdata.group_name;
+    this.pcUID = this.playData.user_id;
+    this.pcUsername = this.playData.username;
+    this.pcBio = this.playData.play_bio;
+    this.pcGroupID = this.playData.group_id;
+    this.pcGroupName = this.playData.group_name;
     this.likeData = [this.userID, this.pcUID];
     this.gainApi.countLikes(this.pcUID).subscribe((count) => {
       this.pcLikes = count;
