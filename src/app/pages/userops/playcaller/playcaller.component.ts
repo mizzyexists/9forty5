@@ -61,7 +61,7 @@ export class PlaycallerComponent implements OnInit {
   this.profileSlug = this.userData.slug;
   this.profileType = this.userData.usertype;
   this.titleService.setTitle( "9Forty5 - PlayCaller "+ this.profileUser);
-  this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: PCData[]) => {
+  this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
     this.playData = pcdata;
     this.pcUID = this.playData.user_id;
     this.pcUsername = this.playData.username;
@@ -95,9 +95,9 @@ export class PlaycallerComponent implements OnInit {
       if(this.jwtData){
         this.userID = this.jwtData.data.uid;
       }
-      this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: PCData[]) => {
+      this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
         this.playData = pcdata;
-        this.pcUID = pcdata.user_id;
+        this.pcUID = this.playData.user_id;
         this.likeData = [this.userID, this.pcUID];
         this.pcLikes++;
         this.voted = true;
@@ -112,9 +112,9 @@ export class PlaycallerComponent implements OnInit {
       if(this.jwtData){
         this.userID = this.jwtData.data.uid;
       }
-      this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: PCData[]) => {
+      this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
         this.playData = pcdata;
-        this.pcUID = pcdata.user_id;
+        this.pcUID = this.playData.user_id;
         this.likeData = [this.userID, this.pcUID];
         this.pcLikes--;
         this.voted = false;
