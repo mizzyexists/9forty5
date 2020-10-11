@@ -8,5 +8,19 @@
 }
 
 .jumbotron{
-  padding: 40px;
+  padding: 10px;
+  margin-bottom: 5px !important;
+}
+
+#learningHub button {
+    color: #fff;
+}
+
+#learningHub button:hover {
+    color: #ccc !important;
+    text-decoration: none;
+}
+
+.learntab{
+  margin: 2px 0px;
 }
