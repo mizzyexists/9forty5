@@ -6,7 +6,6 @@ import { FormBuilder } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AuthData } from 'src/app/models/authdata';
 import { GainzoneService } from '../../../services/gainzone.service';
-import { PCData } from 'src/app/models/pcdata';
 
 @Component({
   selector: 'app-playcaller',
@@ -24,7 +23,7 @@ export class PlaycallerComponent implements OnInit {
   profileID: any;
   profileSlug: any;
   profileUser: any;
-  playData: PCData[];
+  playData: any;
   pcBio: any;
   pcGroupID: any;
   pcGroupName: any;
