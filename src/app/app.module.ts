@@ -33,7 +33,7 @@ import { PlaycallerComponent } from './pages/userops/playcaller/playcaller.compo
 import { EditprofileComponent } from './pages/userops/editprofile/editprofile.component';
 import { DirectoryComponent } from './pages/directory/directory.component';
 
-const uri = 'https://api.mzydigital.com/v1/graphql'; // <-- add the URL of the GraphQL server here
+const uri = '';
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   return {
     link: httpLink.create({uri}),
