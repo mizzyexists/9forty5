@@ -3,14 +3,16 @@
 <div *ngIf="jwtUsertype!='Admin' || profileType!='Super-Admin'">
   <div *ngIf="userID==profileID || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="row mx-2">
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 card bg-dark text-white">
-      <div class="card-header text-center">
-        <h4>Upload Profile Picture</h4>
-        <img class="avatar" src="{{profileAvatar}}" width="125px" height="125px">
-        <input type="file" (change)="onFileSelect($event)" name="avatar" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);" class="form-control text-white d-block" id="avatar" [(ngModel)]="localfilename">
-        <label for="avatar" class="btn btn-light">Select File</label>
-        <p *ngIf="localfilename">{{localfilename}}</p>
-        <br *ngIf="!localfilename">
-        <button (click)="uploadPic()" class="btn btn-primary">Upload</button>
+      <div class="card-header text-center h-100">
+        <div class="uploadsection">
+          <h4>Change Profile Picture</h4>
+          <img class="avatar" src="{{profileAvatar}}" width="125px" height="125px">
+          <input type="file" (change)="onFileSelect($event)" name="avatar" style="background-color: rgba(0,0,0,0); border-color: rgba(0,0,0,0);" class="form-control text-white d-block" id="avatar" [(ngModel)]="localfilename">
+          <label for="avatar" class="btn btn-light">Select File</label>
+          <p *ngIf="localfilename">{{localfilename}}</p>
+          <br *ngIf="!localfilename">
+          <button (click)="uploadPic()" class="btn btn-primary">Upload</button>
+        </div>
       </div>
     </div>
     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 card bg-dark text-white">

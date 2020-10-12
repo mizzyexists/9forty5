@@ -1,12 +1,40 @@
 .footer-container{
-  height: 250px;
+  min-height: 200px;
   padding: 20px;
 }
 
-.logo-col{
-  max-width: 250px;
+img{
+  max-width: 200px;
+  display: block;
+  margin: auto;
 }
 
-img{
-  max-width: 100%;
+.social{
+  color: #fff;
+  font-size: 24px;
+  margin: 20px;
+  transition: all .3s ease;
+}
+
+.social:hover{
+  color: #aaa;
+  transition: all .3s ease;
+}
+
+.footer-container a{
+  color: #fff;
+  transition: all .3s ease;
+}
+
+.footer-container a:hover{
+  text-decoration: none;
+  color: #aaa;
+  transition: all .3s ease;
+}
+
+.logocol{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

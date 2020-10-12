@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-12 mt-2">
-    <div class="card bg-dark">
-      <div class="card-header text-white text-center"><h3>User Directory</h3></div>
-      <div class="card-body">
-        <input (keyup)="searchUsers()" class="text-center d-block mx-auto mb-2" type="text" name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search Users...">
+    <div class="card">
+      <div class="card-header bg-light text-dark text-center"><h3>User Directory</h3></div>
+      <div class="card-body bg-dark">
+        <input (keyup)="searchUsers()" class="text-center d-block mx-auto mb-2 mt-3" type="text" name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search Users...">
         <a *ngIf="searchTerm || searchTerm==''" (click)="clearSearch()" class='clearbtn btn btn-secondary text-center d-block mx-auto'>Clear Search</a>
         <table class="text-white">
           <thead class="bg-white text-dark">
