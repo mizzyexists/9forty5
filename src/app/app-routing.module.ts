@@ -11,6 +11,7 @@ import { GainzoneComponent } from './pages/gainzone/gainzone.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PlaycallerComponent } from './pages/userops/playcaller/playcaller.component';
 import { EditprofileComponent } from './pages/userops/editprofile/editprofile.component';
+import { DirectoryComponent } from './pages/directory/directory.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -18,10 +19,11 @@ const routes: Routes = [
   { path: 'learn', component: LearnComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', redirectTo: '' },
-  { path: 'profile/:slug', component: ProfileComponent},
-  { path: 'editprofile', redirectTo: '' },
-  { path: 'editprofile/:slug', component: EditprofileComponent},
+  { path: 'user', redirectTo: '' },
+  { path: 'user/:slug', component: ProfileComponent},
+  { path: 'directory', component: DirectoryComponent },
+  { path: 'edituser', redirectTo: '' },
+  { path: 'edituser/:slug', component: EditprofileComponent},
   { path: 'playcaller', redirectTo: 'gainzone' },
   { path: 'playcaller/:slug', component: PlaycallerComponent},
   { path: 'adminmenu', component: AdminmenuComponent, canActivate: [AuthGuard]},

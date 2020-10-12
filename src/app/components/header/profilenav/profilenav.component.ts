@@ -75,7 +75,7 @@ export class ProfilenavComponent implements OnInit {
   viewMyProfile(){
     this.authApi.fetchUserBySlug(this.userSlug).subscribe((data: any) => {
       this.userSlug = data.slug;
-      this.router.navigate(['/profile/' + this.userSlug]);
+      this.router.navigate(['/user/' + this.userSlug]);
 
     });
   }

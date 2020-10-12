@@ -35,6 +35,11 @@ export class AdminmenuComponent implements OnInit {
   newPCRes: any;
   exPCUser: any;
   exPCRes: any;
+  adminNoti: any[];
+  adminNotiRes: any;
+  adminNotiTitle: any;
+  adminNotiBody: any;
+  adminNotiLink: any;
   constructor(
     private authApi: AuthService,
     private stockApi: StockapiService,
@@ -92,16 +97,27 @@ export class AdminmenuComponent implements OnInit {
     this.indexRes = '';
   }
 
-  clearNotiRes(){
-    this.notiRes = '';
-  }
-
   createTestNoti(){
     this.testNoti = [this.testNotiUser, this.testNotiTitle, this.testNotiBody, this.testNotiLink];
     this.notiService.createTestNoti(this.testNoti).subscribe((notiRes: any) =>{
       this.notiRes = notiRes;
+      this.testNotiUser = '';
+      this.testNotiTitle = '';
+      this.testNotiBody = '';
+      this.testNotiLink = '';
     }, (err: any) => this.notiRes = err);
-    }
+  }
+
+  notifyAdmins(){
+    this.adminNoti = [this.adminNotiTitle, this.adminNotiBody, this.adminNotiLink];
+    this.notiService.notifyAdmins(this.adminNoti).subscribe((notiRes: any) =>{
+      this.adminNotiRes = notiRes;
+      this.adminNotiTitle = '';
+      this.adminNotiBody = '';
+      this.adminNotiLink = '';
+    }, (err: any) => this.adminNotiRes = err);
+  }
+
   toggleMaint(){
     this.appapi.toggleMaintenance().subscribe((data: any) => {
       if(data=="false"){

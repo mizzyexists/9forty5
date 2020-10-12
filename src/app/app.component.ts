@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart, NavigationCancel } from '@angular/router';
 import { AppapiService } from './services/appapi.service';
 import { ToastService } from './services/toast.service';
+import { AuthData } from './models/authdata';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +17,15 @@ export class AppComponent {
   maintenanceMode:any;
   adminAccess: any;
   adminCode: any;
+  token: string;
+  jwtData: any;
+  jwtUsername: any;
+  jwtUsertype: any;
   constructor(
     private router: Router,
     private toastService: ToastService,
     private appapi: AppapiService,
+    private authApi: AuthService
   ){
     this.adminAccess = window.localStorage.getItem('adminAccess');
     this.appapi.checkMaintenance().subscribe((response: any) => {
@@ -34,6 +41,7 @@ export class AppComponent {
         }
       }
     });
+    this.checkAuthToken();
   }
 
   ngAfterViewInit() {
@@ -63,5 +71,22 @@ export class AppComponent {
          this.toastService.show('Invalid Access Code', { classname: 'bg-danger text-light'});
        }
      })
+   }
+
+   checkAuthToken(){
+     this.token = window.localStorage.getItem('jwt');
+     if(this.token){
+       this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
+         if(!authData || authData[0]!=true){
+           window.localStorage.removeItem('jwt');
+           window.location.href = '/';
+         };
+         if(authData && authData[0]==true){
+           this.jwtData = authData[1];
+           this.jwtUsername = this.jwtData.data.username;
+           this.jwtUsertype = this.jwtData.data.usertype;
+         }
+       });
+     }
    }
 }

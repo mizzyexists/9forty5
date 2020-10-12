@@ -1,23 +1,13 @@
-<div class="jumbotron bg-dark jumbotron-fluid mb-5">
-  <div class="text-center">
-    <div class="learninghub-container">
-      <img class="learninghub-logo" src="/assets/images/LearningHubWhite.png"/>
-    </div>
-  </div>
-</div>
 <div class="row">
   <div class="col-12 mt-2">
     <div class="card">
-      <div class="card-header bg-dark text-white text-center">
-        <h4>Welcome to the Learning Hub</h4>
-      </div>
       <div class="card-body text-center">
-        <p>Here, you can find all information about 9Forty5 as well as general stock information and strategies.</p>
+        <h3>Welcome to the Learning Hub</h3>
+        <p class="mb-0">Here, you can find all information about 9Forty5 as well as general stock information and strategies.</p>
       </div>
     </div>
   </div>
   <div class="col-12 mt-2">
-    <h4 class="text-center">Learning Sections</h4>
     <div class="accordion" id="learningHub">
       <div *ngFor="let learnTab of learnTabs | orderBy: ['tabID']" class="card learntab">
         <div class="card-header bg-dark" id="{{learnTab.headerID}}">

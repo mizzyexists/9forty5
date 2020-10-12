@@ -1,32 +1,34 @@
-<div class="row mx-2">
+<div *ngIf="pcUID" class="row mx-2">
   <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 user-card bg-dark text-white card" *ngIf="profileUser">
   <div class="card-header">
-      <div class="text-center userinfo">
-        <h2>{{pcUsername}}</h2>
-        <a class="userlink username" routerLink="/profile/{{profileUser | lowercase}}">@{{profileUser}} <i *ngIf="profileType=='Super-Admin' || profileType=='Admin' || profileType=='PlayCaller' || profileType=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
+    <div class="row">
+      <div class="col text-center userinfo">
+        <img src="{{profileAvatar}}" *ngIf="profileAvatar"/>
+        <h5 class="mt-2">{{profileName}}</h5>
+        <a class="userlink username" routerLink="/user/{{profileUser | lowercase}}">{{profileUser}} <i *ngIf="profileType=='Super-Admin' || profileType=='Admin' || profileType=='PlayCaller' || profileType=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
+        <p>{{pcBio}}</p>
+        <p *ngIf="pcGroupName"><strong>Group</strong><br>{{pcGroupName}}</p>
+        <br>
+        <p *ngIf="voted==false && userID!=profileID"(click)="upVote()" class="upvotes"><i class="far fa-thumbs-up"></i> Like</p>
+        <p *ngIf="voted==true && userID!=profileID"(click)="upVote()" class="upvotes voted"><i class="far fa-thumbs-down"></i> Unlike</p>
+        <br *ngIf="userID!=profileID"><br *ngIf="userID!=profileID">
+        <p class="likes">Likes: {{pcLikes}}</p>
       </div>
-  </div>
-  <div class="card-body">
-    <p *ngIf="voted==false && userID!=profileID"(click)="upVote()" class="upvotes"><i class="far fa-thumbs-up"></i> Like</p>
-    <p *ngIf="voted==true && userID!=profileID"(click)="upVote()" class="upvotes voted"><i class="far fa-thumbs-down"></i> Unlike</p>
-    <br *ngIf="userID!=profileID"><br *ngIf="userID!=profileID">
-    <p>Likes: {{pcLikes}}</p>
+    </div>
   </div>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 user-card bg-dark text-white card" *ngIf="profileUser">
-  <div class="card-body">
+  <div class="card-header">
       <div class="text-center userinfo">
         <h2>Most Recent Plays</h2>
       </div>
   </div>
 </div>
 </div>
-<div *ngIf="!profileUser">
+<div *ngIf="!pcUID">
   <h4
     class="text-center"
     style="color:grey;">
     PlayCaller does not exist
   </h4>
 </div>
-<p>{{pcGroupName}}</p>
-<p>{{pcBio}}</p>

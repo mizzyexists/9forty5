@@ -160,7 +160,7 @@ export class EditprofileComponent implements OnInit {
      }else{
        this.authApi.addAvatar(this.userID, this.uploadResponse.url).subscribe(() =>{
          this.toastService.show('Profile Picture Updated', { classname: 'bg-primary text-light'});
-         this.refreshlink = 'profile/' + this.userSlug;
+         this.refreshlink = 'user/' + this.userSlug;
 
          setTimeout(() => window.location.href = this.refreshlink, 1000);
        });
@@ -187,7 +187,7 @@ export class EditprofileComponent implements OnInit {
              // });}
            });
              this.toastService.show('User Updated', { classname: 'bg-dark text-light'});
-             this.refreshlink = 'profile/' + this.userSlug;
+             this.refreshlink = 'user/' + this.userSlug;
              setTimeout(() => window.location.href = this.refreshlink, 1000);
                });
        });

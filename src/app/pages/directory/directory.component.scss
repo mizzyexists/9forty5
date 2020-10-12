@@ -1,0 +1,56 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+}
+
+td, th {
+  border-left: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr {
+  background-color: rgba(0,0,0,0);
+  color: #fff;
+}
+
+.username{
+  color: #fff;
+  text-decoration: none;
+}
+
+.username:hover{
+  color: #aaa;
+  text-decoration: none;
+}
+
+.admin-color{
+  color: #f73737;
+}
+
+.pc-color{
+  color: #85fff4;
+}
+
+img{
+  margin-right: 5px;
+  border-radius: 25px;
+}
+
+.clearbtn{
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+.card-body{
+  padding-top: 0px;
+}
+
+@media only screen and (max-width: 1051px) {
+  .admops{
+    display: none;
+  }
+}

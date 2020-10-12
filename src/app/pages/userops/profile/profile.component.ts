@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthData } from 'src/app/models/authdata';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { ToastService } from '../../../services/toast.service';
 import { AuthService } from '../../../services/auth.service';
-import { UploadService } from '../../../services/upload.service';
 import { UserData } from '../../../models/userdata';
 
 
@@ -36,6 +33,8 @@ export class ProfileComponent implements OnInit {
     jwtUsername: any;
     profileIsPC: any;
     isLoading: boolean;
+  profileFName: any;
+  profileLName: any;
     constructor(
       private authApi: AuthService,
       private routes: ActivatedRoute,
@@ -59,7 +58,8 @@ export class ProfileComponent implements OnInit {
        this.profileUser = data.username;
        this.profileAvatar = data.image_path;
        this.profileType = data.usertype;
-       this.profileName = data.fname + " " + data.lname;
+       this.profileFName = data.fname;
+       this.profileLName = data.lname;
        this.profileBio = data.bio_text;
        this.profileLogin = data.last_login;
        this.profileEmail = data.email;

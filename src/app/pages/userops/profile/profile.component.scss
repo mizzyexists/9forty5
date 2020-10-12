@@ -27,6 +27,24 @@
   border: 1px solid #85fff4;
 }
 
+.pc-link{
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  width: 135px;
+  color: #85eeff;
+  border: 1px solid #85eeff;
+  margin-top: 10px;
+}
+
+.pc-link:hover{
+  text-decoration: none;
+  color: #000;
+  background-color: #85eeff;
+  border: 1px solid #85eeff;
+}
+
+
 .inner-card{
   margin: 10px;
 }

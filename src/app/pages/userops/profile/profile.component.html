@@ -4,24 +4,24 @@
     <div class="row">
       <div class="col text-center userinfo">
         <img src="{{profileAvatar}}" *ngIf="profileAvatar"/>
-        <h3>{{profileName}}</h3>
-        <p class="username">@{{profileUser}} <i *ngIf="profileType=='Super-Admin' || profileType=='Admin' || profileType=='PlayCaller' || profileType=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></p>
+        <h3><span *ngIf="profileFName">{{profileFName | titlecase}} </span><span *ngIf="profileLName">{{profileLName | titlecase}}</span></h3>
+        <p class="username">{{profileUser}} <i *ngIf="profileType=='Super-Admin' || profileType=='Admin' || profileType=='PlayCaller' || profileType=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></p>
         <p *ngIf="profileType=='Super-Admin' || profileType=='Admin'" class="usertype admin-colors">{{profileType}}</p>
         <p *ngIf="profileType=='User'" class="usertype">Standard {{profileType}}</p>
         <p *ngIf="profileType=='Verified User'" class="usertype">{{profileType}}</p>
         <p *ngIf="profileType=='PlayCaller'" class="usertype pc-colors">Verified {{profileType}}</p>
+        <a *ngIf="profileIsPC=='true'" routerLink="/playcaller/{{profileUser | lowercase}}" class="pc-link d-block mx-auto text-center">PlayCaller Page</a>
         <p class="lastlogin">Last Seen:<br>{{profileLogin}}</p>
         <p>{{profileBio}}</p>
       </div>
     </div>
   </div>
-  <div class="card-body">
+  <!-- <div class="card-body">
     <div class="row">
       <div class="col">
-        <button *ngIf="profileIsPC=='true'" routerLink="/playcaller/{{profileUser}}" class="btn btn-outline-light d-block mx-auto playbutton text-center ">GO TO {{profileUser | uppercase}}'S PLAYCALLER PAGE</button>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 <div *ngIf="!profileUser">
   <h4

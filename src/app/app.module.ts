@@ -31,6 +31,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { GainzoneComponent } from './pages/gainzone/gainzone.component';
 import { PlaycallerComponent } from './pages/userops/playcaller/playcaller.component';
 import { EditprofileComponent } from './pages/userops/editprofile/editprofile.component';
+import { DirectoryComponent } from './pages/directory/directory.component';
 
 const uri = 'https://api.mzydigital.com/v1/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -63,6 +64,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     GainzoneComponent,
     PlaycallerComponent,
     EditprofileComponent,
+    DirectoryComponent,
   ],
   imports: [
     BrowserModule,

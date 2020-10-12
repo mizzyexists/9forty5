@@ -39,4 +39,8 @@ export class NotificationService {
   return this.httpClient.post<NotiData[]>(`${this.PHP_API_SERVER}/notify/getusernotifications`, uid);
   }
 
+  notifyAdmins(notiData:any){
+    return this.httpClient.post<NotiData>(`${this.PHP_API_SERVER}/notify/notifyadmins`, notiData);
+  }
+
 }

@@ -4,7 +4,7 @@
 <div class="row" *ngIf="jwtUsertype == 'Admin' || jwtUsertype == 'Super-Admin'">
   <div class="col-12 mt-2">
     <div class="card bg-dark">
-      <div class="card-header text-white"><h3>Application Info</h3></div>
+      <div class="card-header text-white text-center"><h3>Application Info</h3></div>
       <div class="card-body">
         <table class="text-white">
           <thead>
@@ -25,7 +25,7 @@
           <tr>
           <tr>
             <td>Registered Users</td>
-            <td>{{ userCount }} <a class="btn btn-primary mx-2">View Users</a></td>
+            <td>{{ userCount }} <a routerLink="/directory" class="btn btn-primary mx-2">View Users</a></td>
           </tr>
           <tr>
             <td>Stocks in DB</td>
@@ -41,22 +41,23 @@
   </div>
   <div *ngIf="jwtUsertype=='Super-Admin'" class="col-12 mt-2">
   <div class="card bg-dark">
-    <div class="card-header text-white"><h3>Admin Operations</h3></div>
-    <div class="card-body">
-      <button class="btn btn-danger" (click)="refreshIndex()">Refresh Index Data</button><span class="text-white p-2"> Response: {{indexRes}}</span>
-      <br><br>
-      <button class="btn btn-danger" (click)="refreshWatchlist()">Refresh Watchlist Data</button><span class="text-white p-2"> Response: {{watchlistRes}}</span>
-      <br><br>
-      <button class="btn btn-danger" (click)="refreshGenList()">Refresh All Stock Data</button><span class="text-white p-2"> Response: {{stockRes}}</span>
-      <br><br>
+    <div class="card-header text-white text-center"><h3>Admin Operations</h3></div>
+    <div class="card-body text-center">
+      <button class="btn btn-danger" (click)="refreshIndex()">Refresh Index Data</button>
+      <p class="text-white p-2"> Response:<br>{{indexRes}}</p>
+      <button class="btn btn-danger" (click)="refreshWatchlist()">Refresh Watchlist Data</button>
+      <p class="text-white p-2"> Response:<br>{{watchlistRes}}</p>
+      <button class="btn btn-danger" (click)="refreshGenList()">Refresh All Stock Data</button>
+      <p class="text-white p-2"> Response:<br>{{stockRes}}</p>
       <button class="btn btn-light" (click)="clearRes()">Clear Responses</button>
     </div>
   </div>
   </div>
   <div class="col-12 mt-2">
     <div class="card bg-dark">
-      <div class="card-header text-white"><h3>Notification Operations</h3></div>
-      <div class="card-body">
+      <div class="card-header text-white text-center"><h3>Notification Operations</h3></div>
+      <div class="card-body d-block mx-auto text-center">
+        <h4 class="text-white">Send Test Noti</h4>
         <input type="text" placeholder="Noti Test Username or UID" name="testNotiUser" [(ngModel)]="this.testNotiUser">
         <br><br>
         <input type="text" placeholder="Noti Test Title" name="testNotiMsg" [(ngModel)]="this.testNotiTitle">
@@ -65,29 +66,41 @@
         <br><br>
         <input type="text" placeholder="Noti Test Link" name="testNotiLink" [(ngModel)]="this.testNotiLink">
         <br><br>
-        <button class="btn btn-primary" (click)="createTestNoti()">Generate Notification</button><span class="text-white p-2"> Response: {{notiRes}}</span>
+        <button class="btn btn-primary" (click)="createTestNoti()">Generate Notification</button>
+        <p class="text-white p-2"> Response:<br>{{notiRes}}</p>
+        <div *ngIf="jwtUsertype=='Super-Admin'">
+        <hr class="bg-light text-white">
+        <br>
+        <h4 class="text-white">Send Admin Noti</h4>
+        <input type="text" placeholder="Admin Noti Title" name="adminNotiMsg" [(ngModel)]="this.adminNotiTitle">
         <br><br>
-        <button class="btn btn-light" (click)="clearNotiRes()">Clear Response</button>
+        <input type="text" placeholder="Admin Noti Message" name="adminNotiBody" [(ngModel)]="this.adminNotiBody">
+        <br><br>
+        <input type="text" placeholder="Admin Noti Link" name="adminNotiLink" [(ngModel)]="this.adminNotiLink">
+        <br><br>
+        <button class="btn btn-primary" (click)="notifyAdmins()">Send Admin Notification</button>
+        <p class="text-white p-2"> Response:<br>{{adminNotiRes}}</p>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-12 mt-2">
     <div class="card bg-dark">
-      <div class="card-header text-white"><h3>User Operations</h3></div>
-      <div class="card-body">
+      <div class="card-header text-white text-center"><h3>User Operations</h3></div>
+      <div class="card-body d-block mx-auto text-center">
         <h4 class="text-white" style="margin-top: -10px;">Create PlayCaller</h4>
         <input type="text" placeholder="Username or UID" name="newPCUser" [(ngModel)]="this.newPCUser">
         <br><br>
-        <button class="btn btn-primary" (click)="createPC()">Create PlayCaller</button><span class="text-white p-2"> Response: {{newPCRes}}</span>
-        <br><br>
+        <button class="btn btn-primary" (click)="createPC()">Create PlayCaller</button>
+        <p class="text-white p-2"> Response:<br>{{newPCRes}}</p>
         <button class="btn btn-light" (click)="clearPCRes()">Clear Response</button>
         <div *ngIf="jwtUsertype=='Super-Admin'">
           <hr class="bg-light text-white">
           <h4 class="text-white" style="margin-top: -10px;">Remove PlayCaller</h4>
           <input type="text" placeholder="Username or UID" name="exPCUser" [(ngModel)]="this.exPCUser">
           <br><br>
-          <button class="btn btn-primary" (click)="removePC()">Remove PlayCaller</button><span class="text-white p-2"> Response: {{exPCRes}}</span>
-          <br><br>
+          <button class="btn btn-primary" (click)="removePC()">Remove PlayCaller</button>
+          <p class="text-white p-2"> Response:<br>{{exPCRes}}</p>
           <button class="btn btn-light" (click)="clearExPCRes()">Clear Response</button>
         </div>
       </div>

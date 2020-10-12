@@ -49,6 +49,16 @@
   font-size: 14px;
 }
 
+.main-navigation .simplelink{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0);
+  transition: all .3s ease;
+}
+
+.main-navigation .simplelink:hover{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.92);
+  transition: all .3s ease;
+}
+
 .main-navigation li a:hover{
   text-decoration: none;
   color: rgba(0, 0, 0, 0.92);

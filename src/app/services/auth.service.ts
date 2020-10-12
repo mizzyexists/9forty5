@@ -47,5 +47,10 @@ export class AuthService {
   deleteAccount(user: any){
     return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/deleteaccount`, user);
   }
-
+  getUsers(limitdata: any): Observable<UserData[]>{
+  return this.httpClient.post<UserData[]>(`${this.PHP_API_SERVER}/auth/getusers`, limitdata);
+  }
+  searchUsers(limitdata: any): Observable<UserData[]>{
+    return this.httpClient.post<UserData[]>(`${this.PHP_API_SERVER}/auth/searchusers`, limitdata);
+  }
 }

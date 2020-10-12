@@ -35,6 +35,7 @@ export class PlaycallerComponent implements OnInit {
   likeData: any;
   isLiked: any;
   pcLikes: any;
+  profileName: string;
   constructor(
     private authApi: AuthService,
     private toastService: ToastService,
@@ -57,6 +58,7 @@ export class PlaycallerComponent implements OnInit {
   this.profileID = this.userData.uid;
   this.profileAvatar = this.userData.image_path;
   this.profileUser = this.userData.username;
+  this.profileName = data.fname + " " + data.lname;
   this.profileSlug = this.userData.slug;
   this.profileType = this.userData.usertype;
   this.titleService.setTitle( "9Forty5 - PlayCaller "+ this.profileUser);
