@@ -12,7 +12,6 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
   message: any;
   token: any;
@@ -22,11 +21,10 @@ export class LoginComponent implements OnInit {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
-  forgotPassword: boolean = false;
-  recievedCode: boolean = false;
   resetForm: FormGroup;
   resetcode: any;
   codeForm: FormGroup;
+  isBanned: string;
   constructor(
     private toastService: ToastService,
     private formBuilder:FormBuilder,
@@ -53,6 +51,7 @@ export class LoginComponent implements OnInit {
         username: ['', Validators.required],
         email: ['', Validators.required]
       });
+      this.isBanned = window.localStorage.getItem('isBanned');
   }
 
   ngOnInit() {}
@@ -67,6 +66,11 @@ export class LoginComponent implements OnInit {
     };
     this.authApi.login(loginData).subscribe((data: any) => {
       this.message = data.message;
+      if(this.message=="BANNED"){
+        this.toastService.show('You are banned from 9Forty5.', { classname: 'bg-danger text-light'});
+        setTimeout(() => window.location.href = './', 1500);
+        window.localStorage.setItem('isBanned', 'true');
+      } else {
       if(data.jwt || data.email) {
         window.localStorage.setItem('jwt', data.jwt);
         this.toastService.show('Login Succesful. Please Wait...', { classname: 'bg-dark text-light'});
@@ -75,6 +79,7 @@ export class LoginComponent implements OnInit {
       else {
         this.toastService.show('Please check your username and password and try again', { classname: 'bg-danger text-light'});
       }
+    }
     })
   }
 }

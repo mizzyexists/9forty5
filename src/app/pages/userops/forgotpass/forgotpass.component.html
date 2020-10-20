@@ -1,0 +1,29 @@
+  <div *ngIf="recievedCode==false" class="card bg-dark text-white log-card">
+  <div class="col text-center">
+    <img src="./assets/images/PlainLogoWhite.png" width="250px"/>
+      <br><br>
+      <h3>Reset Password</h3>
+      <form [formGroup]="resetForm" (ngSubmit)="passReset()">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
+      </div>
+      <button class="btn btn-light">Send Reset Email</button>
+    </form>
+    <br>
+    <a class="loginlink" routerLink="/login">Back to Login</a>
+  </div>
+  </div>
+  <div *ngIf="recievedCode==true" class="card bg-dark text-white log-card">
+  <div class="col text-center">
+  <img src="./assets/images/PlainLogoWhite.png" width="250px"/>
+      <form [formGroup]="codeForm" (ngSubmit)="checkCode()">
+        <h3>Password Reset</h3>
+      <div class="form-group">
+        <label for="resetcode">Reset Code:</label>
+        <input type="text" class="form-control text-center" formControlName="resetcode" id="resetcode" autocomplete="off">
+      </div>
+      <button class="btn btn-success">Submit Code</button>
+    </form>
+  </div>
+</div>

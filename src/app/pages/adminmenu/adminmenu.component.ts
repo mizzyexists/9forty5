@@ -5,7 +5,6 @@ import { StockapiService } from 'src/app/services/stockapi.service';
 import { Title } from '@angular/platform-browser';
 import { AppapiService } from '../../services/appapi.service';
 import { NotificationService } from '../../services/notification.service';
-import { GainzoneService } from '../../services/gainzone.service';
 
 @Component({
   selector: 'app-adminmenu',
@@ -24,17 +23,7 @@ export class AdminmenuComponent implements OnInit {
   genstockUpdateTime: any;
   userCount: any;
   stockCount: any;
-  testNoti: any;
-  notiRes: any;
-  testNotiUser: any;
-  testNotiTitle: any = "";
-  testNotiBody: any = "";
-  testNotiLink: any;
   maintMode: any;
-  newPCUser: any;
-  newPCRes: any;
-  exPCUser: any;
-  exPCRes: any;
   adminNoti: any[];
   adminNotiRes: any;
   adminNotiTitle: any;
@@ -46,7 +35,6 @@ export class AdminmenuComponent implements OnInit {
     private titleService: Title,
     private appapi: AppapiService,
     private notiService: NotificationService,
-    private gainApi: GainzoneService
   ) {
       this.titleService.setTitle( "9Forty5 - Admin Menu" );
       this.token = window.localStorage.getItem('jwt');
@@ -97,17 +85,6 @@ export class AdminmenuComponent implements OnInit {
     this.indexRes = '';
   }
 
-  createTestNoti(){
-    this.testNoti = [this.testNotiUser, this.testNotiTitle, this.testNotiBody, this.testNotiLink];
-    this.notiService.createTestNoti(this.testNoti).subscribe((notiRes: any) =>{
-      this.notiRes = notiRes;
-      this.testNotiUser = '';
-      this.testNotiTitle = '';
-      this.testNotiBody = '';
-      this.testNotiLink = '';
-    }, (err: any) => this.notiRes = err);
-  }
-
   notifyAdmins(){
     this.adminNoti = [this.adminNotiTitle, this.adminNotiBody, this.adminNotiLink];
     this.notiService.notifyAdmins(this.adminNoti).subscribe((notiRes: any) =>{
@@ -126,26 +103,5 @@ export class AdminmenuComponent implements OnInit {
       window.location.href = '/';
     })
   }
-
-  createPC(){
-    this.gainApi.createPlaycaller(this.newPCUser).subscribe((pcRes: any) =>{
-      this.newPCRes = pcRes;
-    }, (err: any) => this.newPCRes = err);
-  }
-
-  clearPCRes(){
-    this.newPCRes = '';
-  }
-
-  removePC(){
-    this.gainApi.removePlaycaller(this.exPCUser).subscribe((pcRes: any) =>{
-      this.exPCRes = pcRes;
-    }, (err: any) => this.exPCRes = err);
-  }
-
-  clearExPCRes(){
-    this.exPCRes = '';
-  }
-
 
 }

@@ -7,6 +7,7 @@
     </div>
   </div>
 </div>
+<div *ngIf="!isBanned">
   <div *ngIf="maintenanceMode=='false' || adminAccess">
   <app-header></app-header>
   <app-stock-head></app-stock-head>
@@ -26,6 +27,26 @@
   <div style="margin-bottom: 10px;"></div>
   <app-footer></app-footer>
   </div>
+</div>
+<div class="pt-5" *ngIf="isBanned && isAppealing=='false'">
+  <img class="d-block mx-auto mt-5" src="./assets/images/PlainLogoBlack.png" width="250px"/>
+  <h3 class="text-center mt-2">You are banned from 9Forty5.</h3>
+  <p class="text-center">If you believe this to be a mistake, please submit<br>an appeal form <a href="#" (click)="appealBan()">here</a></p>
+</div>
+<div class="pt-5" *ngIf="isBanned && isAppealing=='true'">
+  <img class="d-block mx-auto mt-5" src="./assets/images/PlainLogoBlack.png" width="250px"/>
+  <h3 class="text-center mt-2">Ban Appeal</h3>
+  <p class="text-center">Please complete the form below and someone will review your appeal as soon as possible.</p>
+  <form class="text-center">
+    <input class="appealInput bg-light text-dark" type="text" name="username" placeholder="Username">
+    <br>
+    <textarea class="bg-light text-dark appealTextarea" style="resize: none;" name="banReason" placeholder="Reason For Ban"></textarea>
+    <br>
+    <textarea class="bg-light text-dark appealTextarea" style="resize: none;" name="unbanReason" placeholder="Reason You Should Be Unbanned"></textarea>
+    <br>
+    <input class="appealInput" type="submit" name="Submit" value="Submit">
+  </form>
+</div>
 <div *ngIf="maintenanceMode=='true' && !adminAccess">
   <img class="d-block mx-auto mt-5" src="./assets/images/PlainLogoBlack.png" width="250px"/>
   <h3 class="text-center mt-2">9Forty5 is currently down for maintenance.</h3>

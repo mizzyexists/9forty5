@@ -34,6 +34,8 @@ export class DirectoryComponent implements OnInit {
   notiRes: any;
   searchTerm: any;
   searchQuery: any;
+  pcVerify: any = 0;
+  banVerify: any = 0;
   constructor(
     private authApi: AuthService,
     private titleService: Title,
@@ -124,11 +126,20 @@ export class DirectoryComponent implements OnInit {
   }
 
   removePC(uid: any, username: any){
-    this.gainApi.removePlaycaller(uid).subscribe((pcRes: any) =>{
-      this.exPCRes = pcRes;
-      this.toastService.show('PlayCaller status has been removed from ' + username, { classname: 'bg-danger text-light'});
-      setTimeout(() => window.location.href = '/directory', 1000);
-    }, (err: any) => this.exPCRes = err);
+    if(this.pcVerify==0){
+      alert("You are about to remove PlayCaller from this account! This cannot be undone. If you are sure, please click the 'Remove PlayCaller' button again.");
+      this.pcVerify = 1;
+    }
+    else if(this.pcVerify==1){
+      this.gainApi.removePlaycaller(uid).subscribe((pcRes: any) =>{
+        this.exPCRes = pcRes;
+        this.toastService.show('PlayCaller status has been removed from ' + username, { classname: 'bg-danger text-light'});
+        setTimeout(() => window.location.href = '/directory', 1000);
+      }, (err: any) => this.exPCRes = err);
+    }
+    else{
+      console.log("Error with PlayCaller Removal");
+    }
   }
 
   ngOnInit(): void {
@@ -170,6 +181,30 @@ export class DirectoryComponent implements OnInit {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  banUser(user: any){
+
+    if(this.banVerify==0){
+      alert("You are about to BAN this account! If you are sure, please click the 'Ban User' button again.");
+      this.banVerify = 1;
+    }
+    else if(this.banVerify==1){
+      this.authApi.banUser(user).subscribe((_data) => {
+        this.toastService.show('You have banned ' + user + '.', { classname: 'bg-danger text-light'});
+        setTimeout(() => window.location.href = '/directory', 1000);
+      })
+    }
+    else{
+      console.log("Error with Banning User");
+    }
+  }
+
+  unbanUser(user: any){
+    this.authApi.unbanUser(user).subscribe((_data) => {
+      this.toastService.show('You have unbanned ' + user + '.', { classname: 'bg-success text-light'});
+      setTimeout(() => window.location.href = '/directory', 1000);
+    })
   }
 
 }

@@ -21,6 +21,8 @@ export class AppComponent {
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
+  isBanned: string;
+  isAppealing: any = 'false';
   constructor(
     private router: Router,
     private toastService: ToastService,
@@ -42,6 +44,7 @@ export class AppComponent {
       }
     });
     this.checkAuthToken();
+    this.isBanned = window.localStorage.getItem('isBanned');
   }
 
   ngAfterViewInit() {
@@ -88,5 +91,9 @@ export class AppComponent {
          }
        });
      }
+   }
+
+   appealBan(){
+     this.isAppealing = 'true';
    }
 }

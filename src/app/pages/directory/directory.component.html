@@ -6,11 +6,10 @@
         <input (keyup)="searchUsers()" class="text-center d-block mx-auto mb-2 mt-3" type="text" name="searchTerm" [(ngModel)]="searchTerm" placeholder="Search Users...">
         <a *ngIf="searchTerm || searchTerm==''" (click)="clearSearch()" class='clearbtn btn btn-secondary text-center d-block mx-auto'>Clear Search</a>
         <table class="text-white">
-          <thead class="bg-white text-dark">
+          <thead>
             <th>Name</th>
             <th>Username</th>
             <th>User Type</th>
-            <th>Last Seen</th>
             <th class="admops" *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'">Admin Operations</th>
           </thead>
           <tr *ngFor="let user of users | orderBy: ['-uid']">
@@ -30,14 +29,20 @@
                 <img src="{{user.image_path}}" width="25px" height="25px">
                 {{user.username}} <i *ngIf="user.usertype=='Super-Admin' || user.usertype=='Admin' || user.usertype=='PlayCaller' || user.usertype=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
             </td>
+            <td *ngIf="user.usertype=='BANNED'">
+              <a class="username banned" routerLink="/user/{{user.slug}}">
+                <img src="{{user.image_path}}" width="25px" height="25px">
+                {{user.username}}</a>
+            </td>
             <td>{{user.usertype}}</td>
-            <td>{{user.last_login}}</td>
             <td class="admops" *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'">
               <div class="d-block mx-auto">
               <a routerLink="/edituser/{{user.slug}}" class="btn btn-primary d-inline mx-1">Edit</a>
               <a (click)="open(content)" class="btn btn-warning d-inline mx-1">Send Noti</a>
-              <a *ngIf="user.is_playcaller=='false'" (click)="makePC(user.uid, user.username)" class="btn btn-secondary d-inline mx-1">Make PlayCaller</a>
-              <a *ngIf="user.is_playcaller=='true'" (click)="removePC(user.uid, user.username)" class="btn btn-danger d-inline mx-1">Remove PlayCaller</a>
+              <a *ngIf="user.is_playcaller=='false'" (click)="makePC(user.uid, user.username)" class="pc-btn btn btn-secondary d-inline mx-1">Make PlayCaller</a>
+              <a *ngIf="user.is_playcaller=='true'" (click)="removePC(user.uid, user.username)" class="btn btn-secondary d-inline mx-1">Remove PlayCaller</a>
+              <a *ngIf="user.usertype!='BANNED'" (click)="banUser(user.username)" class="btn btn-danger d-inline mx-1">Ban User</a>
+              <a *ngIf="user.usertype=='BANNED'" (click)="unbanUser(user.username)" class="btn btn-success d-inline mx-1">UnBan User</a>
               </div>
               <ng-template #content let-modal>
                 <div class="modal-header">

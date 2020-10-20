@@ -1,5 +1,5 @@
 <div class="profile-navigation">
-  <div *ngIf="loggedUser" style="margin-top: -5px;">
+  <div *ngIf="loggedUser && !isBanned" style="margin-top: -5px;">
   <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block">
     <a ngbDropdownToggle class="userpic pointer"><img class="profile-pic" src="{{ image_path }}"></a>
     <p class='profiledisplay'></p>
@@ -40,9 +40,12 @@
   </div>
   </div>
   </div>
-  <div *ngIf="!loggedUser">
+  <div *ngIf="!loggedUser && !isBanned">
     <a routerLink="login" class="profiledisplay">Login</a>
     <p class="profiledisplay">|</p>
     <a routerLink="register" class="profiledisplay register">Register</a>
+  </div>
+  <div *ngIf="!loggedUser && isBanned">
+    <p class="profiledisplay">You are Banned</p>
   </div>
 </div>

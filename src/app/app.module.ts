@@ -32,6 +32,9 @@ import { GainzoneComponent } from './pages/gainzone/gainzone.component';
 import { PlaycallerComponent } from './pages/userops/playcaller/playcaller.component';
 import { EditprofileComponent } from './pages/userops/editprofile/editprofile.component';
 import { DirectoryComponent } from './pages/directory/directory.component';
+import { RefreshstocksComponent } from './functions/refreshstocks/refreshstocks.component';
+import { ForgotpassComponent } from './pages/userops/forgotpass/forgotpass.component';
+import { ChangepassComponent } from './pages/userops/changepass/changepass.component';
 
 const uri = '';
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -65,6 +68,9 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     PlaycallerComponent,
     EditprofileComponent,
     DirectoryComponent,
+    RefreshstocksComponent,
+    ForgotpassComponent,
+    ChangepassComponent,
   ],
   imports: [
     BrowserModule,

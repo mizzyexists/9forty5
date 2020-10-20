@@ -15,3 +15,22 @@
 .content-push{
   margin-top: 10px;
 }
+
+form{
+  width: 60%;
+  display: block;
+  margin: auto;
+}
+
+.appealInput, .appealTextarea{
+  width: 100%;
+  margin: 2px 0px;
+}
+
+.appealInput{
+  margin-bottom: 4px;
+}
+
+.appealTextarea{
+  height: 100px;
+}

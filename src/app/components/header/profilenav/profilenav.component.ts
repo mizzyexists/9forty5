@@ -30,6 +30,7 @@ export class ProfilenavComponent implements OnInit {
   adminAccess: any;
   notifications: any;
   playcaller: any;
+  isBanned: string;
   constructor(
     private toastService: ToastService,
     private authApi: AuthService,
@@ -47,15 +48,18 @@ export class ProfilenavComponent implements OnInit {
         this.loggedUser = this.jwtUsername;
         this.userID = this.jwtData.data.uid;
         this.userSlug = this.jwtData.data.slug;
-        this.image_path = this.jwtData.data.image_path;
         this.playcaller = this.jwtData.data.is_playcaller;
         this.notiService.countNoti(this.jwtUsername).subscribe((notiCount: any) => {
           this.notiCount = notiCount;
         }, (err:any) => this.notiError = err);
       }else{
       }
+      this.authApi.fetchUserBySlug(this.userSlug).subscribe((data: any) => {
+        this.image_path = data.image_path;
+      });
     });
     this.adminAccess = window.localStorage.getItem('adminAccess');
+    this.isBanned = window.localStorage.getItem('isBanned');
   }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-<div *ngIf="!loggedUser && forgotPassword==false">
+<div *ngIf="!loggedUser && !isBanned">
   <div class="card bg-dark text-white log-card">
   <div class="col login-form text-center">
     <img src="./assets/images/PlainLogoWhite.png" width="250px"/>
@@ -6,38 +6,21 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="username">Username or E-mail:</label>
-        <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
+        <input type="text" class="form-control" formControlName="username" id="username" autocomplete="on">
         <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Please enter username.</div>
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
+        <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="on">
         <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please enter password.</div>
       </div>
       <button class="btn btn-light">Login</button>
     </form>
     <br>
-    <a (click)="forgotPass()">Forgot Password?</a>
+    <a class="forgotlink" routerLink="/forgotpass">Forgot Password?</a>
   </div>
   </div>
 </div>
-<div *ngIf="!loggedUser && forgotPassword==true && recievedCode==false" class="row">
-  <div class="card log-card">
-  <div class="col login-form text-center">
-    <img src="./assets/images/PlainLogoBlack.png" width="250px"/>
-      <form [formGroup]="resetForm" (ngSubmit)="passReset()">
-        <h3>Reset Password</h3>
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off">
-      </div>
-      <button class="btn btn-success">Send Reset Email</button>
-    </form>
-    <br>
-    <a (click)="backLogin()">Back to Login</a>
-  </div>
-  </div>
-</div>
-<div *ngIf="!loggedUser && forgotPassword==true && recievedCode==true" class="row">
-  <app-checkresetcode class="col login-form text-center"></app-checkresetcode>
+<div *ngIf="isBanned">
+  <h3 class="text-center">You are banned and can't login to a different account</h3>
 </div>

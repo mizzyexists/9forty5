@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   token: string;
   authCheck: AuthData;
+  isBanned: string;
   constructor(
     private formBuilder:FormBuilder,
     private authApi: AuthService,
@@ -36,6 +37,7 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       password2: ['', Validators.required],
     });
+    this.isBanned = window.localStorage.getItem('isBanned');
   }
 
   ngOnInit(): void {

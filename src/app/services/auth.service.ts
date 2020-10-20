@@ -29,6 +29,15 @@ export class AuthService {
   login(loginData: any): Observable<UserData>{
   return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/login`, loginData);
   }
+  resetPass(resetData: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/mailer/forgotpass`, resetData);
+  }
+  updatePass(userData: UserData){
+  return this.httpClient.put<UserData>(`${this.PHP_API_SERVER}/auth/changepass`, userData);
+  }
+  checkCode(codeData: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/checkcode`, codeData);
+  }
   authorize(authData: any): Observable<AuthData>{
   return this.httpClient.post<AuthData>(`${this.PHP_API_SERVER}/auth/protected`, authData);
   }
@@ -52,5 +61,11 @@ export class AuthService {
   }
   searchUsers(limitdata: any): Observable<UserData[]>{
     return this.httpClient.post<UserData[]>(`${this.PHP_API_SERVER}/auth/searchusers`, limitdata);
+  }
+  banUser(user: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/banuser`, user);
+  }
+  unbanUser(user: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/unbanuser`, user);
   }
 }

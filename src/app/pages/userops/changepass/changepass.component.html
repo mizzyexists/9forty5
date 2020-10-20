@@ -1,0 +1,19 @@
+<div *ngIf="jwtUsername">
+  <div class="card bg-dark text-white log-card">
+  <div class="col login-form text-center">
+    <img src="./assets/images/PlainLogoWhite.png" width="250px"/>
+    <h3>Change Password</h3>
+    <br>
+        <label for="username">Current Password:</label>
+        <input class="text-center" type="password" name="oldPass" id="oldPass" [(ngModel)]="oldPass">
+        <br>
+        <label for="username">New Password:</label>
+        <input class="text-center" type="password" name="newPass" id="newPass" [(ngModel)]="newPass">
+        <br>
+        <label for="username">Confirm New Password:</label>
+        <input class="text-center" type="password" name="confNewPass" id="confNewPass" [(ngModel)]="confNewPass">
+        <br>
+      <button (click)="changePass()" class="btn btn-light">Submit</button>
+    </div>
+  </div>
+</div>

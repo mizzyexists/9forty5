@@ -68,49 +68,6 @@ export class EditprofileComponent implements OnInit {
         this.profileBio = data.bio_text;
         this.profileLogin = data.last_login;
         this.profileEmail = data.email;
-        if(this.jwtUsertype=='Super-Admin'){
-          this.isDisabled = false;
-        this.usereditForm = this.formBuilder.group({
-            uid: [],
-            username: ['', Validators.required],
-            email: ['', Validators.required],
-            usertype: [{value: '', disabled: this.isDisabled}, Validators.required],
-            fname: ['', Validators.required],
-            lname: ['', Validators.required],
-            bio_text: ['', Validators.required],
-            image_path: [''],
-            avatar: ['']
-          });
-        }
-        else if(this.jwtUsertype=='Admin' && this.profileType=='Admin'){
-            this.isDisabled = true;
-          this.usereditForm = this.formBuilder.group({
-              uid: [],
-              username: ['', Validators.required],
-              email: ['', Validators.required],
-              usertype: [{value: '', disabled: this.isDisabled}, Validators.required],
-              fname: ['', Validators.required],
-              lname: ['', Validators.required],
-              bio_text: ['', Validators.required],
-              image_path: [''],
-              avatar: ['']
-            });
-        }
-        else if(this.jwtUsertype=='Admin' && this.profileType!='Admin' && this.profileType!='Super-Admin'){
-          this.isDisabled = false;
-          this.usereditForm = this.formBuilder.group({
-              uid: [],
-              username: ['', Validators.required],
-              email: ['', Validators.required],
-              usertype: [{value: '', disabled: this.isDisabled}, Validators.required],
-              fname: ['', Validators.required],
-              lname: ['', Validators.required],
-              bio_text: ['', Validators.required],
-              image_path: [''],
-              avatar: ['']
-            });
-        }
-        else{
           this.isDisabled = true;
           this.usereditForm = this.formBuilder.group({
               uid: [],
@@ -123,7 +80,6 @@ export class EditprofileComponent implements OnInit {
               image_path: [''],
               avatar: ['']
             });
-        }
           this.imageuploadform = this.formBuilder.group({
             image_path: [''],
             avatar: ['']

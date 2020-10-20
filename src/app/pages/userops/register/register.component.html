@@ -1,4 +1,4 @@
-<div *ngIf="!token">
+<div *ngIf="!token && !isBanned">
   <div class="card bg-dark text-white reg-card">
     <div class="col login-form text-center">
       <img src="./assets/images/PlainLogoWhite.png" width="250px"/>
@@ -24,4 +24,7 @@
       </form>
     </div>
   </div>
+</div>
+<div *ngIf="isBanned">
+  <h3 class="text-center">You are banned and can't make a new account</h3>
 </div>

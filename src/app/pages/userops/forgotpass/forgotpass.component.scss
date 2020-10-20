@@ -1,33 +1,23 @@
-.row{
-}
-
 .log-card{
   max-width: 100%;
   width: 100%;
   padding: 50px;
 }
 
-input, select{
-  max-width: 500px;
+input{
+  width: 500px;
   display: block;
   margin: auto;
 }
 
-img{
-  padding-bottom: 20px;
-}
 
-a{
-  color: blue;
-  cursor: pointer;
-}
-
-.forgotlink{
+.loginlink{
   text-decoration: none;
   color: #fff;
+  cursor: pointer;
   padding: 10px;
 }
 
-.forgotlink:hover{
+.loginlink:hover{
   color: grey;
 }

@@ -2,14 +2,18 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  border-bottom: 1px solid #dddddd;
-  border-right: 1px solid #dddddd;
+}
+
+thead{
+  background-color: rgba(0,0,0,0);
+  border-bottom: 1px solid #fff;
 }
 
 td, th {
-  border-left: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  background-color: rgba(0,0,0,0);
+  color: #fff !important;
 }
 
 tr {
@@ -35,6 +39,10 @@ tr {
   color: #85fff4;
 }
 
+.banned{
+  color: #3f3f3f;
+}
+
 img{
   margin-right: 5px;
   border-radius: 25px;
@@ -49,8 +57,13 @@ img{
   padding-top: 0px;
 }
 
-@media only screen and (max-width: 1051px) {
+@media only screen and (max-width: 951px) {
   .admops{
     display: none;
   }
+}
+
+.pc-btn{
+  padding-left: 22px;
+  padding-right: 22px;
 }

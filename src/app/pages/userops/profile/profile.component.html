@@ -10,6 +10,7 @@
         <p *ngIf="profileType=='User'" class="usertype">Standard {{profileType}}</p>
         <p *ngIf="profileType=='Verified User'" class="usertype">{{profileType}}</p>
         <p *ngIf="profileType=='PlayCaller'" class="usertype pc-colors">Verified {{profileType}}</p>
+        <p *ngIf="profileType=='BANNED'" class="usertype banned">{{profileType}}</p>
         <a *ngIf="profileIsPC=='true'" routerLink="/playcaller/{{profileUser | lowercase}}" class="pc-link d-block mx-auto text-center">PlayCaller Page</a>
         <p class="lastlogin">Last Seen:<br>{{profileLogin}}</p>
         <p>{{profileBio}}</p>

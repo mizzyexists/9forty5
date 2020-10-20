@@ -44,7 +44,8 @@
           </div>
           <button class="btn btn-secondary">Save Profile</button>
       </form>
-      <button *ngIf="userID==profileID || jwtUsertype=='Super-Admin'" (click)="deleteAccount()" class="deletebutton btn btn-danger">Delete Account</button>
+      <button *ngIf="userID==profileID || jwtUsertype=='Super-Admin'" (click)="deleteAccount()" class="mx-1 deletebutton btn btn-danger">Delete Account</button>
+      <button *ngIf="userID==profileID" routerLink="/changepass" class="mx-1 deletebutton btn btn-primary">Change Password</button>
       </div>
     </div>
   </div>

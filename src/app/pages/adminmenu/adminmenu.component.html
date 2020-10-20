@@ -57,21 +57,7 @@
     <div class="card bg-dark">
       <div class="card-header text-white text-center"><h3>Notification Operations</h3></div>
       <div class="card-body d-block mx-auto text-center">
-        <h4 class="text-white">Send Test Noti</h4>
-        <input type="text" placeholder="Noti Test Username or UID" name="testNotiUser" [(ngModel)]="this.testNotiUser">
-        <br><br>
-        <input type="text" placeholder="Noti Test Title" name="testNotiMsg" [(ngModel)]="this.testNotiTitle">
-        <br><br>
-        <input type="text" placeholder="Noti Test Message" name="testNotiBody" [(ngModel)]="this.testNotiBody">
-        <br><br>
-        <input type="text" placeholder="Noti Test Link" name="testNotiLink" [(ngModel)]="this.testNotiLink">
-        <br><br>
-        <button class="btn btn-primary" (click)="createTestNoti()">Generate Notification</button>
-        <p class="text-white p-2"> Response:<br>{{notiRes}}</p>
-        <div *ngIf="jwtUsertype=='Super-Admin'">
-        <hr class="bg-light text-white">
-        <br>
-        <h4 class="text-white">Send Admin Noti</h4>
+        <h4 class="text-white">Send Notification to Admins</h4>
         <input type="text" placeholder="Admin Noti Title" name="adminNotiMsg" [(ngModel)]="this.adminNotiTitle">
         <br><br>
         <input type="text" placeholder="Admin Noti Message" name="adminNotiBody" [(ngModel)]="this.adminNotiBody">
@@ -80,29 +66,6 @@
         <br><br>
         <button class="btn btn-primary" (click)="notifyAdmins()">Send Admin Notification</button>
         <p class="text-white p-2"> Response:<br>{{adminNotiRes}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 mt-2">
-    <div class="card bg-dark">
-      <div class="card-header text-white text-center"><h3>User Operations</h3></div>
-      <div class="card-body d-block mx-auto text-center">
-        <h4 class="text-white" style="margin-top: -10px;">Create PlayCaller</h4>
-        <input type="text" placeholder="Username or UID" name="newPCUser" [(ngModel)]="this.newPCUser">
-        <br><br>
-        <button class="btn btn-primary" (click)="createPC()">Create PlayCaller</button>
-        <p class="text-white p-2"> Response:<br>{{newPCRes}}</p>
-        <button class="btn btn-light" (click)="clearPCRes()">Clear Response</button>
-        <div *ngIf="jwtUsertype=='Super-Admin'">
-          <hr class="bg-light text-white">
-          <h4 class="text-white" style="margin-top: -10px;">Remove PlayCaller</h4>
-          <input type="text" placeholder="Username or UID" name="exPCUser" [(ngModel)]="this.exPCUser">
-          <br><br>
-          <button class="btn btn-primary" (click)="removePC()">Remove PlayCaller</button>
-          <p class="text-white p-2"> Response:<br>{{exPCRes}}</p>
-          <button class="btn btn-light" (click)="clearExPCRes()">Clear Response</button>
-        </div>
       </div>
     </div>
   </div>
