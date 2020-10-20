@@ -12,7 +12,6 @@ import { AuthGuard } from './guards/auth.guard';
 import { PlaycallerComponent } from './pages/userops/playcaller/playcaller.component';
 import { EditprofileComponent } from './pages/userops/editprofile/editprofile.component';
 import { DirectoryComponent } from './pages/directory/directory.component';
-import { RefreshstocksComponent } from './functions/refreshstocks/refreshstocks.component';
 import { ForgotpassComponent } from './pages/userops/forgotpass/forgotpass.component';
 import { ChangepassComponent } from './pages/userops/changepass/changepass.component';
 
@@ -33,7 +32,6 @@ const routes: Routes = [
   { path: 'playcaller/:slug', component: PlaycallerComponent},
   { path: 'adminmenu', component: AdminmenuComponent, canActivate: [AuthGuard]},
   { path: 'gainzone', component: GainzoneComponent},
-  { path: 'refresh545ffq3yg3u', component: RefreshstocksComponent}
 ];
 
 @NgModule({

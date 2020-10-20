@@ -7,13 +7,11 @@
         <a *ngIf="searchTerm || searchTerm==''" (click)="clearSearch()" class='clearbtn btn btn-secondary text-center d-block mx-auto'>Clear Search</a>
         <table class="text-white">
           <thead>
-            <th>Name</th>
             <th>Username</th>
             <th>User Type</th>
             <th class="admops" *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'">Admin Operations</th>
           </thead>
           <tr *ngFor="let user of users | orderBy: ['-uid']">
-            <td>{{user.fname | titlecase}} {{user.lname | titlecase}}</td>
             <td *ngIf="user.usertype=='Super-Admin' || user.usertype=='Admin'">
               <a class="username admin-color" routerLink="/user/{{user.slug}}">
                 <img src="{{user.image_path}}" width="25px" height="25px">
