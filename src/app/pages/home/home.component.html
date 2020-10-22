@@ -3,52 +3,25 @@
 <div class="row">
   <div class="col-lg-9 col-md-9 col">
     <app-home-banner></app-home-banner>
-        <div class="card bg-dark text-white mb-3" style="max-width: 100%;">
-          <div class="row">
-            <div class="col-md-4">
-              <img src="/assets/images/stock-images/stock-image.jpg" class="h-100 card-img">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
+    <div *ngIf="postData">
+      <div *ngFor="let post of postData" routerLink="/post/{{post.post_slug}}" class="card text-white mb-2 pointer">
+        <img src="{{post.post_image}}" class="card-img-top">
+        <div class="card-body big-card">
+          <h5 class="card-title">{{ post.post_title | uppercase }}</h5>
+          <p class="card-text">{{ post.post_excerpt }}</p>
+          <p class="author">Post by <span routerLink="/user/{{ post.post_author | lowercase }}" class="author-user">{{ post.post_author }}</span><br>{{ post.post_date}}</p>
         </div>
-        <div class="card bg-dark text-white mb-3" style="max-width: 100%;">
-          <div class="row">
-            <div class="col-md-4">
-              <img src="/assets/images/stock-images/stock-image.jpg" class="h-100 card-img">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
+      </div>
+      </div>
+      <div *ngIf="!postData" class="justify-content-center mt-5 mb-5">
+        <div class="spinner-border text-center d-block mx-auto" role="status">
+          <span class="sr-only">Loading...</span>
         </div>
-        <div class="card-deck mb-3">
-          <div class="card bg-dark text-white">
-            <img src="/assets/images/stock-images/stock-image.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="card bg-dark text-white">
-            <img src="/assets/images/stock-images/stock-image.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        </div>
+        <p class="ml-2 text-center"><strong>Please Wait...</strong></p>
+      </div>
+      <div *ngIf="postData==''">
+        <p class="ml-2 text-center"><strong>Error fetching posts.<br>Please try again later.</strong></p>
+      </div>
   </div>
   <div class="col-lg-3 col-md-3">
     <app-watchlist></app-watchlist>

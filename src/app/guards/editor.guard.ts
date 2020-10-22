@@ -8,12 +8,13 @@ import { AuthData } from '../models/authdata';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class EditorGuard implements CanActivate {
   token: string;
   jwtData: any;
   jwtUsername: any;
   jwtUsertype: any;
   response: any;
+  edCheck: string;
   admCheck: string;
   constructor(
   private authApi:AuthService
@@ -40,11 +41,15 @@ export class AuthGuard implements CanActivate {
    _next: ActivatedRouteSnapshot,
    _state: RouterStateSnapshot):boolean{
 
+   this.edCheck = window.localStorage.getItem('isEditor');
    this.admCheck = window.localStorage.getItem('isAdmin');
-   if(this.admCheck=='true'){
+   if(this.edCheck=='true' || this.admCheck=='true'){
      return true;
    }
-   if(!this.admCheck || this.admCheck!='true'){
+   if(!this.edCheck || this.edCheck!='true'){
+     return false;
+   }
+   else{
      return false;
    }
   }

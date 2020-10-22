@@ -14,6 +14,9 @@ import { EditprofileComponent } from './pages/userops/editprofile/editprofile.co
 import { DirectoryComponent } from './pages/directory/directory.component';
 import { ForgotpassComponent } from './pages/userops/forgotpass/forgotpass.component';
 import { ChangepassComponent } from './pages/userops/changepass/changepass.component';
+import { EditormenuComponent } from './pages/editormenu/editormenu.component';
+import { EditorGuard } from './guards/editor.guard';
+import { PostComponent } from './pages/post/post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -31,7 +34,10 @@ const routes: Routes = [
   { path: 'playcaller', redirectTo: 'gainzone' },
   { path: 'playcaller/:slug', component: PlaycallerComponent},
   { path: 'adminmenu', component: AdminmenuComponent, canActivate: [AuthGuard]},
+  { path: 'editormenu', component: EditormenuComponent, canActivate: [EditorGuard]},
   { path: 'gainzone', component: GainzoneComponent},
+  { path: 'post', redirectTo: ''},
+  { path: 'post/:slug', component: PostComponent},
 ];
 
 @NgModule({

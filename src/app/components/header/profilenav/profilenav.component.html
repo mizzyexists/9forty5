@@ -34,6 +34,7 @@
   <div class="settingsdrop dropdown-menu" ngbDropdownMenu aria-labelledby="settingsDropdown">
     <a routerLink="/edituser/{{userSlug}}" class="dropdown-item pointer">Edit Profile</a>
     <a class="dropdown-item pointer">Account Settings</a>
+    <a *ngIf="jwtUsertype=='Editor' || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToEM()">Editor Menu</a>
     <a *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
     <a *ngIf="adminAccess" (click)="endAdminAccess()" class="pointer dropdown-item">Clear Maintenance Code</a>
     <a (click)="logout()" class="dropdown-item pointer">Logout</a>

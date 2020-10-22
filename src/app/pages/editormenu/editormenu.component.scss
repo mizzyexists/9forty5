@@ -1,0 +1,39 @@
+.bodytoolbar, .bodytext {
+    background: #fff;
+}
+
+[type="file"] + label {
+  background: #777;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Rubik', sans-serif;
+  font-size: inherit;
+  font-weight: 500;
+  margin-bottom: 10px;
+  outline: none;
+  padding: 8px 28px;
+  transition: all 0.3s ease;
+}
+
+[type="file"] + label:hover {
+  background: #555;
+  transition: all 0.3s ease
+}
+
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+}
+
+[type="text"] {
+  min-width: 300px;
+}
+
+::ng-deep .ql-editor {
+    height: 200px;
+    max-width: 100%;
+}

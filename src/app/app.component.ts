@@ -82,12 +82,26 @@ export class AppComponent {
        this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
          if(!authData || authData[0]!=true){
            window.localStorage.removeItem('jwt');
+           window.localStorage.removeItem('isAdmin');
+           window.localStorage.removeItem('isEditor');
            window.location.href = '/';
          };
          if(authData && authData[0]==true){
            this.jwtData = authData[1];
            this.jwtUsername = this.jwtData.data.username;
            this.jwtUsertype = this.jwtData.data.usertype;
+           if(this.jwtUsertype == 'Super-Admin' || this.jwtUsertype == 'Admin'){
+             window.localStorage.setItem('isAdmin', 'true');
+             window.localStorage.removeItem('isEditor');
+           }
+           if(this.jwtUsertype == 'Editor'){
+             window.localStorage.removeItem('isAdmin');
+             window.localStorage.setItem('isEditor', 'true');
+           }
+           if(this.jwtUsertype != 'Super-Admin' && this.jwtUsertype != 'Admin' && this.jwtUsertype != 'Editor'){
+             window.localStorage.removeItem('isEditor');
+             window.localStorage.removeItem('isAdmin');
+           }
          }
        });
      }

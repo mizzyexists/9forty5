@@ -2,18 +2,25 @@
 <div class="user-card bg-dark text-white card" *ngIf="profileUser">
   <div class="card-header">
     <div class="row">
-      <div class="col text-center userinfo">
+      <div *ngIf="userData" class="col text-center userinfo">
         <img src="{{profileAvatar}}" *ngIf="profileAvatar"/>
         <h3><span *ngIf="profileFName">{{profileFName | titlecase}} </span><span *ngIf="profileLName">{{profileLName | titlecase}}</span></h3>
         <p class="username">{{profileUser}} <i *ngIf="profileType=='Super-Admin' || profileType=='Admin' || profileType=='PlayCaller' || profileType=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></p>
-        <p *ngIf="profileType=='Super-Admin' || profileType=='Admin'" class="usertype admin-colors">{{profileType}}</p>
-        <p *ngIf="profileType=='User'" class="usertype">Standard {{profileType}}</p>
-        <p *ngIf="profileType=='Verified User'" class="usertype">{{profileType}}</p>
-        <p *ngIf="profileType=='PlayCaller'" class="usertype pc-colors">Verified {{profileType}}</p>
-        <p *ngIf="profileType=='BANNED'" class="usertype banned">{{profileType}}</p>
+        <p *ngIf="profileType=='Super-Admin' || profileType=='Admin'" class="usertype admin-colors">9Forty5 {{profileType}}</p>
+        <p *ngIf="profileType=='User'" class="usertype">Standard User</p>
+        <p *ngIf="profileType=='Verified User'" class="usertype">Verified User</p>
+        <p *ngIf="profileType=='PlayCaller'" class="usertype pc-colors">Verified PlayCaller</p>
+        <p *ngIf="profileType=='Editor'" class="usertype ed-colors">Official 9Forty5 Editor</p>
+        <p *ngIf="profileType=='BANNED'" class="usertype banned">BANNED</p>
         <a *ngIf="profileIsPC=='true'" routerLink="/playcaller/{{profileUser | lowercase}}" class="pc-link d-block mx-auto text-center">PlayCaller Page</a>
         <p class="lastlogin">Last Seen:<br>{{profileLogin}}</p>
         <p>{{profileBio}}</p>
+      </div>
+      <div *ngIf="!userData" class="justify-content-center mt-5 mb-5">
+        <div class="spinner-border text-center d-block mx-auto" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <p class="ml-2 text-center"><strong>Please Wait...</strong></p>
       </div>
     </div>
   </div>

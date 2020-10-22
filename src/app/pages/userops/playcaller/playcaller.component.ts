@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AuthData } from 'src/app/models/authdata';
 import { GainzoneService } from '../../../services/gainzone.service';
@@ -40,7 +39,6 @@ export class PlaycallerComponent implements OnInit {
     private authApi: AuthService,
     private toastService: ToastService,
     private routes: ActivatedRoute,
-    private formBuilder:FormBuilder,
     private titleService: Title,
     private gainApi: GainzoneService
   ){
@@ -102,7 +100,7 @@ export class PlaycallerComponent implements OnInit {
         this.likeData = [this.userID, this.pcUID];
         this.pcLikes++;
         this.voted = true;
-        this.gainApi.likePlaycaller(this.likeData).subscribe((res) => {
+        this.gainApi.likePlaycaller(this.likeData).subscribe((_res) => {
         })
       })
     })
@@ -119,7 +117,7 @@ export class PlaycallerComponent implements OnInit {
         this.likeData = [this.userID, this.pcUID];
         this.pcLikes--;
         this.voted = false;
-        this.gainApi.unlikePlaycaller(this.likeData).subscribe((res) => {
+        this.gainApi.unlikePlaycaller(this.likeData).subscribe((_res) => {
         })
       })
     })

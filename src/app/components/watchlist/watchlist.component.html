@@ -1,4 +1,4 @@
-<div class="watchlist bg-dark card">
+<div *ngIf="stockData" class="watchlist bg-dark card">
   <div class="card-header text-white"><strong>The Big Boys</strong></div>
   <ul class="list-group list-group-flush">
     <li *ngFor="let stock of stockData | orderBy: ['-chg_percent']" class="list-group-item bg-dark text-white"><h4 clas="stock-name">
@@ -7,4 +7,9 @@
       <p *ngIf="stock.chg < 0" class="price negative">{{ stock.price }} <i class="fas fa-caret-down"></i><br><span class="change negative">{{ stock.chg }}  ({{ stock.chg_percent }})</span></p>
     </li>
   </ul>
+</div>
+<div *ngIf="!stockData" class="justify-content-center mt-5 mb-5">
+  <div class="spinner-border text-center d-block mx-auto" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
 </div>

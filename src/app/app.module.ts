@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderBy } from './pipes/orderby';
 import { WatchlistResolver } from './resolvers/watchlist.resolver';
+import { QuillModule } from 'ngx-quill'
 
 //Apollo Imports
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
-import { TestdataComponent } from './components/testdata/testdata.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NgbModule, NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { StockHeadComponent } from './components/stock-head/stock-head.component';
@@ -34,6 +34,8 @@ import { EditprofileComponent } from './pages/userops/editprofile/editprofile.co
 import { DirectoryComponent } from './pages/directory/directory.component';
 import { ForgotpassComponent } from './pages/userops/forgotpass/forgotpass.component';
 import { ChangepassComponent } from './pages/userops/changepass/changepass.component';
+import { EditormenuComponent } from './pages/editormenu/editormenu.component';
+import { PostComponent } from './pages/post/post.component';
 
 const uri = '';
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -46,7 +48,6 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
 @NgModule({
   declarations: [
     AppComponent,
-    TestdataComponent,
     HeaderComponent,
     StockHeadComponent,
     ProfilenavComponent,
@@ -69,6 +70,8 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     DirectoryComponent,
     ForgotpassComponent,
     ChangepassComponent,
+    EditormenuComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,6 +80,19 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    QuillModule.forRoot({
+      modules: {
+        toolbar: [
+            [{ 'header': [2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike', { 'color': [] }, { 'font': [] }],
+            [{ 'align': [] }],
+            ['blockquote'],
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'indent': '-1'}, { 'indent': '+1' }],
+            ['link', 'image', 'video']
+        ],
+      }
+    })
   ],
   providers: [
     OrderBy,

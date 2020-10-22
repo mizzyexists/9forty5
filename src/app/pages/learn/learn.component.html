@@ -13,13 +13,54 @@
         <div class="card-header bg-dark" id="{{learnTab.headerID}}">
           <h2 class="mb-0">
             <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" [attr.data-target]="'#' + learnTab.bodyID" aria-expanded="false" [attr.aria-controls]="learnTab.bodyID">
-              {{learnTab.tabID}}. {{learnTab.tabTitle}}
+              {{learnTab.tabTitle}}
             </button>
           </h2>
         </div>
         <div id="{{learnTab.bodyID}}" class="collapse" [attr.aria-labelledby]="learnTab.headerID" data-parent="#learningHub">
+          <div [innerHTML]="learnTab.tabBody" class="card-body">
+          </div>
+        </div>
+      </div>
+      <div *ngIf="jwtUsertype && jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='PlayCaller' || jwtUsertype=='Editor'" class="card learntab">
+        <div class="card-header bg-dark" id="pcInfoHead">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#pcInfo" aria-expanded="false" aria-controls="pcInfo">
+              <span class="pcinfo">PLAYCALLER INFORMATION</span>
+            </button>
+          </h2>
+        </div>
+        <div id="pcInfo" class="collapse" aria-labelledby="pcInfoHead" data-parent="#learningHub">
           <div class="card-body">
-            {{learnTab.tabBody}}
+            Coming Soon
+          </div>
+        </div>
+      </div>
+      <div *ngIf="jwtUsertype && jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Editor'" class="card learntab">
+        <div class="card-header bg-dark" id="editorInfoHead">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#editorInfo" aria-expanded="false" aria-controls="editorInfo">
+              <span class="editorinfo">EDITOR INFORMATION</span>
+            </button>
+          </h2>
+        </div>
+        <div id="editorInfo" class="collapse" aria-labelledby="editorInfoHead" data-parent="#learningHub">
+          <div class="card-body">
+            Coming Soon
+          </div>
+        </div>
+      </div>
+      <div *ngIf="jwtUsertype && jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="card learntab">
+        <div class="card-header bg-dark" id="adminInfoHead">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#adminInfo" aria-expanded="false" aria-controls="adminInfo">
+              <span class="admininfo">ADMIN INFORMATION</span>
+            </button>
+          </h2>
+        </div>
+        <div id="adminInfo" class="collapse" aria-labelledby="adminInfoHead" data-parent="#learningHub">
+          <div class="card-body">
+            Coming Soon
           </div>
         </div>
       </div>

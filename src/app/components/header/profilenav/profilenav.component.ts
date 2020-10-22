@@ -70,6 +70,8 @@ export class ProfilenavComponent implements OnInit {
 
   logout() {
     window.localStorage.removeItem('jwt');
+    window.localStorage.removeItem('isAdmin');
+    window.localStorage.removeItem('isEditor');
     AuthData[0] = false;
     this.loggedUser = null;
     this.toastService.show('You have been logged out', { classname: 'bg-dark text-light'});
@@ -92,6 +94,16 @@ export class ProfilenavComponent implements OnInit {
       alert("YOU CAN NOT DO THAT");
     }
   }
+
+  goToEM(){
+    if(this.jwtUsertype == 'Admin' || this.jwtUsertype == 'Super-Admin' || this.jwtUsertype == 'Editor'){
+      this.router.navigate(['/editormenu']);
+    }
+    else {
+      alert("YOU CAN NOT DO THAT");
+    }
+  }
+
   viewNoti(){
     this.notiService.clearNoti(this.userID).subscribe((data:any) =>{
     })

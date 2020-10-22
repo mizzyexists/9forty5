@@ -1,0 +1,24 @@
+<div *ngIf="postData" class="row">
+  <div class="col-12">
+    <div class="postHeader">
+      <img src="{{postData.post_image}}">
+      <div class="headerOverlay">
+        <h2>{{postData.post_title | uppercase}}</h2>
+        <p class="author">By <span routerLink="/user/{{postData.post_author | lowercase}}" class="author-link">{{postData.post_author}}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card bg-dark text-white postBody">
+      <p class="date">{{postData.post_date}}<br><hr></p>
+      <div [innerHTML]="postData.post_body" class="card-body">
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!postData" class="justify-content-center mt-5 mb-5">
+  <div class="spinner-border text-center d-block mx-auto" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <p class="ml-2 text-center"><strong>Please Wait...</strong></p>
+</div>

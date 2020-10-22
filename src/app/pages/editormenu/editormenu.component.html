@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-12 mt-2">
+    <div class="card bg-dark">
+      <div class="card-header text-white text-center"><h3>Post Operations</h3></div>
+      <div class="card-body w-80 d-block mx-auto text-center">
+        <h4 class="text-white mb-3">New Post</h4>
+        <input type="text" placeholder="New Post Title" name="newPostTitle" [(ngModel)]="this.newPostTitle">
+        <br><br>
+        <input type="text" class="excerpt" placeholder="New Post Excerpt" name="newPostExcerpt" [(ngModel)]="this.newPostExcerpt">
+        <br><br>
+        <input type="file" (change)="handleUpload($event)" placeholder="New Post Image Link" id="newPostImage" name="newPostImage" [(ngModel)]="this.newPostImage">
+        <label for="newPostImage" class="btn btn-light mb-2">Select Main Post Image</label>
+        <p class="text-white" *ngIf="newPostImage">Image Selected <i class="fas fa-check"></i></p>
+        <div class="text-dark mt-3 bg-white">
+          <quill-editor class="editor" placeholder="New Post Body" name="newPostBody" [(ngModel)]="this.newPostBody">
+          </quill-editor>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="createPost()">Create Post</button>
+      </div>
+    </div>
+  </div>
+</div>
