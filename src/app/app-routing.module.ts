@@ -11,12 +11,13 @@ import { GainzoneComponent } from './pages/gainzone/gainzone.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PlaycallerComponent } from './pages/userops/playcaller/playcaller.component';
 import { EditprofileComponent } from './pages/userops/editprofile/editprofile.component';
-import { DirectoryComponent } from './pages/directory/directory.component';
+// import { DirectoryComponent } from './pages/directory/directory.component';
 import { ForgotpassComponent } from './pages/userops/forgotpass/forgotpass.component';
 import { ChangepassComponent } from './pages/userops/changepass/changepass.component';
 import { EditormenuComponent } from './pages/editormenu/editormenu.component';
 import { EditorGuard } from './guards/editor.guard';
 import { PostComponent } from './pages/post/post.component';
+import { CreatepostComponent } from './pages/editormenu/createpost/createpost.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -28,13 +29,14 @@ const routes: Routes = [
   { path: 'changepass', component: ChangepassComponent },
   { path: 'user', redirectTo: '' },
   { path: 'user/:slug', component: ProfileComponent},
-  { path: 'directory', component: DirectoryComponent },
+  // { path: 'directory', component: DirectoryComponent },
   { path: 'edituser', redirectTo: '' },
   { path: 'edituser/:slug', component: EditprofileComponent},
   { path: 'playcaller', redirectTo: 'gainzone' },
   { path: 'playcaller/:slug', component: PlaycallerComponent},
   { path: 'adminmenu', component: AdminmenuComponent, canActivate: [AuthGuard]},
   { path: 'editormenu', component: EditormenuComponent, canActivate: [EditorGuard]},
+  { path: 'editormenu/createpost', component: CreatepostComponent, canActivate: [EditorGuard]},
   { path: 'gainzone', component: GainzoneComponent},
   { path: 'post', redirectTo: ''},
   { path: 'post/:slug', component: PostComponent},

@@ -36,6 +36,8 @@ import { ForgotpassComponent } from './pages/userops/forgotpass/forgotpass.compo
 import { ChangepassComponent } from './pages/userops/changepass/changepass.component';
 import { EditormenuComponent } from './pages/editormenu/editormenu.component';
 import { PostComponent } from './pages/post/post.component';
+import { CreatepostComponent } from './pages/editormenu/createpost/createpost.component';
+import { AdminopspopupComponent } from './components/adminopspopup/adminopspopup.component';
 
 const uri = '';
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -72,6 +74,8 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     ChangepassComponent,
     EditormenuComponent,
     PostComponent,
+    CreatepostComponent,
+    AdminopspopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +88,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
       modules: {
         toolbar: [
             [{ 'header': [2, 3, 4, 5, 6, false] }],
+            // [{ 'size': ['small', false, 'large'] }],
             ['bold', 'italic', 'underline', 'strike', { 'color': [] }, { 'font': [] }],
             [{ 'align': [] }],
             ['blockquote'],

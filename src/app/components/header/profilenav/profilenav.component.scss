@@ -94,7 +94,15 @@
   margin-top: 12px;
 }
 
-.notibell, .settingcog{
+.searchdrop{
+  max-height: 400px;
+  overflow-y: scroll;
+  margin-top: 12px;
+  width: 350px;
+  overflow-x: hidden
+}
+
+.notibell, .settingcog, .searchicon{
   color: #555;
   padding: 2px;
   display: inline-block;
@@ -107,11 +115,11 @@
   margin-top: -6px;
 }
 
-.settingcog{
+.settingcog, .searchicon{
   margin-left: -8px;
 }
 
-.notibell:hover, .settingcog:hover{
+.notibell:hover, .settingcog:hover, .searchicon:hover{
   text-decoration: none;
   color: rgb(0, 0, 0);
 }

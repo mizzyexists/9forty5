@@ -8,7 +8,6 @@
       <a (click)="viewMyProfile()" class="dropdown-item pointer">View Profile</a>
       <a *ngIf="playcaller=='true'" routerLink="playcaller/{{userSlug | lowercase}}" class="dropdown-item pointer">PlayCaller Page</a>
       <a class="dropdown-item" href="#">Your Watchlist</a>
-      <a class="dropdown-item" routerLink="/directory">User Directory</a>
     </div>
   </div>
   <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block">
@@ -38,6 +37,13 @@
     <a *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
     <a *ngIf="adminAccess" (click)="endAdminAccess()" class="pointer dropdown-item">Clear Maintenance Code</a>
     <a (click)="logout()" class="dropdown-item pointer">Logout</a>
+  </div>
+  </div>
+  <div ngbDropdown display="dynamic" class="d-inline-block">
+    <a ngbDropdownToggle="searchDropdown" class="searchicon pointer"><i class="fas fa-search"></i></a>
+    <p class="profiledisplay trans">|</p>
+  <div class="searchdrop dropdown-menu" ngbDropdownMenu aria-labelledby="searchDropdown">
+    <app-directory></app-directory>
   </div>
   </div>
   </div>

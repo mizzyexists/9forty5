@@ -1,3 +1,41 @@
+.bodytoolbar, .bodytext {
+    background: #fff;
+}
+
+[type="file"] + label {
+  background: #777;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Rubik', sans-serif;
+  font-size: inherit;
+  font-weight: 500;
+  margin-bottom: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+[type="file"] + label:hover {
+  background: #555;
+  transition: all 0.3s ease
+}
+
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+  opacity: 0;
+}
+
+[type="text"] {
+  min-width: 300px;
+}
+
+::ng-deep .ql-editor {
+    max-width: 100%;
+}
+
 .postHeader{
   max-width: 100%;
 }
@@ -74,4 +112,26 @@
 
 .postBody{
   padding: 0px 20px;
+}
+
+.imageuploaded{
+  width: 50px;
+  height: 50px;
+  font-size: 29px !important;
+  padding-top: 4px;
+  padding-left: 14px;
+}
+
+.imageupped{
+  height: 100px;
+  width: 100px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.removeupload{
+  padding-top: 0px;
+  background-color: #f64242;
+  color: #fff;
+  border: 0px;
 }

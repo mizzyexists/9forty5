@@ -6,23 +6,22 @@ table {
 
 thead{
   background-color: rgba(0,0,0,0);
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #000;
 }
 
 td, th {
   text-align: left;
   padding: 8px;
   background-color: rgba(0,0,0,0);
-  color: #fff !important;
 }
 
 tr {
   background-color: rgba(0,0,0,0);
-  color: #fff;
+  color: #000;
 }
 
 .username{
-  color: #fff;
+  color: #000;
   text-decoration: none;
 }
 
@@ -36,16 +35,21 @@ tr {
 }
 
 .pc-color{
-  color: #85fff4;
+  color: #20cbbc;
 }
 
 .banned{
-  color: #3f3f3f;
+  color: #767676;
+  text-decoration: line-through;
 }
 
 img{
   margin-right: 5px;
   border-radius: 25px;
+}
+
+input{
+  width: 300px;
 }
 
 .clearbtn{

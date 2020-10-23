@@ -35,7 +35,12 @@ export class PostComponent implements OnInit {
   }});
     this.postApi.fetchPostBySlug(routeParams.slug).subscribe((data) => {
       this.postData = data;
+      if(this.postData.post_id>=1){
       this.titleService.setTitle( "9Forty5 - "+ this.postData.post_title);
+      }
+      else{
+        window.location.href = '/';
+      }
     })
   }
 

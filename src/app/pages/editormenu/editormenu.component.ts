@@ -11,11 +11,6 @@ import { AuthData } from 'src/app/models/authdata';
   styleUrls: ['./editormenu.component.scss']
 })
 export class EditormenuComponent implements OnInit {
-  newPostTitle: any;
-  newPostExcerpt: any;
-  newPostImage: any;
-  newPostBody: any;
-  imageBase64: string | ArrayBuffer;
   token: string;
   jwtData: any;
   jwtUsername: any;
@@ -39,36 +34,5 @@ export class EditormenuComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
-  createPost(){
-    if(!this.newPostTitle || this.newPostTitle==''){
-      this.toastService.show('No Title', { classname: 'bg-danger text-light'});
-    }
-    if(!this.newPostExcerpt || this.newPostExcerpt==''){
-      this.toastService.show('No Excerpt', { classname: 'bg-danger text-light'});
-    }
-    if(!this.imageBase64 || this.imageBase64==''){
-      this.toastService.show('No Image', { classname: 'bg-danger text-light'});
-    }
-    if(!this.newPostBody || this.newPostBody==''){
-      this.toastService.show('No Body', { classname: 'bg-danger text-light'});
-    }
-    else{
-      const newPostData = {title: this.newPostTitle, excerpt: this.newPostExcerpt, image: this.imageBase64, body: this.newPostBody, author: this.jwtUsername};
-      this.postApi.newPost(newPostData).subscribe((_res) => {
-      })
-    }
-  }
-
-  handleUpload(event: any) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-        this.imageBase64 = reader.result;
-    };
-}
-
+  ngOnInit(): void {}
 }

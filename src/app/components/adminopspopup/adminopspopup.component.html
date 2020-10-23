@@ -1,0 +1,43 @@
+<div class="modal fade" id="admModal" tabindex="-1" aria-labelledby="admModalLabel" aria-hidden="true">
+  <div *ngIf="refreshSelected(1)" class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="admModalLabel">Admin Operations</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <p class="text-center mb-0">You are editing:</p>
+        <h4 class="text-center mt-0">{{ this.admOpUser.selected_username }}</h4>
+        <a (click)="editUser()" class="btn btn-warning mx-1 my-1 w-75" data-dismiss="modal">Edit</a>
+        <button type="button" class="btn btn-primary mx-1 my-1 w-75" data-toggle="modal" data-target="#admNotiModal">Send Notification</button>
+        <a *ngIf="this.admOpUser.selected_ispc=='false'" (click)="makePC(this.admOpUser.selected_uid, this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-secondary mx-1 my-1 w-75">Make PlayCaller</a>
+        <a *ngIf="this.admOpUser.selected_ispc=='true'" (click)="removePC(this.admOpUser.selected_uid, this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-secondary mx-1 my-1 w-75">Remove PlayCaller</a>
+        <a *ngIf="this.admOpUser.selected_usertype!='BANNED'" (click)="banUser(this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-danger mx-1 my-1 w-75">Ban User</a>
+        <a *ngIf="this.admOpUser.selected_usertype=='BANNED'" (click)="unbanUser(this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-success mx-1 my-1 w-75">UnBan User</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="admNotiModal" tabindex="-1" aria-labelledby="admNotiModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="admNotiModalLabel">Notification Operations</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" placeholder="Noti Title" name="NotiMsg" [(ngModel)]="this.NotiTitle">
+        <br><br>
+        <input type="text" placeholder="Noti Message" name="NotiBody" [(ngModel)]="this.NotiBody">
+        <br><br>
+        <input type="text" placeholder="Noti Link" name="NotiLink" [(ngModel)]="this.NotiLink">
+        <br><br>
+        <button class="btn btn-primary" (click)="sendNoti()">Send Notification</button>
+      </div>
+    </div>
+  </div>
+</div>

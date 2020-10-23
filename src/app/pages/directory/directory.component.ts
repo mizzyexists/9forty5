@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth.service';
 import { AuthData } from 'src/app/models/authdata';
-import { GainzoneService } from '../../services/gainzone.service';
-import { ToastService } from '../../services/toast.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { NotificationService } from 'src/app/services/notification.service';
-
 
 @Component({
   selector: 'app-directory',
@@ -36,20 +30,17 @@ export class DirectoryComponent implements OnInit {
   searchQuery: any;
   pcVerify: any = 0;
   banVerify: any = 0;
+  showArrows: boolean;
+  admUserInfo: any;
   constructor(
     private authApi: AuthService,
-    private titleService: Title,
-    private gainApi: GainzoneService,
-    private toastService: ToastService,
-    private modalService: NgbModal,
-    private notiService: NotificationService
   ) {
     this.offset = 0;
     this.limit = 10;
     this.offsetData = [this.offset, this.limit];
-    this.authApi.getUsers(this.offsetData).subscribe((data) => {
-      this.users = data;
-    })
+    // this.authApi.getUsers(this.offsetData).subscribe((data) => {
+    //   this.users = data;
+    // })
   }
 
   nextTen(){
@@ -102,9 +93,20 @@ export class DirectoryComponent implements OnInit {
 
   searchUsers(){
     this.searchQuery = [this.offset, this.limit, this.searchTerm];
-    this.authApi.searchUsers(this.searchQuery).subscribe((data) => {
-      this.users = data;
-    })
+    if(this.searchTerm != '' && this.searchTerm !=null){
+      this.authApi.searchUsers(this.searchQuery).subscribe((data) => {
+        this.users = data;
+        if(this.users.length > 10){
+        this.showArrows = true;
+        }
+        else{
+        this.showArrows = false;
+        }
+      })
+    }
+    else{
+      this.clearSearch();
+    }
   }
 
   clearSearch(){
@@ -112,38 +114,18 @@ export class DirectoryComponent implements OnInit {
     this.page = 1;
     this.searchTerm = null;
     this.offsetData = [this.offset, this.limit];
-    this.authApi.getUsers(this.offsetData).subscribe((data) => {
-      this.users = data;
-    })
+    this.users = null;
+    // this.authApi.getUsers(this.offsetData).subscribe((data) => {
+    //   this.users = data;
+    // })
   }
 
-  makePC(uid: any, username: any){
-    this.gainApi.createPlaycaller(uid).subscribe((pcRes: any) =>{
-      this.newPCRes = pcRes;
-      this.toastService.show(username + ' has been promoted to PlayCaller', { classname: 'bg-dark text-light'});
-      setTimeout(() => window.location.href = '/directory', 1000);
-    }, (err: any) => this.newPCRes = err);
-  }
-
-  removePC(uid: any, username: any){
-    if(this.pcVerify==0){
-      alert("You are about to remove PlayCaller from this account! This cannot be undone. If you are sure, please click the 'Remove PlayCaller' button again.");
-      this.pcVerify = 1;
-    }
-    else if(this.pcVerify==1){
-      this.gainApi.removePlaycaller(uid).subscribe((pcRes: any) =>{
-        this.exPCRes = pcRes;
-        this.toastService.show('PlayCaller status has been removed from ' + username, { classname: 'bg-danger text-light'});
-        setTimeout(() => window.location.href = '/directory', 1000);
-      }, (err: any) => this.exPCRes = err);
-    }
-    else{
-      console.log("Error with PlayCaller Removal");
-    }
+  saveUIDInfo(uid: any, username: any, usertype: any, slug: any, is_playcaller: any){
+    this.admUserInfo = {selected_uid: uid, selected_username: username, selected_usertype: usertype, selected_slug: slug, selected_ispc: is_playcaller};
+    window.localStorage.setItem('admSelectedUser', JSON.stringify(this.admUserInfo));
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle( "9Forty5 - User Directory" );
     this.token = window.localStorage.getItem('jwt');
     this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       if(authData && authData[0]==true){
@@ -151,59 +133,6 @@ export class DirectoryComponent implements OnInit {
       this.jwtUsername = this.jwtData.data.username;
       this.jwtUsertype = this.jwtData.data.usertype;
       }
-    })
-  }
-
-  sendNoti(uid: any){
-    this.Noti = [uid, this.NotiTitle, this.NotiBody, this.NotiLink];
-    this.notiService.createTestNoti(this.Noti).subscribe((_notiRes: any) =>{
-      this.NotiTitle = '';
-      this.NotiBody = '';
-      this.NotiLink = '';
-      this.modalService.dismissAll();
-      this.toastService.show('Notification Sent', { classname: 'bg-dark text-light'});
-    }, (err: any) => this.notiRes = err);
-  }
-
-  open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-  banUser(user: any){
-
-    if(this.banVerify==0){
-      alert("You are about to BAN this account! If you are sure, please click the 'Ban User' button again.");
-      this.banVerify = 1;
-    }
-    else if(this.banVerify==1){
-      this.authApi.banUser(user).subscribe((_data) => {
-        this.toastService.show('You have banned ' + user + '.', { classname: 'bg-danger text-light'});
-        setTimeout(() => window.location.href = '/directory', 1000);
-      })
-    }
-    else{
-      console.log("Error with Banning User");
-    }
-  }
-
-  unbanUser(user: any){
-    this.authApi.unbanUser(user).subscribe((_data) => {
-      this.toastService.show('You have unbanned ' + user + '.', { classname: 'bg-success text-light'});
-      setTimeout(() => window.location.href = '/directory', 1000);
     })
   }
 
