@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
   userID: any;
   userSlug: any;
   jwtUsertype: any;
-  postData: import("/Users/Mizzy/Documents/Websites/stocks-app/src/app/models/postdata").PostData[];
+  postData: any;
   postTitle: any;
 
   constructor(
