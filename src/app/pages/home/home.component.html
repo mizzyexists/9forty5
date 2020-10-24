@@ -7,7 +7,7 @@
       <div *ngFor="let post of postData" routerLink="/post/{{post.post_slug}}" class="card text-white mb-2 pointer">
         <img src="{{post.post_image}}" class="card-img-top">
         <div class="card-body big-card">
-          <h5 class="card-title">{{ post.post_title | uppercase }}</h5>
+          <h5 class="card-title posttitle">{{ post.post_title | uppercase }}</h5>
           <p class="card-text">{{ post.post_excerpt }}</p>
           <p class="author">Post by <span routerLink="/user/{{ post.post_author | lowercase }}" class="author-user">{{ post.post_author }}</span><br>{{ post.post_date}}</p>
         </div>
