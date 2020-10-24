@@ -14,6 +14,7 @@ export class EditormenuComponent implements OnInit {
   token: string;
   jwtData: any;
   jwtUsername: any;
+  allPosts: any;
   constructor(
     private titleService: Title,
     private toastService: ToastService,
@@ -35,4 +36,10 @@ export class EditormenuComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  getAllPostInfo(){
+    this.postApi.getAllPostInfo().subscribe((data) => {
+      this.allPosts = data;
+    })
+  }
 }

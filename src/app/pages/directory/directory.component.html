@@ -11,17 +11,22 @@
             <td *ngIf="user.usertype=='Super-Admin' || user.usertype=='Admin'">
               <a class="username admin-color" routerLink="/user/{{user.slug}}">
                 <img src="{{user.image_path}}" width="25px" height="25px">
-                {{user.username}} <i *ngIf="user.usertype=='Super-Admin' || user.usertype=='Admin' || user.usertype=='PlayCaller' || user.usertype=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
+                {{user.username}} <i placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
             </td>
             <td *ngIf="user.usertype=='PlayCaller'">
               <a class="username pc-color" routerLink="/user/{{user.slug}}">
                 <img src="{{user.image_path}}" width="25px" height="25px">
-                {{user.username}} <i *ngIf="user.usertype=='Super-Admin' || user.usertype=='Admin' || user.usertype=='PlayCaller' || user.usertype=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
+                {{user.username}} <i placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
+            </td>
+            <td *ngIf="user.usertype=='Editor'">
+              <a class="username ed-color" routerLink="/user/{{user.slug}}">
+                <img src="{{user.image_path}}" width="25px" height="25px">
+                {{user.username}} <i placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
             </td>
             <td *ngIf="user.usertype=='User' || user.usertype=='Verified User'">
               <a class="username" routerLink="/user/{{user.slug}}">
                 <img src="{{user.image_path}}" width="25px" height="25px">
-                {{user.username}} <i *ngIf="user.usertype=='Super-Admin' || user.usertype=='Admin' || user.usertype=='PlayCaller' || user.usertype=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
+                {{user.username}} <i *ngIf="user.usertype=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
             </td>
             <td *ngIf="user.usertype=='BANNED'">
               <a class="username banned" routerLink="/user/{{user.slug}}">

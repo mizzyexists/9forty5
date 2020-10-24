@@ -56,9 +56,16 @@ export class CreatepostComponent implements OnInit {
     if(!this.newPostBody || this.newPostBody==''){
       this.toastService.show('No Body', { classname: 'bg-danger text-light'});
     }
-    else{
+    if(this.newPostTitle && this.newPostExcerpt && this.imageBase64 && this.newPostBody){
       const newPostData = {title: this.newPostTitle, excerpt: this.newPostExcerpt, image: this.imageBase64, body: this.newPostBody, author: this.jwtUsername};
-      this.postApi.newPost(newPostData).subscribe((_res) => {
+      this.postApi.newPost(newPostData).subscribe((res: any) => {
+        if(res[0]==1){
+          this.toastService.show('Post Created.', { classname: 'bg-light text-dark'});
+          setTimeout(() => window.location.href = 'post/'+res[1], 1500);
+        }
+        else{
+          this.toastService.show(res, { classname: 'bg-danger text-light'});
+        }
       })
     }
   }

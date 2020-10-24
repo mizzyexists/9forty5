@@ -18,6 +18,7 @@ import { EditormenuComponent } from './pages/editormenu/editormenu.component';
 import { EditorGuard } from './guards/editor.guard';
 import { PostComponent } from './pages/post/post.component';
 import { CreatepostComponent } from './pages/editormenu/createpost/createpost.component';
+import { EditpostComponent } from './pages/editormenu/editpost/editpost.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'gainzone', component: GainzoneComponent},
   { path: 'post', redirectTo: ''},
   { path: 'post/:slug', component: PostComponent},
+  { path: 'editpost', redirectTo: ''},
+  { path: 'editpost/:id', component: EditpostComponent},
 ];
 
 @NgModule({

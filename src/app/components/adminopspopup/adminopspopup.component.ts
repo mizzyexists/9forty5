@@ -151,4 +151,32 @@ export class AdminopspopupComponent implements OnInit {
     }
   }
 
+  promote2Editor(user){
+    this.authApi.makeEditor(user).subscribe((_data) => {
+      this.toastService.show('You have promoted ' + user + ' to EDITOR', { classname: 'bg-success text-light'});
+      setTimeout(() => window.location.href = '/', 1000);
+    })
+  }
+
+  removeEditorStatus(user){
+    this.authApi.removeEditor(user).subscribe((_data) => {
+      this.toastService.show('You have removed EDITOR status from ' + user + '.', { classname: 'bg-success text-light'});
+      setTimeout(() => window.location.href = '/', 1000);
+    })
+  }
+
+  promote2Admin(user){
+    this.authApi.makeAdmin(user).subscribe((_data) => {
+      this.toastService.show('You have promoted ' + user + ' to ADMIN', { classname: 'bg-success text-light'});
+      setTimeout(() => window.location.href = '/', 1000);
+    })
+  }
+
+  removeAdminStatus(user){
+    this.authApi.removeAdmin(user).subscribe((_data) => {
+      this.toastService.show('You have removed ADMIN status from ' + user + '.', { classname: 'bg-success text-light'});
+      setTimeout(() => window.location.href = '/', 1000);
+    })
+  }
+
 }

@@ -68,4 +68,16 @@ export class AuthService {
   unbanUser(user: any){
     return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/unbanuser`, user);
   }
+  makeEditor(user: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/promoeditor`, user);
+  }
+  makeAdmin(user: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/promoadmin`, user);
+  }
+  removeEditor(user: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/remeditor`, user);
+  }
+  removeAdmin(user: any){
+    return this.httpClient.post<UserData>(`${this.PHP_API_SERVER}/auth/remadmin`, user);
+  }
 }

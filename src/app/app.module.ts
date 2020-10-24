@@ -38,6 +38,7 @@ import { EditormenuComponent } from './pages/editormenu/editormenu.component';
 import { PostComponent } from './pages/post/post.component';
 import { CreatepostComponent } from './pages/editormenu/createpost/createpost.component';
 import { AdminopspopupComponent } from './components/adminopspopup/adminopspopup.component';
+import { EditpostComponent } from './pages/editormenu/editpost/editpost.component';
 
 const uri = '';
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -76,6 +77,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     PostComponent,
     CreatepostComponent,
     AdminopspopupComponent,
+    EditpostComponent,
   ],
   imports: [
     BrowserModule,

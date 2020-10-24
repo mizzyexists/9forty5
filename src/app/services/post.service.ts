@@ -24,5 +24,8 @@ export class PostService {
   fetchPostBySlug(slug: string): Observable<PostData[]>{
   return this.httpClient.get<PostData[]>(`${this.PHP_API_SERVER}/posts/getpostbyslug?slug=${slug}`);
   }
+  getAllPostInfo(){
+  return this.httpClient.get<PostData>(`${this.PHP_API_SERVER}/posts/getallpostinfo`);  
+  }
 
 }

@@ -38,6 +38,10 @@ tr {
   color: #20cbbc;
 }
 
+.ed-color{
+  color: #ffa700;
+}
+
 .banned{
   color: #767676;
   text-decoration: line-through;
@@ -50,6 +54,16 @@ img{
 
 input{
   width: 300px;
+  border: 0px;
+  border-bottom: 1px solid #000;
+  outline-width: 0;
+}
+
+input:focus, input:active{
+  border: 0px;
+  border-bottom: 1px solid #000;
+  outline-width: 0;
+  outline: none;
 }
 
 .clearbtn{

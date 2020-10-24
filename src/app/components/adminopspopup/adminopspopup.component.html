@@ -14,8 +14,12 @@
         <button type="button" class="btn btn-primary mx-1 my-1 w-75" data-toggle="modal" data-target="#admNotiModal">Send Notification</button>
         <a *ngIf="this.admOpUser.selected_ispc=='false'" (click)="makePC(this.admOpUser.selected_uid, this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-secondary mx-1 my-1 w-75">Make PlayCaller</a>
         <a *ngIf="this.admOpUser.selected_ispc=='true'" (click)="removePC(this.admOpUser.selected_uid, this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-secondary mx-1 my-1 w-75">Remove PlayCaller</a>
-        <a *ngIf="this.admOpUser.selected_usertype!='BANNED'" (click)="banUser(this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-danger mx-1 my-1 w-75">Ban User</a>
-        <a *ngIf="this.admOpUser.selected_usertype=='BANNED'" (click)="unbanUser(this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-success mx-1 my-1 w-75">UnBan User</a>
+        <a *ngIf="this.admOpUser.selected_usertype!='Editor' && this.admOpUser.selected_usertype!='Admin' && this.admOpUser.selected_usertype!='Super-Admin'" (click)="promote2Editor(this.admOpUser.selected_username)" class="btn btn-success mx-1 my-1 w-75">Promote to Editor</a>
+        <a *ngIf="this.admOpUser.selected_usertype=='Editor'" (click)="removeEditorStatus(this.admOpUser.selected_username)" class="btn btn-danger mx-1 my-1 w-75">Remove Editor Status</a>
+        <a *ngIf="this.admOpUser.selected_usertype!='Admin' && this.admOpUser.selected_usertype!='Super-Admin'" (click)="promote2Admin(this.admOpUser.selected_username)" class="btn btn-dark mx-1 my-1 w-75">Promote to Admin</a>
+        <a *ngIf="this.admOpUser.selected_usertype=='Admin' || this.admOpUser.selected_usertype=='Super-Admin' && this.admOpUser.selected_username!=jwtUsername" (click)="removeAdminStatus(this.admOpUser.selected_username)" class="btn btn-danger mx-1 my-1 w-75">Remove Admin Status</a>
+        <a *ngIf="this.admOpUser.selected_usertype!='BANNED' && this.admOpUser.selected_username!=jwtUsername" (click)="banUser(this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-danger mx-1 my-1 w-75">Ban User</a>
+        <a *ngIf="this.admOpUser.selected_usertype=='BANNED'" (click)="unbanUser(this.admOpUser.selected_username, this.admOpUser.selected_usertype)" class="btn btn-success mx-1 my-1 w-75">Unban User</a>
       </div>
     </div>
   </div>
