@@ -16,9 +16,9 @@
           </quill-editor>
         </div>
         <br>
-        <button class="btn btn-warning mx-2" (click)="previewPost()">Preview Post</button>
-        <button class="btn btn-primary mx-2" (click)="createPost()">Create Post</button>
-        <button class="btn btn-danger mx-2" routerLink="/editormenu">Cancel</button>
+        <button class="btn btn-warning mx-2 my-1" (click)="previewPost()">Preview Post</button>
+        <button class="btn btn-primary mx-2 my-1" (click)="createPost()">Create Post</button>
+        <button class="btn btn-danger mx-2 my-1" routerLink="/editor-menu">Cancel</button>
       </div>
     </div>
     <div *ngIf="previewMode=='true'">
@@ -34,7 +34,8 @@
       </div>
       <div class="col-12">
         <div class="card bg-dark text-white postBody">
-          <p class="date">9:45AM - January 1st, 2042<br><hr></p>
+          <p class="date">9:45AM - January 1st, 2042<br /></p>
+          <hr>
           <div [innerHTML]="newPostBody" class="card-body">
           </div>
           <div>

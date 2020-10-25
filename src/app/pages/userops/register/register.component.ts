@@ -5,22 +5,26 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ToastService } from '../../../services/toast.service';
 import { AuthData } from 'src/app/models/authdata';
+import { RecaptchaService } from '../../../services/recaptcha.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   token: string;
   authCheck: AuthData;
   isBanned: string;
+  recaptcha: any;
+  captchaGRes: string;
   constructor(
     private formBuilder:FormBuilder,
     private authApi: AuthService,
     private router: Router,
     private titleService: Title,
+    private recaptchaApi: RecaptchaService,
     private toastService: ToastService
   ) {
     this.token = window.localStorage.getItem('jwt');
@@ -36,11 +40,21 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       password2: ['', Validators.required],
+      reCaptcha: ['', Validators.required]
     });
     this.isBanned = window.localStorage.getItem('isBanned');
   }
 
   ngOnInit(): void {
+  }
+
+  resolved(captchaResponse: any[]){
+    this.recaptcha = captchaResponse;
+    const reCaptchaData = {secret: '6LdeStsZAAAAAKM8mfFWfq1I5QqKgQlbJJIuk4TF', response: this.recaptcha};
+    this.recaptchaApi.checkCaptcha(reCaptchaData).subscribe((res) => {
+    this.captchaGRes = res;
+    })
+    console.log(this.recaptcha);
   }
 
   onSubmit(){
@@ -55,6 +69,9 @@ export class RegisterComponent implements OnInit {
     }
     if(this.registerForm.value.password && this.registerForm.value.password.length<=5){
       this.toastService.show('Password must be longer than 5 characters', { classname: 'bg-danger text-light'});
+    }
+    if(this.captchaGRes!='true'){
+      this.toastService.show('Bad ReCaptcha', { classname: 'bg-danger text-light'});
     }
     if(this.registerForm.value.username && this.registerForm.value.email && this.registerForm.value.password && this.registerForm.value.password2 && this.registerForm.value.password.length>=6){
       if(this.registerForm.value.password == this.registerForm.value.password2){

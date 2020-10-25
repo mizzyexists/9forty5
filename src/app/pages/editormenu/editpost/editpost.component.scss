@@ -69,6 +69,8 @@
   text-align: center;
   color: #fff;
   font-weight: bold;
+  margin-top: 45px;
+  padding-top: .25rem;
 }
 
 .postHeader .author .author-link{
@@ -99,10 +101,11 @@
   margin-top: 15px;
 }
 
-.date hr{
+hr{
   border-top: 1px solid #c9c9c9;
   width: 40px;
-  margin-left: 0px;
+  margin-left: 20px;
+  margin-top: 0px;
 }
 
 .card-body{

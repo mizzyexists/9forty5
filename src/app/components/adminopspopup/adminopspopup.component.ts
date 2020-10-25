@@ -55,7 +55,7 @@ export class AdminopspopupComponent implements OnInit {
         this.gainApi.createPlaycaller(uid).subscribe((pcRes: any) =>{
           this.newPCRes = pcRes;
           this.toastService.show(username + ' has been promoted to PlayCaller', { classname: 'bg-dark text-light'});
-          setTimeout(() => window.location.href = '/', 1000);
+          // setTimeout(() => window.location.href = '/', 1000);
         }, (err: any) => this.newPCRes = err);
       }
       else{

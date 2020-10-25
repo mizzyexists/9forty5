@@ -18,14 +18,20 @@ export class PostService {
   newPost(postData: PostData): Observable<PostData>{
   return this.httpClient.post<PostData>(`${this.PHP_API_SERVER}/posts/createpost`, postData);
   }
+  editPost(postData: PostData): Observable<PostData>{
+  return this.httpClient.post<PostData>(`${this.PHP_API_SERVER}/posts/editpost`, postData);
+  }
   getLatestPosts(){
   return this.httpClient.get<PostData>(`${this.PHP_API_SERVER}/posts/getlatestposts`);
   }
   fetchPostBySlug(slug: string): Observable<PostData[]>{
   return this.httpClient.get<PostData[]>(`${this.PHP_API_SERVER}/posts/getpostbyslug?slug=${slug}`);
   }
+  fetchPostByPID(pid: string): Observable<PostData[]>{
+  return this.httpClient.get<PostData[]>(`${this.PHP_API_SERVER}/posts/getpostbypid?pid=${pid}`);
+  }
   getAllPostInfo(){
-  return this.httpClient.get<PostData>(`${this.PHP_API_SERVER}/posts/getallpostinfo`);  
+  return this.httpClient.get<PostData>(`${this.PHP_API_SERVER}/posts/getallpostinfo`);
   }
 
 }

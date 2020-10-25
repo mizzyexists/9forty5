@@ -60,7 +60,7 @@ export class CreatepostComponent implements OnInit {
       const newPostData = {title: this.newPostTitle, excerpt: this.newPostExcerpt, image: this.imageBase64, body: this.newPostBody, author: this.jwtUsername};
       this.postApi.newPost(newPostData).subscribe((res: any) => {
         if(res[0]==1){
-          this.toastService.show('Post Created.', { classname: 'bg-light text-dark'});
+          this.toastService.show('Post Created', { classname: 'bg-light text-dark'});
           setTimeout(() => window.location.href = 'post/'+res[1], 1500);
         }
         else{

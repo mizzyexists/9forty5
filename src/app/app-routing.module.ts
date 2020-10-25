@@ -35,14 +35,13 @@ const routes: Routes = [
   { path: 'edituser/:slug', component: EditprofileComponent},
   { path: 'playcaller', redirectTo: 'gainzone' },
   { path: 'playcaller/:slug', component: PlaycallerComponent},
-  { path: 'adminmenu', component: AdminmenuComponent, canActivate: [AuthGuard]},
-  { path: 'editormenu', component: EditormenuComponent, canActivate: [EditorGuard]},
-  { path: 'editormenu/createpost', component: CreatepostComponent, canActivate: [EditorGuard]},
+  { path: 'admin-menu', component: AdminmenuComponent, canActivate: [AuthGuard]},
+  { path: 'editor-menu', component: EditormenuComponent, canActivate: [EditorGuard]},
+  { path: 'editor-menu/createpost', component: CreatepostComponent, canActivate: [EditorGuard]},
   { path: 'gainzone', component: GainzoneComponent},
   { path: 'post', redirectTo: ''},
   { path: 'post/:slug', component: PostComponent},
-  { path: 'editpost', redirectTo: ''},
-  { path: 'editpost/:id', component: EditpostComponent},
+  { path: 'editor-menu/editpost/:id', component: EditpostComponent, canActivate: [EditorGuard]},
 ];
 
 @NgModule({
