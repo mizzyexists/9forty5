@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
           window.localStorage.setItem('isBanned', 'true');
           setTimeout(() => window.location.href = './', 1500);
         } else {
-        if(data.jwt || data.email) {
+        if(data.jwt || data.email && this.captchaGRes=='1') {
           window.localStorage.setItem('jwt', data.jwt);
           this.toastService.show('Login Succesful. Please Wait...', { classname: 'bg-dark text-light'});
           window.localStorage.removeItem('captchaRes');
