@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthData } from 'src/app/models/authdata';
 import { ToastService } from '../../../services/toast.service';
 import { Title } from '@angular/platform-browser';
+import { RecaptchaService } from 'src/app/services/recaptcha.service';
 
 @Component({
   selector: 'app-login',
@@ -25,10 +26,13 @@ export class LoginComponent implements OnInit {
   resetcode: any;
   codeForm: FormGroup;
   isBanned: string;
+  recaptcha: any;
+  captchaGRes: any;
   constructor(
     private toastService: ToastService,
     private formBuilder:FormBuilder,
     private authApi: AuthService,
+    private recaptchaApi: RecaptchaService,
     private router: Router,
     private titleService: Title
   ){
@@ -56,7 +60,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
+  resolved(captchaResponse: any[]){
+    this.recaptcha = captchaResponse;
+    this.recaptchaApi.checkCaptcha(this.recaptcha).subscribe((res) => {
+    this.captchaGRes = res;
+    if(this.captchaGRes=='1'){
+      window.localStorage.setItem('captchaRes', '1');
+    }
+    else{
+    }
+    })
+  }
+
   onSubmit(){
+    this.captchaGRes = window.localStorage.getItem('captchaRes');
     if(this.loginForm.invalid){
       return this.toastService.show('Invalid Login', { classname: 'bg-danger text-light'});;
     }
@@ -66,20 +83,26 @@ export class LoginComponent implements OnInit {
     };
     this.authApi.login(loginData).subscribe((data: any) => {
       this.message = data.message;
-      if(this.message=="BANNED"){
-        this.toastService.show('You are banned from 9Forty5.', { classname: 'bg-danger text-light'});
-        setTimeout(() => window.location.href = './', 1500);
-        window.localStorage.setItem('isBanned', 'true');
+      if(!this.captchaGRes || this.captchaGRes!='1'){
+        this.toastService.show('ReCaptcha Invalid', { classname: 'bg-danger text-light'});
       } else {
-      if(data.jwt || data.email) {
-        window.localStorage.setItem('jwt', data.jwt);
-        this.toastService.show('Login Succesful. Please Wait...', { classname: 'bg-dark text-light'});
-        setTimeout(() => window.location.href = './', 500);
+        if(this.message=="BANNED"){
+          this.toastService.show('You are banned from 9Forty5.', { classname: 'bg-danger text-light'});
+          window.localStorage.removeItem('captchaRes');
+          window.localStorage.setItem('isBanned', 'true');
+          setTimeout(() => window.location.href = './', 1500);
+        } else {
+        if(data.jwt || data.email) {
+          window.localStorage.setItem('jwt', data.jwt);
+          this.toastService.show('Login Succesful. Please Wait...', { classname: 'bg-dark text-light'});
+          window.localStorage.removeItem('captchaRes');
+          setTimeout(() => window.location.href = './', 500);
+        }
+        else {
+          this.toastService.show('Please check your username and password and try again', { classname: 'bg-danger text-light'});
+        }
+        }
       }
-      else {
-        this.toastService.show('Please check your username and password and try again', { classname: 'bg-danger text-light'});
-      }
-    }
     })
   }
 }

@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   authCheck: AuthData;
   isBanned: string;
   recaptcha: any;
-  captchaGRes: string;
+  captchaGRes: any;
   constructor(
     private formBuilder:FormBuilder,
     private authApi: AuthService,
@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       password2: ['', Validators.required],
-      reCaptcha: ['', Validators.required]
     });
     this.isBanned = window.localStorage.getItem('isBanned');
   }
@@ -50,14 +49,18 @@ export class RegisterComponent implements OnInit {
 
   resolved(captchaResponse: any[]){
     this.recaptcha = captchaResponse;
-    const reCaptchaData = {secret: '6LdeStsZAAAAAKM8mfFWfq1I5QqKgQlbJJIuk4TF', response: this.recaptcha};
-    this.recaptchaApi.checkCaptcha(reCaptchaData).subscribe((res) => {
+    this.recaptchaApi.checkCaptcha(this.recaptcha).subscribe((res) => {
     this.captchaGRes = res;
+    if(this.captchaGRes=='1'){
+      window.localStorage.setItem('captchaRes', '1');
+    }
+    else{
+    }
     })
-    console.log(this.recaptcha);
   }
 
   onSubmit(){
+    this.captchaGRes = window.localStorage.getItem('captchaRes');
     if(!this.registerForm.value.username){
       this.toastService.show('No Username', { classname: 'bg-danger text-light'});
     }
@@ -70,10 +73,10 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.value.password && this.registerForm.value.password.length<=5){
       this.toastService.show('Password must be longer than 5 characters', { classname: 'bg-danger text-light'});
     }
-    if(this.captchaGRes!='true'){
-      this.toastService.show('Bad ReCaptcha', { classname: 'bg-danger text-light'});
+    if(!this.captchaGRes || this.captchaGRes!='1'){
+      this.toastService.show('ReCaptcha Invalid', { classname: 'bg-danger text-light'});
     }
-    if(this.registerForm.value.username && this.registerForm.value.email && this.registerForm.value.password && this.registerForm.value.password2 && this.registerForm.value.password.length>=6){
+    if(this.registerForm.value.username && this.registerForm.value.email && this.registerForm.value.password && this.registerForm.value.password2 && this.registerForm.value.password.length>=6 && this.captchaGRes=='1'){
       if(this.registerForm.value.password == this.registerForm.value.password2){
     this.authApi.registerUser(this.registerForm.value).subscribe((data)=>{
       if(data[0]==0){
@@ -82,6 +85,7 @@ export class RegisterComponent implements OnInit {
         if(data.jwt || data.email) {
           window.localStorage.setItem('jwt', data.jwt);
           this.registerForm.reset();
+          window.localStorage.removeItem('captchaRes');
           setTimeout(() => window.location.href = './', 500);
         }else{
           console.log("An Error Occured");
