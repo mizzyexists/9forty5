@@ -42,4 +42,20 @@ export class GainzoneService {
   countLikes(liked_uid: any): Observable<PCData[]>{
   return this.httpClient.post<PCData[]>(`${this.PHP_API_SERVER}/gainzone/countlikes`, liked_uid);
   }
+
+  checkDisliked(dislikedata: any): Observable<PCData[]>{
+  return this.httpClient.post<PCData[]>(`${this.PHP_API_SERVER}/gainzone/checkdisliked`, dislikedata);
+  }
+
+  dislikePlaycaller(dislikedata: any): Observable<PCData[]>{
+  return this.httpClient.post<PCData[]>(`${this.PHP_API_SERVER}/gainzone/dislikeprofile`, dislikedata);
+  }
+
+  undislikePlaycaller(dislikedata: any): Observable<PCData[]>{
+  return this.httpClient.post<PCData[]>(`${this.PHP_API_SERVER}/gainzone/undislikeprofile`, dislikedata);
+  }
+
+  countDislikes(disliked_uid: any): Observable<PCData[]>{
+  return this.httpClient.post<PCData[]>(`${this.PHP_API_SERVER}/gainzone/countdislikes`, disliked_uid);
+  }
 }

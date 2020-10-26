@@ -35,6 +35,10 @@ export class PlaycallerComponent implements OnInit {
   isLiked: any;
   pcLikes: any;
   profileName: string;
+  disvoted: boolean;
+  pcDislikes: any;
+  dislikeData: any[];
+  isDisliked: any;
   constructor(
     private authApi: AuthService,
     private toastService: ToastService,
@@ -80,15 +84,27 @@ export class PlaycallerComponent implements OnInit {
         this.voted = true;
       }
     });
+    this.gainApi.countDislikes(this.pcUID).subscribe((count) => {
+      this.pcDislikes = count;
+    })
+    this.gainApi.checkDisliked(this.likeData).subscribe((res) => {
+      this.isDisliked = res;
+      if(this.isDisliked==0){
+        this.disvoted = false;
+      }
+      else{
+        this.disvoted = true;
+      }
+    });
   })
   });
   }
 
   ngOnInit(): void {}
 
-  upVote(){
+  likePC(){
     if(this.token){
-    if(this.voted==false){
+    if(this.voted==false && this.disvoted==false){
       this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
       this.jwtData = authData[1];
       if(this.jwtData){
@@ -125,5 +141,46 @@ export class PlaycallerComponent implements OnInit {
   }else{
     this.toastService.show('Must be logged in to do this.', { classname: 'bg-warning text-light'});
   }
+}
+
+dislikePC(){
+  if(this.token){
+  if(this.disvoted==false && this.voted==false){
+    this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
+    this.jwtData = authData[1];
+    if(this.jwtData){
+      this.userID = this.jwtData.data.uid;
+    }
+    this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
+      this.playData = pcdata;
+      this.pcUID = this.playData.user_id;
+      this.dislikeData = [this.userID, this.pcUID];
+      this.pcDislikes++;
+      this.disvoted = true;
+      this.gainApi.dislikePlaycaller(this.dislikeData).subscribe((_res) => {
+      })
+    })
+  })
+  }
+  else if(this.disvoted==true){
+    this.authApi.authorize(this.token).subscribe((authData: AuthData) => {
+    this.jwtData = authData[1];
+    if(this.jwtData){
+      this.userID = this.jwtData.data.uid;
+    }
+    this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
+      this.playData = pcdata;
+      this.pcUID = this.playData.user_id;
+      this.dislikeData = [this.userID, this.pcUID];
+      this.pcDislikes--;
+      this.disvoted = false;
+      this.gainApi.undislikePlaycaller(this.dislikeData).subscribe((_res) => {
+      })
+    })
+  })
+  }
+}else{
+  this.toastService.show('Must be logged in to do this.', { classname: 'bg-warning text-light'});
+}
 }
 }
