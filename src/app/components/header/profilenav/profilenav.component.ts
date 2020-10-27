@@ -88,7 +88,7 @@ export class ProfilenavComponent implements OnInit {
 
   goToAM(){
     if(this.jwtUsertype == 'Admin' || this.jwtUsertype == 'Super-Admin'){
-      this.router.navigate(['/adminmenu']);
+      this.router.navigate(['/admin-menu']);
     }
     else {
       alert("YOU CAN NOT DO THAT");
@@ -97,7 +97,7 @@ export class ProfilenavComponent implements OnInit {
 
   goToEM(){
     if(this.jwtUsertype == 'Admin' || this.jwtUsertype == 'Super-Admin' || this.jwtUsertype == 'Editor'){
-      this.router.navigate(['/editormenu']);
+      this.router.navigate(['/editor-menu']);
     }
     else {
       alert("YOU CAN NOT DO THAT");

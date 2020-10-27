@@ -1,23 +1,47 @@
 <div class="row">
   <div class="col-12 mt-2">
-    <div class="card bg-dark">
+    <div *ngIf="previewMode=='false'" class="card bg-dark">
       <div class="card-body w-80 text-left">
-        <!-- <h4 class="text-white mb-3">Edit Post</h4>
-        <p (click)="removeUpload()" *ngIf="imageBase64" class="btn btn-light mb-3 imageuploaded removeupload">x</p>
-        <input type="file" (change)="handleUpload($event)" placeholder="New Post Image Link" id="newPostImage" name="newPostImage" [(ngModel)]="this.newPostImage">
-        <label *ngIf="!imageBase64" for="newPostImage" class="btn btn-light mb-3 imageuploaded">+</label><img *ngIf="imageBase64" class="imageupped" src="{{imageBase64}}">
+        <h4 class="text-white mb-3">Edit Post</h4>
+        <input type="file" (change)="handleUpload($event)" placeholder="New Post Image Link" id="editPostImage" name="editPostImage" [(ngModel)]="this.editPostImage">
+        <img *ngIf="imageBase64" class="imageupped" src="{{imageBase64}}">
         <br>
-        <input type="text" placeholder="New Post Title" name="newPostTitle" [(ngModel)]="this.newPostTitle">
+        <input type="text" placeholder="New Post Title" name="editPostTitle" [(ngModel)]="this.editPostTitle">
         <br><br>
-        <input type="text" class="excerpt" placeholder="New Post Excerpt" name="newPostExcerpt" [(ngModel)]="this.newPostExcerpt">
+        <input type="text" class="excerpt" placeholder="New Post Excerpt" name="editPostExcerpt" [(ngModel)]="this.editPostExcerpt">
         <br>
         <div class="text-dark mt-3 bg-white">
-          <quill-editor [styles]="{height: '200px'}" class="editor" placeholder="New Post Body" name="newPostBody" [(ngModel)]="this.newPostBody">
+          <quill-editor [styles]="{height: '200px'}" class="editor" placeholder="New Post Body" name="editPostBody" [(ngModel)]="this.editPostBody">
           </quill-editor>
         </div>
         <br>
-        <button class="btn btn-primary mx-2" (click)="savePost()">Create Post</button>
-        <button class="btn btn-danger mx-2" routerLink="/editormenu">Cancel</button> -->
+        <button class="btn btn-warning mx-2 my-1" (click)="previewPost()">Preview Post</button>
+        <button class="btn btn-primary mx-2 my-1" (click)="savePost()">Save Post</button>
+        <button class="btn btn-danger mx-2 my-1" routerLink="/editormenu">Cancel</button>
+      </div>
+    </div>
+    <div *ngIf="previewMode=='true'">
+      <div class="col-12">
+        <div class="postHeader">
+          <p class="w-100 text-center bg-secondary text-white py-1">This is a post preview</p>
+          <img src="{{imageBase64}}">
+          <div class="headerOverlay">
+            <h2>{{editPostTitle | uppercase}}</h2>
+            <p class="author">By <span routerLink="/user/{{jwtUsername | lowercase}}" class="author-link">{{jwtUsername}}</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card bg-dark text-white postBody">
+          <p class="date">9:45AM - January 1st, 2042<br></p>
+          <hr>
+          <div [innerHTML]="editPostBody" class="card-body">
+          </div>
+          <div>
+            <button style="width: 150px; margin: 10px;" class="btn d-inline-block btn-warning mx-2" (click)="exitPreview()">Exit Preview</button>
+            <button style="width: 150px; margin: 10px;" class="btn d-inline-block btn-primary mx-2" (click)="savePost()">Save Post</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

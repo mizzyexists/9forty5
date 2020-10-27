@@ -5,22 +5,26 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ToastService } from '../../../services/toast.service';
 import { AuthData } from 'src/app/models/authdata';
+import { RecaptchaService } from '../../../services/recaptcha.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   token: string;
   authCheck: AuthData;
   isBanned: string;
+  recaptcha: any;
+  captchaGRes: any;
   constructor(
     private formBuilder:FormBuilder,
     private authApi: AuthService,
     private router: Router,
     private titleService: Title,
+    private recaptchaApi: RecaptchaService,
     private toastService: ToastService
   ) {
     this.token = window.localStorage.getItem('jwt');
@@ -43,7 +47,20 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  resolved(captchaResponse: any[]){
+    this.recaptcha = captchaResponse;
+    this.recaptchaApi.checkCaptcha(this.recaptcha).subscribe((res) => {
+    this.captchaGRes = res;
+    if(this.captchaGRes=='1'){
+      window.localStorage.setItem('captchaRes', '1');
+    }
+    else{
+    }
+    })
+  }
+
   onSubmit(){
+    this.captchaGRes = window.localStorage.getItem('captchaRes');
     if(!this.registerForm.value.username){
       this.toastService.show('No Username', { classname: 'bg-danger text-light'});
     }
@@ -56,7 +73,10 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.value.password && this.registerForm.value.password.length<=5){
       this.toastService.show('Password must be longer than 5 characters', { classname: 'bg-danger text-light'});
     }
-    if(this.registerForm.value.username && this.registerForm.value.email && this.registerForm.value.password && this.registerForm.value.password2 && this.registerForm.value.password.length>=6){
+    if(!this.captchaGRes || this.captchaGRes!='1'){
+      this.toastService.show('ReCaptcha Invalid', { classname: 'bg-danger text-light'});
+    }
+    if(this.registerForm.value.username && this.registerForm.value.email && this.registerForm.value.password && this.registerForm.value.password2 && this.registerForm.value.password.length>=6 && this.captchaGRes=='1'){
       if(this.registerForm.value.password == this.registerForm.value.password2){
     this.authApi.registerUser(this.registerForm.value).subscribe((data)=>{
       if(data[0]==0){
@@ -65,6 +85,7 @@ export class RegisterComponent implements OnInit {
         if(data.jwt || data.email) {
           window.localStorage.setItem('jwt', data.jwt);
           this.registerForm.reset();
+          window.localStorage.removeItem('captchaRes');
           setTimeout(() => window.location.href = './', 500);
         }else{
           console.log("An Error Occured");

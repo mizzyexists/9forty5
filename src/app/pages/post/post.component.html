@@ -13,6 +13,7 @@
       <p class="date">{{postData.post_date}}<br><hr></p>
       <div [innerHTML]="postData.post_body" class="card-body">
       </div>
+      <button *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin' || jwtUsertype=='Editor'" style="width: 150px; margin: 10px;" class="btn d-inline-block btn-warning mx-2 mt-0 mb-3" routerLink="/editor-menu/editpost/{{postData.post_id}}">Edit Post</button>
     </div>
   </div>
 </div>

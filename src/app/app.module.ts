@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrderBy } from './pipes/orderby';
 import { WatchlistResolver } from './resolvers/watchlist.resolver';
 import { QuillModule } from 'ngx-quill'
+import { RecaptchaModule } from 'ng-recaptcha';
 
 //Apollo Imports
 import { APOLLO_OPTIONS } from 'apollo-angular';
@@ -86,6 +87,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    RecaptchaModule,
     QuillModule.forRoot({
       modules: {
         toolbar: [

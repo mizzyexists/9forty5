@@ -14,6 +14,9 @@
         <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="on">
         <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please enter password.</div>
       </div>
+      <div class="form-group">
+        <re-captcha class="text-center d-flex justify-content-center" formControlName="reCaptcha" name="reCaptcha" id="reCaptcha" (resolved)="resolved($event)" siteKey='6LdeStsZAAAAAO_XpcvZ0HlHeD-7iR0t6ZR_HJrD'></re-captcha>
+      </div>
       <button class="btn btn-light">Login</button>
     </form>
     <br>
