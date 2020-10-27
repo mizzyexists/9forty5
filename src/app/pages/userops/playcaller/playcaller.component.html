@@ -7,13 +7,13 @@
         <h5 class="mt-2">{{profileName}}</h5>
         <a class="userlink username" routerLink="/user/{{profileUser | lowercase}}">{{profileUser}} <i *ngIf="profileType=='Super-Admin' || profileType=='Admin' || profileType=='PlayCaller' || profileType=='Verified User'" placement="top" ngbTooltip="Verified" class="fas fa-check"></i></a>
         <br *ngIf="userID!=profileID">
-        <p *ngIf="voted==false && userID!=profileID" (click)="likePC()" class="d-inline-block likes pointer"><i class="fas fa-thumbs-up"></i> Like</p>
-        <p *ngIf="voted==true && userID!=profileID" (click)="likePC()" class="d-inline-block likes pointer voted"><i class="fas fa-thumbs-up"></i> Likes</p>
-        <p *ngIf="disvoted==false && userID!=profileID" (click)="dislikePC()" class="d-inline-block likes pointer"><i class="fas fa-thumbs-down"></i> Dislike</p>
-        <p *ngIf="disvoted==true && userID!=profileID" (click)="dislikePC()" class="d-inline-block likes disvoted pointer"><i class="fas fa-thumbs-down"></i> Dislike</p>
+        <p *ngIf="voted==false && userID!=profileID" (click)="likePC()" class="d-inline-block likes pointer"><i class="fas fa-thumbs-up mr-2"></i> {{ pcLikes }}</p>
+        <p *ngIf="voted==true && userID!=profileID" (click)="likePC()" class="d-inline-block likes pointer voted"><i class="fas fa-thumbs-up mr-2"></i> {{ pcLikes }}</p>
+        <p *ngIf="disvoted==false && userID!=profileID" (click)="dislikePC()" class="d-inline-block dislikes pointer"><i class="fas fa-thumbs-down mr-2"></i> {{ pcDislikes }}</p>
+        <p *ngIf="disvoted==true && userID!=profileID" (click)="dislikePC()" class="d-inline-block dislikes disvoted pointer"><i class="fas fa-thumbs-down mr-2"></i> {{ pcDislikes }}</p>
         <br>
-        <p class="likecount d-inline-block">Likes: <strong>{{ pcLikes }}</strong></p><p class="likecount d-inline-block">Dislikes: <strong>{{ pcDislikes }}</strong>
-        <p>{{pcBio}}</p>
+        <p *ngIf="userID==profileID" class="likecount d-inline-block">Likes: <strong>{{ pcLikes }}</strong></p><p *ngIf="userID==profileID" class="likecount d-inline-block">Dislikes: <strong>{{ pcDislikes }}</strong>
+        <p class="mt-1">{{pcBio}}</p>
         <p *ngIf="pcGroupName"><strong>Group</strong><br>{{pcGroupName}}</p>
         <br>
       </div>

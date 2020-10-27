@@ -31,19 +31,9 @@
   color: #000 !important;
 }
 
-.voted:hover{
-  background-color: #ddd !important;
-  color: #000 !important;
-}
-
 .disvoted{
   background-color: #ff3f3f !important;
   color: #fff !important;
-}
-
-.disvoted:hover{
-  background-color: #ddd !important;
-  color: #000 !important;
 }
 
 .username{
@@ -108,20 +98,30 @@ background-color: rgba(107, 105, 105, 0.27);
   cursor: pointer;
 }
 
-.likes{
-  padding: 2px 10px;
-  width: 150px;
+.likes, .dislikes{
+  padding: 4px 10px;
+  width: 100px;
   display: block;
   margin: auto;
   margin-left: 2px;
   margin-right: 2px;
   margin-top: 6px;
-  background-color: #fff;
+  background-color: #ddd;
   color: #000;
 }
 
-.likes:hover{
-  background-color: #ddd;
+.likes:active, .likes:focus{
+  background-color: #28f7e5 !important;
+  color: #000 !important;
+}
+
+.dislikes:active, .dislikes:focus{
+  background-color: #ff3f3f !important;
+  color: #fff !important;
+}
+
+.likes:hover, .dislikes:hover{
+  background-color: #bcbcbc;
   color: #000;
 }
 
