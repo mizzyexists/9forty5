@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart, NavigationCancel } from '@angular/router';
 import { AppapiService } from './services/appapi.service';
 import { ToastService } from './services/toast.service';
@@ -23,6 +23,8 @@ export class AppComponent {
   jwtUsertype: any;
   isBanned: string;
   isAppealing: any = 'false';
+  @ViewChild('openModal') openModal:ElementRef;
+  showDiscordPopUp: any;
   constructor(
     private router: Router,
     private toastService: ToastService,
@@ -61,6 +63,10 @@ export class AppComponent {
                    setTimeout(() => this.loading = false, this.loadingTime);
                }
            });
+    this.showDiscordPopUp = window.localStorage.getItem('DiscordPopUp');
+    if(!this.showDiscordPopUp || this.showDiscordPopUp=='true'){
+      setTimeout(() => this.openModal.nativeElement.click(), 5000);
+    }
    }
 
    submitCode(){

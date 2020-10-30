@@ -40,6 +40,7 @@ import { PostComponent } from './pages/post/post.component';
 import { CreatepostComponent } from './pages/editormenu/createpost/createpost.component';
 import { AdminopspopupComponent } from './components/adminopspopup/adminopspopup.component';
 import { EditpostComponent } from './pages/editormenu/editpost/editpost.component';
+import { DiscordpopupComponent } from './components/discordpopup/discordpopup.component';
 
 const uri = '';
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
@@ -79,6 +80,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     CreatepostComponent,
     AdminopspopupComponent,
     EditpostComponent,
+    DiscordpopupComponent,
   ],
   imports: [
     BrowserModule,

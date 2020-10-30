@@ -27,10 +27,21 @@
   </div>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 user-card bg-dark text-white card" *ngIf="profileUser">
-  <div class="card-header">
-      <div class="text-center userinfo">
-        <h2>Most Recent Plays</h2>
-      </div>
+  <div class="card-body">
+    <div class="text-center userinfo">
+      <h2>Most Recent Plays</h2>
+    </div>
+    <div class="text-left playdata text-light p-4">
+      <h4>Play Title</h4>
+      <p>Play Body</p>
+    </div>
+  </div>
+</div>
+<div class="col-12 user-card bg-dark text-white card" *ngIf="profileUser">
+  <div class="card-body">
+    <div class="text-center userinfo">
+      <h2>All Plays</h2>
+    </div>
   </div>
 </div>
 </div>

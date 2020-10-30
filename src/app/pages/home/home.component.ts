@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     private titleService: Title,
     private postApi: PostService
   ) {
-    this.titleService.setTitle( "9Forty5 - Stock Analysis, Discussion, Blog" );
+    this.titleService.setTitle( "9Forty5 - Stock Analysis, PlayCalling, and Market Discussion" );
     this.postApi.getLatestPosts().subscribe((data) => {
       this.postData = data;
     })

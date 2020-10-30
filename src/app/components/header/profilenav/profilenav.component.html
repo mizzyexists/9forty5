@@ -7,7 +7,8 @@
     <div class="dropdown-menu profiledrop" ngbDropdownMenu aria-labelledby="profileDropdown">
       <a (click)="viewMyProfile()" class="dropdown-item pointer">View Profile</a>
       <a *ngIf="playcaller=='true'" routerLink="playcaller/{{userSlug | lowercase}}" class="dropdown-item pointer">PlayCaller Page</a>
-      <a class="dropdown-item" href="#">Your Watchlist</a>
+      <!-- <a class="dropdown-item" href="#">Your Watchlist</a> -->
+      <a class="dropdown-item" href="https://discord.gg/bCMN26R" target="_blank"><i class="fab fa-discord"></i> Discord</a>
     </div>
   </div>
   <div ngbDropdown display="dynamic" placement="bottom-right" class="d-inline-block">
@@ -32,7 +33,7 @@
     <p class="profiledisplay trans">|</p>
   <div class="settingsdrop dropdown-menu" ngbDropdownMenu aria-labelledby="settingsDropdown">
     <a routerLink="/edituser/{{userSlug}}" class="dropdown-item pointer">Edit Profile</a>
-    <a class="dropdown-item pointer">Account Settings</a>
+    <!-- <a class="dropdown-item pointer">Account Settings</a> -->
     <a *ngIf="jwtUsertype=='Editor' || jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToEM()">Editor Menu</a>
     <a *ngIf="jwtUsertype=='Super-Admin' || jwtUsertype=='Admin'" class="dropdown-item pointer" (click)="goToAM()">Admin Menu</a>
     <a *ngIf="adminAccess" (click)="endAdminAccess()" class="pointer dropdown-item">Clear Maintenance Code</a>
