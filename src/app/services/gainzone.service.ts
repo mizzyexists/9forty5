@@ -58,4 +58,8 @@ export class GainzoneService {
   countDislikes(disliked_uid: any): Observable<PCData[]>{
   return this.httpClient.post<PCData[]>(`${this.PHP_API_SERVER}/gainzone/countdislikes`, disliked_uid);
   }
+
+  getLatestPlay(uid: any): Observable<any>{
+  return this.httpClient.get<any>(`${this.PHP_API_SERVER}/gainzone/getlatestplay?uid=${uid}`);
+  }
 }

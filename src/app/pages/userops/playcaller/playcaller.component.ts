@@ -22,7 +22,7 @@ export class PlaycallerComponent implements OnInit {
   profileID: any;
   profileSlug: any;
   profileUser: any;
-  playData: any;
+  pcData: any;
   pcBio: any;
   pcGroupID: any;
   pcGroupName: any;
@@ -39,6 +39,11 @@ export class PlaycallerComponent implements OnInit {
   pcDislikes: any;
   dislikeData: any[];
   isDisliked: any;
+  lastPlayData: any;
+  lastPlayTitle: any;
+  lastCallData: any;
+  lastPlayUps: any;
+  lastPlayDowns: any;
   constructor(
     private authApi: AuthService,
     private toastService: ToastService,
@@ -65,12 +70,12 @@ export class PlaycallerComponent implements OnInit {
   this.profileType = this.userData.usertype;
   this.titleService.setTitle( "9Forty5 - PlayCaller "+ this.profileUser);
   this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
-    this.playData = pcdata;
-    this.pcUID = this.playData.user_id;
-    this.pcUsername = this.playData.username;
-    this.pcBio = this.playData.play_bio;
-    this.pcGroupID = this.playData.group_id;
-    this.pcGroupName = this.playData.group_name;
+    this.pcData = pcdata;
+    this.pcUID = this.pcData.user_id;
+    this.pcUsername = this.pcData.username;
+    this.pcBio = this.pcData.play_bio;
+    this.pcGroupID = this.pcData.group_id;
+    this.pcGroupName = this.pcData.group_name;
     this.likeData = [this.userID, this.pcUID];
     this.gainApi.countLikes(this.pcUID).subscribe((count) => {
       this.pcLikes = count;
@@ -96,6 +101,13 @@ export class PlaycallerComponent implements OnInit {
         this.disvoted = true;
       }
     });
+    this.gainApi.getLatestPlay(this.pcUID).subscribe((data) => {
+      this.lastPlayData = data;
+      this.lastPlayTitle = this.lastPlayData.play_title;
+      this.lastCallData = this.lastPlayData.play_calldata;
+      this.lastPlayUps = this.lastPlayData.play_upvotes;
+      this.lastPlayDowns = this.lastPlayData.play_downvotes;
+    });
   })
   });
   }
@@ -111,8 +123,8 @@ export class PlaycallerComponent implements OnInit {
         this.userID = this.jwtData.data.uid;
       }
       this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
-        this.playData = pcdata;
-        this.pcUID = this.playData.user_id;
+        this.pcData = pcdata;
+        this.pcUID = this.pcData.user_id;
         this.likeData = [this.userID, this.pcUID];
         this.pcLikes++;
         this.voted = true;
@@ -128,8 +140,8 @@ export class PlaycallerComponent implements OnInit {
         this.userID = this.jwtData.data.uid;
       }
       this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
-        this.playData = pcdata;
-        this.pcUID = this.playData.user_id;
+        this.pcData = pcdata;
+        this.pcUID = this.pcData.user_id;
         this.likeData = [this.userID, this.pcUID];
         this.pcLikes--;
         this.voted = false;
@@ -152,8 +164,8 @@ dislikePC(){
       this.userID = this.jwtData.data.uid;
     }
     this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
-      this.playData = pcdata;
-      this.pcUID = this.playData.user_id;
+      this.pcData = pcdata;
+      this.pcUID = this.pcData.user_id;
       this.dislikeData = [this.userID, this.pcUID];
       this.pcDislikes++;
       this.disvoted = true;
@@ -169,8 +181,8 @@ dislikePC(){
       this.userID = this.jwtData.data.uid;
     }
     this.gainApi.fetchPCbyID(this.profileID).subscribe((pcdata: any) => {
-      this.playData = pcdata;
-      this.pcUID = this.playData.user_id;
+      this.pcData = pcdata;
+      this.pcUID = this.pcData.user_id;
       this.dislikeData = [this.userID, this.pcUID];
       this.pcDislikes--;
       this.disvoted = false;
